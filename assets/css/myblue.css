@@ -1,0 +1,36 @@
+.colorme {color:#67bbc5;}
+.nav-bar > li:hover, .nav-bar > li a:hover  { color: #67bbc5;}
+.nav-bar > li.active > a { }
+ul.flyout li a:hover, .nav-bar li ul li a:hover {color:#67bbc5;}
+.flyout {border-top:2px solid #67bbc5;}
+.sectiontitle {border-left: 4px solid #67bbc5;}
+::-moz-selection{background:#67bbc5;color:#fff;}
+::selection{background:#67bbc5;color:#fff;}
+.ca-menu li:hover .ca-main {color: #FFF;}
+.topborder { border-top:4px solid #67bbc5;}
+.readmore {background:#67bbc5;}
+.login{background:#67bbc5;}
+ #subheader {background: #67bbc5;border-top: 1px solid #67bbc5; color: #eee;}
+ #subheader a {color: #eee;}
+ #subheader a:hover {color: #fff;}
+ .readmore {background:#67bbc5;}
+ #testimonials blockquote cite {color:#67bbc5;}
+ .tags {background:#333;}
+ ul.pagination li.current a {background: #67bbc5;}
+.saymore {color:#67bbc5;}
+.submit {background:#67bbc5;} 
+dl.tabs dd.active { border-bottom: 3px solid #67bbc5;}
+ul.accordion > li.active {border-top: 3px solid #67bbc5;}
+div.alert-box.default { background-color: #67bbc5;}
+.slide {	margin: 0;	padding: 0;	border-top: solid 4px #67bbc5;}
+#footer {border-top:#67bbc5 4px solid;}
+#footer_login {border-top:#67bbc5 4px solid;}
+.back-top a:hover{background-color: #67bbc5;}
+.sf-shadow ul {border-top:2px solid #67bbc5;}
+.panel {border-left:4px solid #67bbc5;}
+.colorbackground {background:#67bbc5;}
+a.projectdetail { background: #67bbc5;opacity:0.8;}
+a.projectdetail:hover { background: #67bbc5;opacity:1.0;}
+#testimonials {border-left: solid 6px #67bbc5;}
+.ei-title h2{background:#67bbc5;}
+.ca-menu li{background:#B1F7F1;}

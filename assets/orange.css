@@ -1,0 +1,40 @@
+.colorme {color:#F90;}
+.nav-bar > li:hover, .nav-bar > li a:hover  { color: #F90;}
+.nav-bar > li.active > a { }
+ul.flyout li a:hover, .nav-bar li ul li a:hover {color:#F90;}
+.flyout {border-top:2px solid #F90;}
+.sectiontitle {border-left: 4px solid #F90;}
+::-moz-selection{background:#F90;color:#fff;}
+::selection{background:#F90;color:#fff;}
+.ca-menu li:hover .ca-main {
+	color: #FFF;
+}
+.topborder { border-top:4px solid #F90;}
+.readmore {background:#F90;}
+.login{background:#F90;}
+ #subheader {background: #F90;border-top: 1px solid #F90; color: #eee;}
+ #subheader a {color: #eee;}
+ #subheader a:hover {color: #fff;}
+ .readmore {background:#F90;}
+ #testimonials blockquote cite {color:#F90;}
+ .tags {background:#333;}
+ ul.pagination li.current a {background: #F90;}
+.saymore {color:#F90;}
+.submit {background:#F90;} 
+dl.tabs dd.active { border-bottom: 3px solid #F90;}
+ul.accordion > li.active {border-top: 3px solid #F90;}
+div.alert-box.default { background-color: #F90;}
+.slide {	margin: 0;	padding: 0;	border-top: solid 4px #F90;}
+.btn-slide {	background:#F90 url(../../images/plus.png) no-repeat;}
+.btn-slide.active { background: #F90 url(../../images/minus.png) no-repeat;}
+#footer {border-top:#F90 4px solid;}
+#footer_login {border-top:#F90 4px solid;}
+.back-top a:hover{background-color: #F90;}
+.sf-shadow ul {border-top:2px solid #F90;}
+.panel {border-left:4px solid #F90;}
+.colorbackground {background:#F90;}
+a.projectdetail { background: #F90;opacity:0.8;}
+a.projectdetail:hover { background: #F90;opacity:1.0;}
+#testimonials {border-left: solid 6px #F90;}
+.ei-title h2{background:#F90;}
+.ca-menu li{background:#F70;}
