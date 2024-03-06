@@ -109,7 +109,7 @@
 					<div class="col-md-10 col-md-offset-1">
 						<div class="brand">
 							<h2>Selamat Datang di <?= $Judul; ?> </h2>
-							<button class="btn btn-primary rounded h4 title">Pendaftaran Lab Mamen</button>
+							<button class="btn btn-primary rounded h4 title">oprec Lab Mamen</button>
 						</div>
 					</div>
 				</div>
