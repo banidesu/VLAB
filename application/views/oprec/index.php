@@ -37,6 +37,25 @@
             font-weight: bold;
         }
 
+        /* .fw-medium {
+            font-weight: 400;
+        } */
+
+        fieldset {
+            border: 1px solid #888888;
+            border-radius: 0.375rem;
+            padding: 2rem;
+        }
+
+        legend {
+            max-width: max-content;
+            padding: 1rem 1.8rem;
+            border-radius: 0.375rem;
+            border: 1px solid #888888;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
         .index-page .brand h3 {
             max-width: max-content;
         }
@@ -54,6 +73,10 @@
 
         .form-group {
             margin: 0;
+        }
+
+        .form-control[type="file"] {
+            opacity: 1 !important;
         }
 
         footer {
@@ -84,60 +107,102 @@
                                 <hr>
                                 <div class="card-body text-left">
                                     <form action="#" method="post">
+                                        <fieldset>
+                                            <legend class="fw-bold">Data Diri</legend>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="name">Nama Lengkap</label>
+                                                        <input type="text" id="name" name="name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="npm">NPM</label>
+                                                        <input type="text" id="npm" name="npm" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="class">Kelas</label>
+                                                        <input type="text" id="class" name="class" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="jurusan">Jurusan</label>
+                                                        <select name="jurusan" id="jurusan" class="form-control">
+                                                            <option selected disabled></option>
+                                                            <?php foreach ($jurusans as $jurusan) : ?>
+                                                                <option value="<?= $jurusan['id'] ?>"><?= $jurusan['jurusan'] ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="region">Region</label>
+                                                        <select name="region" id="region" class="form-control">
+                                                            <option selected disabled></option>
+                                                            <option value="depok">Depok</option>
+                                                            <option value="kalimalang">Kalimalang</option>
+                                                            <option value="salemba">Salemba</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="placement">Penempatan</label>
+                                                        <select name="placement" id="placement" class="form-control">
+                                                            <option selected disabled></option>
+                                                            <option value="asisten">Asisten</option>
+                                                            <option value="programmer">Programmer</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="agama">Agama</label>
+                                                        <input type="text" id="agama" name="agama" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="email">Email</label>
+                                                        <input type="email" id="email" name="email" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="no_telp">No Telp</label>
+                                                        <input type="text" id="no_telp" name="no_telp" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="address">Alamat</label>
+                                                        <textarea id="address" name="address" class="form-control" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
+                                                        <input type="date" id="ttl" name="ttl" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <br>
+                                        <fieldset>
+                                            <legend class="fw-bold">Upload Berkas</legend>
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <br>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="name">Nama Lengkap</label>
-                                                    <input type="text" id="name" name="name" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="npm">NPM</label>
-                                                    <input type="text" id="npm" name="npm" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="email">Email</label>
-                                                    <input type="email" id="email" name="email" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="jurusan">Jurusan</label>
-                                                    <select name="jurusan" id="jurusan" class="form-control">
-                                                        <option selected disabled></option>
-                                                        <?php foreach ($jurusans as $jurusan) : ?>
-                                                            <option value="<?= $jurusan['id'] ?>"><?= $jurusan['jurusan'] ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="class">Kelas</label>
-                                                    <input type="text" id="class" name="class" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="no_telp">No Telp</label>
-                                                    <input type="text" id="no_telp" name="no_telp" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="address">Alamat</label>
-                                                    <textarea id="address" name="address" class="form-control" rows="1"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
-                                                    <input type="date" id="ttl" name="ttl" class="form-control">
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <button class="btn btn-primary" type="submit">Submit</button>
                                                 <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
