@@ -20,6 +20,12 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="<?= base_url(); ?>assets/virtual/css/demo.css" rel="stylesheet" />
+
+	<style>
+		.title.dropdown-toggle {
+			margin-bottom: 0;
+		}
+	</style>
 </head>
 
 <body class="index-page">
@@ -109,7 +115,20 @@
 					<div class="col-md-10 col-md-offset-1">
 						<div class="brand">
 							<h2>Selamat Datang di <?= $Judul; ?> </h2>
-							<button class="btn btn-primary rounded h4 title">oprec Lab Mamen</button>
+							<div class="dropdown" style="margin: 0 auto; max-width: max-content;">
+								<div class="btn btn-primary h4 title dropdown-toggle" data-toggle="dropdown">
+									Open Recruitment
+									<b class="caret"></b>
+								</div>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<a href="<?= base_url() ?>index.php/oprec">Pendaftaran</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/result">Hasil</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
