@@ -79,6 +79,27 @@
             opacity: 1 !important;
         }
 
+        .form-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-file-input[type=file] {
+            display: none;
+        }
+
+        .custom-file-input-label {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: transparent;
+            border-radius: 0.375rem;
+            cursor: pointer;
+        }
+
         footer {
             /* position: absolute;
             z-index: 999;
@@ -92,7 +113,7 @@
     </style>
 </head>
 
-<body class="index-page" style="overflow: auto;">
+<body class="index-page">
     <div class="wrapper">
         <!-- Header -->
         <div class="header header-filter" style="background-image: url('<?= base_url(); ?>assets/virtual/img/intro2.png');">
@@ -196,10 +217,35 @@
                                         <fieldset>
                                             <legend class="fw-bold">Upload Berkas</legend>
                                             <div class="row">
-                                                <div class="col-md-6">
-
+                                                <div class="col-md-12">
+                                                    <div style="margin-bottom: 2rem;">
+                                                        <label for="cv" class="form-label">CV</label>
+                                                        <label for="cv" class="custom-file-input-label">No file uploaded</label>
+                                                        <input type="file" name="cv" id="cv" class="custom-file-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div style="margin-bottom: 2rem;">
+                                                        <label for="krs" class="form-label">KRS</label>
+                                                        <label for="krs" class="custom-file-input-label">No file uploaded</label>
+                                                        <input type="file" name="krs" id="krs" class="custom-file-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div style="margin-bottom: 2rem;">
+                                                        <label for="nilai" class="form-label">Transkrip Nilai</label>
+                                                        <label for="nilai" class="custom-file-input-label">No file uploaded</label>
+                                                        <input type="file" name="nilai" id="nilai" class="custom-file-input">
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <small>
+                                                * Untuk transktrip nilai yang di upload adalah nilai semester terakhir.
+                                                <br>
+                                                * Upload file hanya berupa PDF (.pdf)
+                                                <br>
+                                                * Ukuran file maksimal yaitu 2048 KB (2 MB)
+                                            </small>
                                         </fieldset>
                                         <br>
                                         <div class="row">
