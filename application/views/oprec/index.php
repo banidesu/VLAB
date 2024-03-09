@@ -95,6 +95,18 @@
             cursor: pointer;
         }
 
+        .error.custom-file-input-label {
+            border-color: red;
+            color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 0.2rem;
+        }
+
         footer {
             padding: 2rem;
             background: -webkit-linear-gradient(135deg, rgba(101, 47, 142, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
@@ -125,133 +137,135 @@
                                 </div>
                                 <hr>
                                 <div class="card-body text-left">
-                                    <form action="<?= base_url() ?>oprec/submitdata" method="post" enctype="multipart/form-data">
-                                        <fieldset>
-                                            <legend class="fw-bold">Data Diri</legend>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="name">Nama Lengkap</label>
-                                                        <input type="text" id="name" name="name" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="npm">NPM</label>
-                                                        <input type="text" id="npm" name="npm" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="class">Kelas</label>
-                                                        <input type="text" id="class" name="class" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="jurusan">Jurusan</label>
-                                                        <select name="jurusan" id="jurusan" class="form-control">
-                                                            <option selected disabled></option>
-                                                            <?php foreach ($jurusans as $jurusan) : ?>
-                                                                <option value="<?= $jurusan['id'] ?>"><?= $jurusan['jurusan'] ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="region">Region</label>
-                                                        <select name="region" id="region" class="form-control">
-                                                            <option selected disabled></option>
-                                                            <option value="depok">Depok</option>
-                                                            <option value="kalimalang">Kalimalang</option>
-                                                            <option value="salemba">Salemba</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="placement">Penempatan</label>
-                                                        <select name="placement" id="placement" class="form-control">
-                                                            <option selected disabled></option>
-                                                            <option value="asisten">Asisten</option>
-                                                            <option value="programmer">Programmer</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="agama">Agama</label>
-                                                        <input type="text" id="agama" name="agama" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="email">Email</label>
-                                                        <input type="email" id="email" name="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="no_telp">No Telp</label>
-                                                        <input type="text" id="no_telp" name="no_telp" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="address">Alamat</label>
-                                                        <textarea id="address" name="address" class="form-control" rows="1"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
-                                                        <input type="date" id="ttl" name="ttl" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                        <br>
-                                        <fieldset>
-                                            <legend class="fw-bold">Upload Berkas</legend>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div style="margin-bottom: 2rem;">
-                                                        <label for="cv" class="form-label">CV</label>
-                                                        <label for="cv" class="custom-file-input-label">No file uploaded</label>
-                                                        <input type="file" name="cv" id="cv" class="custom-file-input">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div style="margin-bottom: 2rem;">
-                                                        <label for="krs" class="form-label">KRS</label>
-                                                        <label for="krs" class="custom-file-input-label">No file uploaded</label>
-                                                        <input type="file" name="krs" id="krs" class="custom-file-input">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div style="margin-bottom: 2rem;">
-                                                        <label for="nilai" class="form-label">Transkrip Nilai</label>
-                                                        <label for="nilai" class="custom-file-input-label">No file uploaded</label>
-                                                        <input type="file" name="nilai" id="nilai" class="custom-file-input">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <small>
-                                                * Untuk transktrip nilai yang di upload adalah nilai semester terakhir.
-                                                <br>
-                                                * Upload file hanya berupa PDF (.pdf)
-                                                <br>
-                                                * Ukuran file maksimal yaitu 2048 KB (2 MB)
-                                            </small>
-                                        </fieldset>
-                                        <br>
+                                    <?= form_open_multipart('oprec/submitdata'); ?>
+                                    <fieldset>
+                                        <legend class="fw-bold">Data Diri</legend>
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <button class="btn btn-primary" type="submit">Submit</button>
-                                                <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="name">Nama Lengkap</label>
+                                                    <input type="text" id="name" name="name" class="form-control" value="<?= set_value('name'); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="npm">NPM</label>
+                                                    <input type="text" id="npm" name="npm" class="form-control" value="<?= set_value('npm'); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="class">Kelas</label>
+                                                    <input type="text" id="class" name="class" class="form-control" value="<?= set_value('class'); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="jurusan">Jurusan</label>
+                                                    <select name="jurusan" id="jurusan" class="form-control">
+                                                        <option selected disabled></option>
+                                                        <?php foreach ($jurusans as $jurusan) : ?>
+                                                            <option value="<?= $jurusan['id'] ?>" <?= ($jurusan['id'] == set_value('jurusan')) ? 'selected' : '' ?>>
+                                                                <?= $jurusan['jurusan'] ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="region">Region</label>
+                                                    <select name="region" id="region" class="form-control">
+                                                        <option selected disabled></option>
+                                                        <option value="depok" <?= (set_value('region') == 'depok') ? 'selected' : '' ?>>Depok</option>
+                                                        <option value="kalimalang" <?= (set_value('region') == 'kalimalang') ? 'selected' : '' ?>>Kalimalang</option>
+                                                        <option value="salemba" <?= (set_value('region') == 'salemba') ? 'selected' : '' ?>>Salemba</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="placement">Penempatan</label>
+                                                    <select name="placement" id="placement" class="form-control">
+                                                        <option selected disabled></option>
+                                                        <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten</option>
+                                                        <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="agama">Agama</label>
+                                                    <input type="text" id="agama" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="email">Email</label>
+                                                    <input type="email" id="email" name="email" class="form-control" value="<?= set_value('email'); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="no_telp">No Telp</label>
+                                                    <input type="text" id="no_telp" name="no_telp" class="form-control" value="<?= set_value('no_telp'); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="address">Alamat</label>
+                                                    <textarea id="address" name="address" class="form-control" rows="1"><?= set_value('address'); ?></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
+                                                    <input type="date" id="ttl" name="ttl" class="form-control" value="<?= set_value('ttl'); ?>">
+                                                </div>
                                             </div>
                                         </div>
+                                    </fieldset>
+                                    <br>
+                                    <fieldset>
+                                        <legend class="fw-bold">Upload Berkas</legend>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div style="margin-bottom: 2rem;">
+                                                    <label for="cv" class="form-label">CV</label>
+                                                    <label for="cv" class="custom-file-input-label">No file uploaded</label>
+                                                    <input type="file" name="cv" id="cv" class="custom-file-input" accept=".pdf">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div style="margin-bottom: 2rem;">
+                                                    <label for="krs" class="form-label">KRS</label>
+                                                    <label for="krs" class="custom-file-input-label">No file uploaded</label>
+                                                    <input type="file" name="krs" id="krs" class="custom-file-input" accept=".pdf">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div style="margin-bottom: 2rem;">
+                                                    <label for="nilai" class="form-label">Transkrip Nilai</label>
+                                                    <label for="nilai" class="custom-file-input-label">No file uploaded</label>
+                                                    <input type="file" name="nilai" id="nilai" class="custom-file-input" accept=".pdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <small>
+                                            * Untuk transktrip nilai yang di upload adalah nilai semester terakhir.
+                                            <br>
+                                            * Upload file hanya berupa PDF (.pdf)
+                                            <br>
+                                            * Ukuran file maksimal yaitu 2048 KB (2 MB)
+                                        </small>
+                                    </fieldset>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                            <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -300,6 +314,37 @@
                     input = input.slice(0, 10);
                 }
                 $(this).val(input);
+            });
+
+            // custom file input || Only PDF
+            $('.custom-file-input').on('change', function() {
+                console.log($(this).next('.error-message'));
+                var file = $(this)[0].files[0],
+                    fileName = file ? file.name : 'No file uploaded',
+                    fileType = file ? file.type : '',
+                    allowedTypes = ['application/pdf'];
+
+                if (!allowedTypes.includes(fileType)) {
+                    $(this).prev().addClass('error');
+
+                    // Check if error message already exists
+                    var errorMessage = $(this).next('.error-message');
+                    if (errorMessage.length === 0) {
+                        // Create error message element only if it doesn't exist
+                        errorMessage = $('<small/>', {
+                            class: 'error-message',
+                            text: 'Silakan pilih file PDF!'
+                        });
+                        // Append error message after the file input
+                        $(this).after(errorMessage);
+                    }
+                } else {
+                    $(this).prev().removeClass('error');
+                    // Remove error message if exists
+                    $(this).next('.error-message').remove();
+                }
+
+                $(this).prev().text(fileName);
             });
         });
     </script>
