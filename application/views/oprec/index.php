@@ -23,12 +23,6 @@
     <link href="<?= base_url(); ?>assets/virtual/css/demo.css" rel="stylesheet" />
 
     <style>
-        .container {
-            display: grid;
-            place-items: center stretch;
-            height: 100dvh;
-        }
-
         .brand {
             margin-top: 0 !important;
         }
@@ -61,7 +55,8 @@
         }
 
         .index-page .wrapper>.header {
-            height: 100dvh;
+            height: 100%;
+            padding: calc(1rem + 6px) 0;
         }
 
         hr {
@@ -101,22 +96,25 @@
         }
 
         footer {
-            /* position: absolute;
-            z-index: 999;
-            width: 100%;
-            bottom: 0; */
             padding: 2rem;
             background: -webkit-linear-gradient(135deg, rgba(101, 47, 142, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
             border-top: 1px solid whitesmoke;
             text-align: center;
         }
+
+        @media (min-width: 768px) {
+            .index-page .wrapper>.header {
+                height: 100%;
+                padding: 5rem 0;
+            }
+        }
     </style>
 </head>
 
-<body class="index-page">
+<body class="index-page" style="background-image: url('<?= base_url(); ?>assets/virtual/img/intro2.png');">
     <div class="wrapper">
         <!-- Header -->
-        <div class="header header-filter" style="background-image: url('<?= base_url(); ?>assets/virtual/img/intro2.png');">
+        <div class="header header-filter">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
@@ -127,7 +125,7 @@
                                 </div>
                                 <hr>
                                 <div class="card-body text-left">
-                                    <form action="#" method="post">
+                                    <form action="<?= base_url() ?>oprec/submitdata" method="post" enctype="multipart/form-data">
                                         <fieldset>
                                             <legend class="fw-bold">Data Diri</legend>
                                             <div class="row">

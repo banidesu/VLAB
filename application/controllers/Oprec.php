@@ -12,4 +12,9 @@ class Oprec extends CI_Controller
         $data['judul'] = "Registrasi Lab Manajemen Menengah";
         $this->load->view('oprec/index', $data);
     }
+
+    public function SubmitData()
+    {
+        var_dump($this->input->post());
+    }
 }
