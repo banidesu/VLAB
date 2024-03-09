@@ -122,10 +122,10 @@
 								</div>
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
-										<a href="<?= base_url() ?>index.php/oprec">Pendaftaran</a>
+										<a href="<?= base_url() ?>oprec">Pendaftaran</a>
 									</li>
 									<li>
-										<a href="<?= base_url() ?>index.php/result">Hasil</a>
+										<a href="<?= base_url() ?>result">Hasil</a>
 									</li>
 								</ul>
 							</div>
