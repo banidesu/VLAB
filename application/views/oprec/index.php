@@ -31,9 +31,9 @@
             font-weight: bold;
         }
 
-        /* .fw-medium {
+        .fw-medium {
             font-weight: 400;
-        } */
+        }
 
         fieldset {
             border: 1px solid #888888;
@@ -160,6 +160,7 @@
                                 </div>
                                 <hr>
                                 <div class="card-body text-left">
+                                    <?= $this->session->flashdata('message'); ?>
                                     <?= form_open_multipart('oprec/'); ?>
                                     <fieldset>
                                         <legend class="fw-bold">Data Diri</legend>
@@ -167,7 +168,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('name') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="name">Nama Lengkap</label>
-                                                    <input type="text" id="name" name="name" class="form-control" value="<?= set_value('name'); ?>">
+                                                    <input type="text" id="name" name="name" class="form-control" value="<?= set_value('name'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('name', '<small class="error-message">', '</small>'); ?>
@@ -175,7 +176,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('npm') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="npm">NPM</label>
-                                                    <input type="text" id="npm" name="npm" class="form-control" value="<?= set_value('npm'); ?>">
+                                                    <input type="text" id="npm" name="npm" class="form-control" value="<?= set_value('npm'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('npm', '<small class="error-message">', '</small>'); ?>
@@ -183,7 +184,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('class') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="class">Kelas</label>
-                                                    <input type="text" id="class" name="class" class="form-control" value="<?= set_value('class'); ?>">
+                                                    <input type="text" id="class" name="class" class="form-control" value="<?= set_value('class'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('class', '<small class="error-message">', '</small>'); ?>
@@ -191,7 +192,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('jurusan') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="jurusan">Jurusan</label>
-                                                    <select name="jurusan" id="jurusan" class="form-control">
+                                                    <select name="jurusan" id="jurusan" class="form-control" required>
                                                         <option selected disabled></option>
                                                         <?php foreach ($jurusans as $jurusan) : ?>
                                                             <option value="<?= $jurusan['id'] ?>" <?= ($jurusan['id'] == set_value('jurusan')) ? 'selected' : '' ?>>
@@ -206,7 +207,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('region') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="region">Region</label>
-                                                    <select name="region" id="region" class="form-control">
+                                                    <select name="region" id="region" class="form-control" required>
                                                         <option selected disabled></option>
                                                         <option value="depok" <?= (set_value('region') == 'depok') ? 'selected' : '' ?>>Depok</option>
                                                         <option value="kalimalang" <?= (set_value('region') == 'kalimalang') ? 'selected' : '' ?>>Kalimalang</option>
@@ -219,7 +220,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('placement') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="placement">Penempatan</label>
-                                                    <select name="placement" id="placement" class="form-control">
+                                                    <select name="placement" id="placement" class="form-control" required>
                                                         <option selected disabled></option>
                                                         <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten</option>
                                                         <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer</option>
@@ -231,7 +232,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('agama') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="agama">Agama</label>
-                                                    <input type="text" id="agama" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
+                                                    <input type="text" id="agama" name="agama" class="form-control" value="<?= set_value('agama'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('agama', '<small class="error-message">', '</small>'); ?>
@@ -239,7 +240,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('email') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="email">Email</label>
-                                                    <input type="email" id="email" name="email" class="form-control" value="<?= set_value('email'); ?>">
+                                                    <input type="email" id="email" name="email" class="form-control" value="<?= set_value('email'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('email', '<small class="error-message">', '</small>'); ?>
@@ -247,7 +248,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('no_telp') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="no_telp">No Telp</label>
-                                                    <input type="text" id="no_telp" name="no_telp" class="form-control" value="<?= set_value('no_telp'); ?>">
+                                                    <input type="text" id="no_telp" name="no_telp" class="form-control" value="<?= set_value('no_telp'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('no_telp', '<small class="error-message">', '</small>'); ?>
@@ -255,7 +256,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('address') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="address">Alamat</label>
-                                                    <textarea id="address" name="address" class="form-control" rows="1"><?= set_value('address'); ?></textarea>
+                                                    <textarea id="address" name="address" class="form-control" rows="1" required><?= set_value('address'); ?></textarea>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('address', '<small class="error-message">', '</small>'); ?>
@@ -263,7 +264,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
-                                                    <input type="text" id="ttl" name="ttl" class="form-control datepicker" value="<?= set_value('ttl'); ?>">
+                                                    <input type="text" id="ttl" name="ttl" class="form-control datepicker" value="<?= set_value('ttl'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('ttl', '<small class="error-message">', '</small>'); ?>
