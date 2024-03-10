@@ -17,7 +17,7 @@
     <!-- CSS Files -->
     <link href="<?= base_url(); ?>assets/virtual/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?= base_url(); ?>assets/virtual/css/material-kit.css" rel="stylesheet" />
-    <link href="<?= base_url(); ?>assets\bootstrap-datepicker\css\bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?= base_url(); ?>assets/virtual/css/demo.css" rel="stylesheet" />
@@ -117,6 +117,21 @@
         .form-control-feedback {
             top: 50%;
             transform: translateY(-50%);
+        }
+
+        .datepicker {
+            margin-top: 1px !important;
+        }
+
+        .datepicker.dropdown-menu {
+            margin-top: 0;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        }
+
+        .datepicker th {
+            font-weight: bold;
         }
 
         @media (min-width: 768px) {
@@ -245,7 +260,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
-                                                    <input type="date" id="ttl" name="ttl" class="form-control" value="<?= set_value('ttl'); ?>">
+                                                    <input type="text" id="ttl" name="ttl" class="form-control datepicker" value="<?= set_value('ttl'); ?>">
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('ttl', '<small class="error-message">', '</small>'); ?>
@@ -329,6 +344,10 @@
 
     <script>
         $(document).ready(function() {
+            $('.datepicker').datepicker({
+                autoclose: true
+            });
+
             $('#no_telp').on('input', function(e) {
                 var input = $(this).val();
                 input = input.replace(/\D/g, '');
