@@ -114,6 +114,11 @@
             text-align: center;
         }
 
+        .form-control-feedback {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         @media (min-width: 768px) {
             .index-page .wrapper>.header {
                 height: 100%;
@@ -137,30 +142,36 @@
                                 </div>
                                 <hr>
                                 <div class="card-body text-left">
-                                    <?= form_open_multipart('oprec/submitdata'); ?>
+                                    <?= form_open_multipart('oprec/'); ?>
                                     <fieldset>
                                         <legend class="fw-bold">Data Diri</legend>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('name') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="name">Nama Lengkap</label>
                                                     <input type="text" id="name" name="name" class="form-control" value="<?= set_value('name'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('name', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('npm') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="npm">NPM</label>
                                                     <input type="text" id="npm" name="npm" class="form-control" value="<?= set_value('npm'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('npm', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('class') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="class">Kelas</label>
                                                     <input type="text" id="class" name="class" class="form-control" value="<?= set_value('class'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('class', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('jurusan') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="jurusan">Jurusan</label>
                                                     <select name="jurusan" id="jurusan" class="form-control">
                                                         <option selected disabled></option>
@@ -170,10 +181,12 @@
                                                             </option>
                                                         <?php endforeach; ?>
                                                     </select>
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('jurusan', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('region') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="region">Region</label>
                                                     <select name="region" id="region" class="form-control">
                                                         <option selected disabled></option>
@@ -181,47 +194,61 @@
                                                         <option value="kalimalang" <?= (set_value('region') == 'kalimalang') ? 'selected' : '' ?>>Kalimalang</option>
                                                         <option value="salemba" <?= (set_value('region') == 'salemba') ? 'selected' : '' ?>>Salemba</option>
                                                     </select>
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('region', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('placement') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="placement">Penempatan</label>
                                                     <select name="placement" id="placement" class="form-control">
                                                         <option selected disabled></option>
                                                         <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten</option>
                                                         <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer</option>
                                                     </select>
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('placement', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('agama') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="agama">Agama</label>
                                                     <input type="text" id="agama" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('agama', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('email') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="email">Email</label>
                                                     <input type="email" id="email" name="email" class="form-control" value="<?= set_value('email'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('email', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('no_telp') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="no_telp">No Telp</label>
                                                     <input type="text" id="no_telp" name="no_telp" class="form-control" value="<?= set_value('no_telp'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('no_telp', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('address') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="address">Alamat</label>
                                                     <textarea id="address" name="address" class="form-control" rows="1"><?= set_value('address'); ?></textarea>
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('address', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
                                                     <input type="date" id="ttl" name="ttl" class="form-control" value="<?= set_value('ttl'); ?>">
+                                                    <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
+                                                <?= form_error('ttl', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -231,23 +258,26 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="cv" class="form-label">CV</label>
-                                                    <label for="cv" class="custom-file-input-label">No file uploaded</label>
+                                                    <label for="cv" class="form-label <?= form_error('cv') ? ' text-danger' : '' ?>">CV</label>
+                                                    <label for="cv" class="custom-file-input-label <?= form_error('cv') ? ' error' : '' ?>">No file uploaded</label>
                                                     <input type="file" name="cv" id="cv" class="custom-file-input" accept=".pdf">
+                                                    <?= form_error('cv', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="krs" class="form-label">KRS</label>
-                                                    <label for="krs" class="custom-file-input-label">No file uploaded</label>
+                                                    <label for="krs" class="form-label <?= form_error('krs') ? ' text-danger' : '' ?>">KRS</label>
+                                                    <label for="krs" class="custom-file-input-label <?= form_error('krs') ? ' error' : '' ?>">No file uploaded</label>
                                                     <input type="file" name="krs" id="krs" class="custom-file-input" accept=".pdf">
+                                                    <?= form_error('krs', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="nilai" class="form-label">Transkrip Nilai</label>
-                                                    <label for="nilai" class="custom-file-input-label">No file uploaded</label>
+                                                    <label for="nilai" class="form-label <?= form_error('nilai') ? ' text-danger' : '' ?>">Transkrip Nilai</label>
+                                                    <label for="nilai" class="custom-file-input-label <?= form_error('nilai') ? ' error' : '' ?>">No file uploaded</label>
                                                     <input type="file" name="nilai" id="nilai" class="custom-file-input" accept=".pdf">
+                                                    <?= form_error('nilai', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -318,7 +348,7 @@
 
             // custom file input || Only PDF
             $('.custom-file-input').on('change', function() {
-                console.log($(this).next('.error-message'));
+                // console.log($(this).next('.error-message'));
                 var file = $(this)[0].files[0],
                     fileName = file ? file.name : 'No file uploaded',
                     fileType = file ? file.type : '',
