@@ -79,7 +79,10 @@
         }
 
         .custom-file-input[type=file] {
-            display: none;
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+            width: 0;
         }
 
         .custom-file-input-label {
