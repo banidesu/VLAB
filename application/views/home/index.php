@@ -125,7 +125,7 @@
 										<a href="<?= base_url() ?>oprec">Pendaftaran</a>
 									</li>
 									<li>
-										<a href="<?= base_url() ?>result">Hasil</a>
+										<a href="<?= base_url() ?>oprec/result">Hasil</a>
 									</li>
 								</ul>
 							</div>
