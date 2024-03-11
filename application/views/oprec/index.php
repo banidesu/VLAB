@@ -137,6 +137,11 @@
             font-weight: bold;
         }
 
+        .alert.alert-danger .container-fluid p {
+            display: inline;
+            margin: 0;
+        }
+
         @media (min-width: 768px) {
             .index-page .wrapper>.header {
                 height: 100%;
@@ -265,11 +270,20 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
-                                                    <input type="text" id="ttl" name="ttl" class="form-control datepicker" value="<?= set_value('ttl'); ?>" required>
-                                                    <span class="material-icons form-control-feedback">clear</span>
+                                                    <label class="control-label" for="tempat-lahir">Tempat Tgl Lahir</label>
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <input type="text" id="tempat-lahir" name="tempat-lahir" class="form-control" value="<?= set_value('tempat-lahir'); ?>" placeholder="Tempat lahir">
+                                                            <span class="material-icons form-control-feedback">clear</span>
+                                                            <?= form_error('tempat-lahir', '<small class="error-message">', '</small>'); ?>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <input type="text" id="tanggal-lahir" name="tanggal-lahir" class="form-control datepicker" value="<?= set_value('tanggal-lahir'); ?>" placeholder="Tanggal Lahir">
+                                                            <span class="material-icons form-control-feedback">clear</span>
+                                                            <?= form_error('tanggal-lahir', '<small class="error-message">', '</small>'); ?>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <?= form_error('ttl', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('sosmed') ? ' has-error' : '' ?>">
@@ -310,7 +324,7 @@
                                                 <div style="margin-bottom: 2rem;">
                                                     <label for="nilai" class="form-label <?= form_error('nilai') ? ' text-danger' : '' ?>">Transkrip Nilai</label>
                                                     <label for="nilai" class="custom-file-input-label <?= form_error('nilai') ? ' error' : '' ?>">No file uploaded</label>
-                                                    <input type="file" name="nilai" id="nilai" class="custom-file-input" accept=".pdf">
+                                                    <input type="file" name="transkrip_nilai" id="nilai" class="custom-file-input" accept=".pdf">
                                                     <?= form_error('nilai', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
@@ -320,7 +334,7 @@
                                             <br>
                                             * Upload file hanya berupa PDF (.pdf)
                                             <br>
-                                            * Ukuran file maksimal yaitu 2048 KB (2 MB)
+                                            * Ukuran file maksimal yaitu 1024KB (1MB)
                                         </small>
                                     </fieldset>
                                     <br>
@@ -362,11 +376,11 @@
     <script src="<?= base_url(); ?>assets/virtual/js/Function.js" type="text/javascript"></script>
 
     <script>
+        $('.datepicker').datepicker({
+            format: "dd-mm-yyyy",
+            autoclose: 1
+        });
         $(document).ready(function() {
-            $('.datepicker').datepicker({
-                autoclose: true
-            });
-
             $('#no_telp').on('input', function(e) {
                 var input = $(this).val();
                 input = input.replace(/\D/g, '');

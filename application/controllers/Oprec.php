@@ -104,8 +104,16 @@ class Oprec extends CI_Controller
                 ]
             ],
             [
-                'field' => 'ttl',
-                'label' => 'TTL',
+                'field' => 'tempat-lahir',
+                'label' => 'Tempat lahir',
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
+            ],
+            [
+                'field' => 'tanggal-lahir',
+                'label' => 'Tanggal lahir',
                 'rules' => 'required|trim',
                 'errors' => [
                     'required' => '{field} harap diisi'
@@ -119,22 +127,7 @@ class Oprec extends CI_Controller
                     'required' => '{field} harap diisi',
                     'valid_url' => '{field} URL tidak valid'
                 ]
-            ],
-            // [
-            //     'field' => 'cv',
-            //     'label' => 'CV',
-            //     'rules' => 'required|trim'
-            // ],
-            // [
-            //     'field' => 'krs',
-            //     'label' => 'KRS',
-            //     'rules' => 'required|trim'
-            // ],
-            // [
-            //     'field' => 'nilai',
-            //     'label' => 'Transkrip Nilai',
-            //     'rules' => 'required|trim'
-            // ],
+            ]
         ];
 
         $this->form_validation->set_rules($rules);
@@ -152,27 +145,60 @@ class Oprec extends CI_Controller
         $data['jurusans'] = $jurusans->result_array();
         $data['judul'] = "Registrasi Lab Manajemen Menengah";
 
-        $data2 = [
-            'name' => htmlspecialchars($this->input->post('name'), true),
+        $data_calas = [
+            'nama' => htmlspecialchars($this->input->post('name'), true),
             'npm' => htmlspecialchars($this->input->post('npm', true)),
-            'class' => htmlspecialchars($this->input->post('class', true)),
+            'kelas' => htmlspecialchars($this->input->post('class', true)),
             'jurusan' => htmlspecialchars($this->input->post('jurusan', true)),
             'region' => htmlspecialchars($this->input->post('region', true)),
-            'placement' => htmlspecialchars($this->input->post('placement', true)),
+            'penempatan' => htmlspecialchars($this->input->post('placement', true)),
             'agama' => htmlspecialchars($this->input->post('agama', true)),
             'email' => htmlspecialchars($this->input->post('email', true)),
             'no_telp' => htmlspecialchars($this->input->post('no_telp', true)),
-            'address' => htmlspecialchars($this->input->post('address', true)),
-            'ttl' => htmlspecialchars($this->input->post('ttl', true)),
+            'alamat' => htmlspecialchars($this->input->post('address', true)),
+            'ttl' => htmlspecialchars($this->input->post('tempat-lahir', true)) . ' ' . htmlspecialchars($this->input->post('tanggal-lahir', true)),
+            'sosmed' => htmlspecialchars($this->input->post('sosmed', true))
         ];
 
-        $cv = $_FILES['cv']['name'];
-        $krs = $_FILES['krs']['name'];
-        $nilai = $_FILES['nilai']['name'];
+        $files = ['cv', 'krs', 'transkrip_nilai'];
+        $upload_errors = [];
 
-        if ($cv && $krs && $nilai) {
-            var_dump("OKE");
-            die;
+        // Load library upload
+        $this->load->library('upload');
+
+        if ($_FILES['cv']['name'] && $_FILES['krs']['name'] && $_FILES['transkrip_nilai']['name']) {
+
+            foreach ($files as $file) {
+                // Configuration for uploading file
+                $config['allowed_types'] = 'pdf';
+                $config['max_size'] = '1024'; // 1 MB
+                $config['upload_path'] = './assets/uploads/pdf/oprec';
+                $config['file_name'] = uniqid();
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload($file)) {
+                    // File uploaded successfully
+                    $upload_data = $this->upload->data();
+                    $data_calas[$file] = $upload_data['file_name'];
+                } else {
+                    $upload_errors[$file] = $this->upload->display_errors();
+                }
+            }
+
+            if ($upload_errors) {
+                foreach ($upload_errors as $file => $error) {
+                    $this->session->set_flashdata('message', "<div class='alert alert-danger'><div class='container-fluid'><div class='alert-icon'><i class='material-icons'>error_outline</i></div><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'><i class='material-icons'>clear</i></span></button><b>Error Alert:</b> $error</div></div>");
+                }
+                redirect('oprec');
+            } else {
+                if ($this->db->insert('tb_peserta', $data_calas)) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">check</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Berhasil:</b> Tolong cek email anda untuk memastikan data anda!</div></div>');
+                    redirect('oprec');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Terjadi kesalahan...</div></div>');
+                    redirect('oprec');
+                }
+            }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Please upload all required files...</div></div>');
             $this->load->view('oprec/index', $data);
