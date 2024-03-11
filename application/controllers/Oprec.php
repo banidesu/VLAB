@@ -166,9 +166,13 @@ class Oprec extends CI_Controller
         // Load library upload
         $this->load->library('upload');
 
-        if ($_FILES['cv']['name'] && $_FILES['krs']['name'] && $_FILES['transkrip_nilai']['name']) {
-
-            foreach ($files as $file) {
+        // Validate each file individually
+        foreach ($files as $file) {
+            if (!isset($_FILES[$file]['name'])) {
+                $upload_errors[$file] = "File $file is required.";
+            } elseif ($_FILES[$file]['size'] > 1024 * 1024) { // Check file size
+                $upload_errors[$file] = "File $file exceeds the maximum allowed size of 1 MB.";
+            } else {
                 // Configuration for uploading file
                 $config['allowed_types'] = 'pdf';
                 $config['max_size'] = '1024'; // 1 MB
@@ -176,32 +180,37 @@ class Oprec extends CI_Controller
                 $config['file_name'] = uniqid();
                 $this->upload->initialize($config);
 
-                if ($this->upload->do_upload($file)) {
-                    // File uploaded successfully
-                    $upload_data = $this->upload->data();
-                    $data_calas[$file] = $upload_data['file_name'];
-                } else {
+                if (!$this->upload->do_upload($file)) {
                     $upload_errors[$file] = $this->upload->display_errors();
                 }
             }
 
+            // If any errors found, stop further processing
             if ($upload_errors) {
-                foreach ($upload_errors as $file => $error) {
-                    $this->session->set_flashdata('message', "<div class='alert alert-danger'><div class='container-fluid'><div class='alert-icon'><i class='material-icons'>error_outline</i></div><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'><i class='material-icons'>clear</i></span></button><b>Error Alert:</b> $error</div></div>");
-                }
+                break;
+            }
+        }
+
+        if ($upload_errors) {
+            foreach ($upload_errors as $file => $error) {
+                $this->session->set_flashdata('message', "<div class='alert alert-danger'><div class='container-fluid'><div class='alert-icon'><i class='material-icons'>error_outline</i></div><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'><i class='material-icons'>clear</i></span></button><b>Error Alert:</b> $error</div></div>");
+            }
+            redirect('oprec');
+        } else {
+            // Semua file lulus validasi, lanjutkan dengan upload
+            foreach ($files as $file) {
+                $upload_data = $this->upload->data();
+                $data_calas[$file] = $upload_data['file_name'];
+            }
+
+            // Semua data aman, lanjutkan dengan insert database
+            if ($this->db->insert('tb_peserta', $data_calas)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">check</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Berhasil:</b> Tolong cek email anda untuk memastikan data anda!</div></div>');
                 redirect('oprec');
             } else {
-                if ($this->db->insert('tb_peserta', $data_calas)) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">check</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Berhasil:</b> Tolong cek email anda untuk memastikan data anda!</div></div>');
-                    redirect('oprec');
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Terjadi kesalahan...</div></div>');
-                    redirect('oprec');
-                }
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Terjadi kesalahan...</div></div>');
+                redirect('oprec');
             }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Please upload all required files...</div></div>');
-            $this->load->view('oprec/index', $data);
         }
     }
 
