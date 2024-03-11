@@ -269,6 +269,14 @@
                                                 </div>
                                                 <?= form_error('ttl', '<small class="error-message">', '</small>'); ?>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group <?= form_error('sosmed') ? ' has-error' : '' ?>">
+                                                    <label class="control-label" for="sosmed">Social Media</label>
+                                                    <input type="text" id="sosmed" name="sosmed" class="form-control" value="<?= set_value('sosmed'); ?>" required>
+                                                    <span class="material-icons form-control-feedback">clear</span>
+                                                </div>
+                                                <?= form_error('sosmed', '<small class="error-message">', '</small>'); ?>
+                                            </div>
                                         </div>
                                     </fieldset>
                                     <br>
