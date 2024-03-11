@@ -261,6 +261,8 @@
                                                 </div>
                                                 <?= form_error('address', '<small class="error-message">', '</small>'); ?>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
