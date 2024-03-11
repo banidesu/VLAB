@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 05 Mar 2024 pada 09.07
--- Versi server: 10.3.39-MariaDB-cll-lve
--- Versi PHP: 7.4.33
+-- Generation Time: Mar 11, 2024 at 04:17 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,19 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `scores`
+-- Table structure for table `scores`
 --
 
 CREATE TABLE `scores` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `score` int(11) NOT NULL,
-  `layout` int(3) DEFAULT NULL,
-  `leaderboard` int(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL,
+  `name` varchar(20) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `score` int NOT NULL,
+  `layout` int DEFAULT NULL,
+  `leaderboard` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dumping data untuk tabel `scores`
+-- Dumping data for table `scores`
 --
 
 INSERT INTO `scores` (`id`, `name`, `score`, `layout`, `leaderboard`) VALUES
@@ -70,19 +69,19 @@ INSERT INTO `scores` (`id`, `name`, `score`, `layout`, `leaderboard`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbadmin`
+-- Table structure for table `tbadmin`
 --
 
 CREATE TABLE `tbadmin` (
-  `kd_admin` varchar(5) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `foto` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `kd_admin` varchar(5) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nama` varchar(50) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `username` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `foto` varchar(100) COLLATE utf8mb3_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dumping data untuk tabel `tbadmin`
+-- Dumping data for table `tbadmin`
 --
 
 INSERT INTO `tbadmin` (`kd_admin`, `nama`, `username`, `password`, `foto`) VALUES
@@ -91,40 +90,40 @@ INSERT INTO `tbadmin` (`kd_admin`, `nama`, `username`, `password`, `foto`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbaktivasi`
+-- Table structure for table `tbaktivasi`
 --
 
 CREATE TABLE `tbaktivasi` (
-  `Id` int(4) NOT NULL,
-  `CreateDatetime` timestamp NULL DEFAULT current_timestamp(),
+  `Id` int NOT NULL,
+  `CreateDatetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Kelas` varchar(5) DEFAULT NULL,
-  `Bab1` int(1) DEFAULT NULL,
-  `Bab2` int(1) DEFAULT NULL,
-  `Bab3` int(1) DEFAULT NULL,
-  `Bab4` int(1) DEFAULT NULL,
-  `Bab5` int(1) DEFAULT NULL,
-  `Bab6` int(1) DEFAULT NULL,
-  `Bab7` int(1) DEFAULT NULL,
-  `Status_Id` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `Bab1` int DEFAULT NULL,
+  `Bab2` int DEFAULT NULL,
+  `Bab3` int DEFAULT NULL,
+  `Bab4` int DEFAULT NULL,
+  `Bab5` int DEFAULT NULL,
+  `Bab6` int DEFAULT NULL,
+  `Bab7` int DEFAULT NULL,
+  `Status_Id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbaktivasi2`
+-- Table structure for table `tbaktivasi2`
 --
 
 CREATE TABLE `tbaktivasi2` (
-  `id` int(11) NOT NULL,
-  `kelas` varchar(6) DEFAULT NULL,
-  `kd_matkul` varchar(5) DEFAULT NULL,
-  `kd_bab` varchar(5) DEFAULT NULL,
-  `status_ta` int(1) DEFAULT NULL,
-  `status_al` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL,
+  `kelas` varchar(6) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `kd_matkul` varchar(5) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `kd_bab` varchar(5) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `status_ta` int DEFAULT NULL,
+  `status_al` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dumping data untuk tabel `tbaktivasi2`
+-- Dumping data for table `tbaktivasi2`
 --
 
 INSERT INTO `tbaktivasi2` (`id`, `kelas`, `kd_matkul`, `kd_bab`, `status_ta`, `status_al`) VALUES
@@ -401,11 +400,11 @@ INSERT INTO `tbaktivasi2` (`id`, `kelas`, `kd_matkul`, `kd_bab`, `status_ta`, `s
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbasisten`
+-- Table structure for table `tbasisten`
 --
 
 CREATE TABLE `tbasisten` (
-  `id` int(2) NOT NULL,
+  `id` int NOT NULL,
   `kd_asisten` varchar(10) DEFAULT NULL,
   `npm` varchar(10) DEFAULT NULL,
   `kelas` varchar(5) DEFAULT NULL,
@@ -413,12 +412,12 @@ CREATE TABLE `tbasisten` (
   `password` varchar(30) DEFAULT NULL,
   `nama_lengkap` varchar(40) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL,
-  `tanggal_post` datetime DEFAULT current_timestamp(),
+  `tanggal_post` datetime DEFAULT CURRENT_TIMESTAMP,
   `foto` varchar(300) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbasisten`
+-- Dumping data for table `tbasisten`
 --
 
 INSERT INTO `tbasisten` (`id`, `kd_asisten`, `npm`, `kelas`, `username`, `password`, `nama_lengkap`, `status`, `tanggal_post`, `foto`) VALUES
@@ -476,22 +475,22 @@ INSERT INTO `tbasisten` (`id`, `kd_asisten`, `npm`, `kelas`, `username`, `passwo
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbbab`
+-- Table structure for table `tbbab`
 --
 
 CREATE TABLE `tbbab` (
-  `id` int(2) NOT NULL,
+  `id` int NOT NULL,
   `kd_bab` varchar(5) DEFAULT NULL,
   `kd_matkul` varchar(5) DEFAULT NULL,
   `nama_bab` varchar(100) DEFAULT NULL,
   `matkul` varchar(100) DEFAULT NULL,
-  `minggu` int(1) DEFAULT NULL,
+  `minggu` int DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL,
   `link_modvid` varchar(1000) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbbab`
+-- Dumping data for table `tbbab`
 --
 
 INSERT INTO `tbbab` (`id`, `kd_bab`, `kd_matkul`, `nama_bab`, `matkul`, `minggu`, `status`, `link_modvid`) VALUES
@@ -540,30 +539,31 @@ INSERT INTO `tbbab` (`id`, `kd_bab`, `kd_matkul`, `nama_bab`, `matkul`, `minggu`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbberita`
+-- Table structure for table `tbberita`
 --
 
 CREATE TABLE `tbberita` (
-  `id` int(3) NOT NULL,
-  `tanggal_post` datetime DEFAULT current_timestamp(),
+  `id` int NOT NULL,
+  `tanggal_post` datetime DEFAULT CURRENT_TIMESTAMP,
   `judul` varchar(100) DEFAULT NULL,
   `isi` varchar(5000) DEFAULT NULL,
   `deskripsi` varchar(1000) DEFAULT NULL,
   `gambar` varchar(1000) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `status` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbberita`
+-- Dumping data for table `tbberita`
 --
 
 INSERT INTO `tbberita` (`id`, `tanggal_post`, `judul`, `isi`, `deskripsi`, `gambar`, `status`) VALUES
-(2, '2023-08-25 09:29:22', 'Jadwal Tahun Ajaran 2023/2024', ' Jadwal Praktikum Bisa didownload di menu Praktikum -> Jadwal ', 'Admin', 'Desert.png', 1);
+(2, '2017-08-11 09:29:22', 'Jadwal Tahun Ajaran 2017/2018', ' Jadwal Praktikum Bisa didownload di menu Praktikum -> Jadwal ', 'Admin', 'Desert.png', 1),
+(3, '2024-03-05 09:20:37', 'Opren Recruitmen', 'Pengumuman Hasil Oprec', 'Admin', 'oprec.jpg', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbjadwal`
+-- Table structure for table `tbjadwal`
 --
 
 CREATE TABLE `tbjadwal` (
@@ -572,10 +572,10 @@ CREATE TABLE `tbjadwal` (
   `nama_asisten` varchar(40) NOT NULL,
   `hari` varchar(6) NOT NULL,
   `tugas` varchar(12) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbjadwal`
+-- Dumping data for table `tbjadwal`
 --
 
 INSERT INTO `tbjadwal` (`kd_shift`, `kd_asisten`, `nama_asisten`, `hari`, `tugas`) VALUES
@@ -933,18 +933,18 @@ INSERT INTO `tbjadwal` (`kd_shift`, `kd_asisten`, `nama_asisten`, `hari`, `tugas
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbkelas`
+-- Table structure for table `tbkelas`
 --
 
 CREATE TABLE `tbkelas` (
-  `id` int(1) NOT NULL,
+  `id` int NOT NULL,
   `kelas` varchar(5) NOT NULL,
   `status` varchar(15) NOT NULL,
   `kd_matkul` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbkelas`
+-- Dumping data for table `tbkelas`
 --
 
 INSERT INTO `tbkelas` (`id`, `kelas`, `status`, `kd_matkul`) VALUES
@@ -980,23 +980,23 @@ INSERT INTO `tbkelas` (`id`, `kelas`, `status`, `kd_matkul`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbmail`
+-- Table structure for table `tbmail`
 --
 
 CREATE TABLE `tbmail` (
-  `id` int(11) NOT NULL,
-  `npm_pengirim` varchar(10) DEFAULT NULL,
-  `npm_penerima` varchar(10) DEFAULT NULL,
-  `judul` varchar(500) DEFAULT NULL,
-  `pesan` varchar(1000) DEFAULT NULL,
-  `status_pengguna` int(1) DEFAULT NULL,
-  `status_pesan` int(1) DEFAULT NULL,
-  `status_tipe` int(1) DEFAULT NULL,
-  `tanggal_pesan` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL,
+  `npm_pengirim` varchar(10) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `npm_penerima` varchar(10) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `judul` varchar(500) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `pesan` varchar(1000) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `status_pengguna` int DEFAULT NULL,
+  `status_pesan` int DEFAULT NULL,
+  `status_tipe` int DEFAULT NULL,
+  `tanggal_pesan` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dumping data untuk tabel `tbmail`
+-- Dumping data for table `tbmail`
 --
 
 INSERT INTO `tbmail` (`id`, `npm_pengirim`, `npm_penerima`, `judul`, `pesan`, `status_pengguna`, `status_pesan`, `status_tipe`, `tanggal_pesan`) VALUES
@@ -1013,20 +1013,20 @@ INSERT INTO `tbmail` (`id`, `npm_pengirim`, `npm_penerima`, `judul`, `pesan`, `s
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbmatkul`
+-- Table structure for table `tbmatkul`
 --
 
 CREATE TABLE `tbmatkul` (
-  `id` int(1) NOT NULL,
+  `id` int NOT NULL,
   `kd_matkul` varchar(5) DEFAULT NULL,
   `nama_matkul` varchar(100) DEFAULT NULL,
   `t_ajaran` varchar(10) DEFAULT NULL,
-  `jml_bab` int(1) DEFAULT NULL,
+  `jml_bab` int DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbmatkul`
+-- Dumping data for table `tbmatkul`
 --
 
 INSERT INTO `tbmatkul` (`id`, `kd_matkul`, `nama_matkul`, `t_ajaran`, `jml_bab`, `status`) VALUES
@@ -1043,54 +1043,53 @@ INSERT INTO `tbmatkul` (`id`, `kd_matkul`, `nama_matkul`, `t_ajaran`, `jml_bab`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbmodul`
+-- Table structure for table `tbmodul`
 --
 
 CREATE TABLE `tbmodul` (
-  `id` int(3) NOT NULL,
-  `tanggal_post` datetime DEFAULT current_timestamp(),
+  `id` int NOT NULL,
+  `tanggal_post` datetime DEFAULT CURRENT_TIMESTAMP,
   `nama` varchar(50) DEFAULT NULL,
   `kd_matkul` varchar(10) DEFAULT NULL,
   `deskripsi` varchar(1000) DEFAULT NULL,
   `file` varchar(1000) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `status` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbmodul`
+-- Dumping data for table `tbmodul`
 --
 
 INSERT INTO `tbmodul` (`id`, `tanggal_post`, `nama`, `kd_matkul`, `deskripsi`, `file`, `status`) VALUES
 (2, '2017-07-10 20:55:51', 'Internet Dan Jaringan ', NULL, 'PTA', 'MODUL_INTERJAR.pdf', 0),
 (3, '2017-07-10 20:56:43', 'Manajemen Keuangan 2', NULL, 'PTA', 'Modul_MK2_.pdf', 0),
 (4, '2017-07-10 20:57:31', 'Riset Operasional 2', NULL, 'PTA', 'Modul_OR2.pdf', 0),
-(6, '2017-07-10 21:17:57', 'E-Commerce', NULL, 'PTA', 'RINGKASAN E-COMMERCE BAB II.pdf', 1),
+(6, '2017-07-10 21:17:57', 'E-Commerce', NULL, 'PTA', 'MODUL_ECOMMERCE7.pdf', 0),
 (8, '2017-09-17 10:41:54', 'Dasar Manajemen Keuangan', NULL, 'Modul Dasar Manajemen Keuangan', 'MODUL_DMK_FIX.pdf', 1),
 (9, '2017-09-17 11:12:39', 'Riset Operasional 1', NULL, 'Modul Riset Operasional 1', 'MODUL_OR1_FIX.pdf', 1),
 (10, '2017-09-17 11:14:09', 'Manajemen Operasional', NULL, 'Modul Manajemen Operasional', 'MODUL_MO_FIX_2.pdf', 1),
 (11, '2017-09-17 15:51:45', 'Jasa', NULL, 'Modul Jasa', 'MODUL_JASA_FIX.pdf', 1),
-(12, '2017-09-19 16:24:57', 'Marketing Komunikasi', NULL, 'Modul Marketing Komunikasi', 'MODUL_MARKOM_FIX.pdf', 0),
-(13, '2023-08-25 10:47:56', 'UTS ETIKA', 'UTS001', 'UTS ETIKA', 'UTS_ETIKA.pdf', 1);
+(12, '2017-09-19 16:24:57', 'Marketing Komunikasi', NULL, 'Modul Marketing Komunikasi', 'MODUL_MARKOM_FIX.pdf', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbmodulvideo`
+-- Table structure for table `tbmodulvideo`
 --
 
 CREATE TABLE `tbmodulvideo` (
-  `Id` int(3) NOT NULL,
-  `CreateDatetime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Id` int NOT NULL,
+  `CreateDatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Nama` varchar(50) DEFAULT NULL,
   `Matakuliah_Code` varchar(50) DEFAULT NULL,
   `Bab_Code` varchar(50) DEFAULT NULL,
   `Description` varchar(100) DEFAULT NULL,
   `FIleURL` varchar(1000) DEFAULT NULL,
-  `Status_Id` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `Status_Id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbmodulvideo`
+-- Dumping data for table `tbmodulvideo`
 --
 
 INSERT INTO `tbmodulvideo` (`Id`, `CreateDatetime`, `Nama`, `Matakuliah_Code`, `Bab_Code`, `Description`, `FIleURL`, `Status_Id`) VALUES
@@ -1116,43 +1115,43 @@ INSERT INTO `tbmodulvideo` (`Id`, `CreateDatetime`, `Nama`, `Matakuliah_Code`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbnilai`
+-- Table structure for table `tbnilai`
 --
 
 CREATE TABLE `tbnilai` (
-  `Id` int(11) NOT NULL,
+  `Id` int NOT NULL,
   `npm` varchar(8) NOT NULL,
-  `kehadiran` int(3) DEFAULT NULL,
-  `al` int(3) DEFAULT NULL,
-  `ta` int(3) DEFAULT NULL,
-  `kehadiran1` int(3) NOT NULL,
-  `al1` int(3) NOT NULL,
-  `ta1` int(3) NOT NULL,
-  `kehadiran2` int(3) NOT NULL,
-  `al2` int(3) NOT NULL,
-  `ta2` int(3) NOT NULL,
-  `kehadiran3` int(3) NOT NULL,
-  `al3` int(3) NOT NULL,
-  `ta3` int(3) NOT NULL,
-  `kehadiran4` int(3) NOT NULL,
-  `al4` int(3) NOT NULL,
-  `ta4` int(3) NOT NULL,
-  `kehadiran5` int(3) NOT NULL,
-  `al5` int(3) NOT NULL,
-  `ta5` int(3) NOT NULL,
-  `kehadiran6` int(3) NOT NULL,
-  `al6` int(3) NOT NULL,
-  `ta6` int(3) NOT NULL,
-  `kehadiran7` int(3) NOT NULL,
-  `al7` int(3) NOT NULL,
-  `ta7` int(3) NOT NULL,
-  `quiz1` int(3) DEFAULT NULL,
-  `quiz2` int(3) DEFAULT NULL,
-  `ujian` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `kehadiran` int DEFAULT NULL,
+  `al` int DEFAULT NULL,
+  `ta` int DEFAULT NULL,
+  `kehadiran1` int NOT NULL,
+  `al1` int NOT NULL,
+  `ta1` int NOT NULL,
+  `kehadiran2` int NOT NULL,
+  `al2` int NOT NULL,
+  `ta2` int NOT NULL,
+  `kehadiran3` int NOT NULL,
+  `al3` int NOT NULL,
+  `ta3` int NOT NULL,
+  `kehadiran4` int NOT NULL,
+  `al4` int NOT NULL,
+  `ta4` int NOT NULL,
+  `kehadiran5` int NOT NULL,
+  `al5` int NOT NULL,
+  `ta5` int NOT NULL,
+  `kehadiran6` int NOT NULL,
+  `al6` int NOT NULL,
+  `ta6` int NOT NULL,
+  `kehadiran7` int NOT NULL,
+  `al7` int NOT NULL,
+  `ta7` int NOT NULL,
+  `quiz1` int DEFAULT NULL,
+  `quiz2` int DEFAULT NULL,
+  `ujian` int NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbnilai`
+-- Dumping data for table `tbnilai`
 --
 
 INSERT INTO `tbnilai` (`Id`, `npm`, `kehadiran`, `al`, `ta`, `kehadiran1`, `al1`, `ta1`, `kehadiran2`, `al2`, `ta2`, `kehadiran3`, `al3`, `ta3`, `kehadiran4`, `al4`, `ta4`, `kehadiran5`, `al5`, `ta5`, `kehadiran6`, `al6`, `ta6`, `kehadiran7`, `al7`, `ta7`, `quiz1`, `quiz2`, `ujian`) VALUES
@@ -1161,43 +1160,43 @@ INSERT INTO `tbnilai` (`Id`, `npm`, `kehadiran`, `al`, `ta`, `kehadiran1`, `al1`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbnilai2`
+-- Table structure for table `tbnilai2`
 --
 
 CREATE TABLE `tbnilai2` (
-  `Id` int(11) NOT NULL,
+  `Id` int NOT NULL,
   `npm` varchar(8) NOT NULL,
-  `kehadiran` int(3) DEFAULT NULL,
-  `al` int(3) DEFAULT NULL,
-  `ta` int(3) DEFAULT NULL,
-  `kehadiran1` int(3) NOT NULL,
-  `al1` int(3) NOT NULL,
-  `ta1` int(3) NOT NULL,
-  `kehadiran2` int(3) NOT NULL,
-  `al2` int(3) NOT NULL,
-  `ta2` int(3) NOT NULL,
-  `kehadiran3` int(3) NOT NULL,
-  `al3` int(3) NOT NULL,
-  `ta3` int(3) NOT NULL,
-  `kehadiran4` int(3) NOT NULL,
-  `al4` int(3) NOT NULL,
-  `ta4` int(3) NOT NULL,
-  `kehadiran5` int(3) NOT NULL,
-  `al5` int(3) NOT NULL,
-  `ta5` int(3) NOT NULL,
-  `kehadiran6` int(3) NOT NULL,
-  `al6` int(3) NOT NULL,
-  `ta6` int(3) NOT NULL,
-  `kehadiran7` int(3) NOT NULL,
-  `al7` int(3) NOT NULL,
-  `ta7` int(3) NOT NULL,
-  `quiz1` int(3) DEFAULT NULL,
-  `quiz2` int(3) DEFAULT NULL,
-  `ujian` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `kehadiran` int DEFAULT NULL,
+  `al` int DEFAULT NULL,
+  `ta` int DEFAULT NULL,
+  `kehadiran1` int NOT NULL,
+  `al1` int NOT NULL,
+  `ta1` int NOT NULL,
+  `kehadiran2` int NOT NULL,
+  `al2` int NOT NULL,
+  `ta2` int NOT NULL,
+  `kehadiran3` int NOT NULL,
+  `al3` int NOT NULL,
+  `ta3` int NOT NULL,
+  `kehadiran4` int NOT NULL,
+  `al4` int NOT NULL,
+  `ta4` int NOT NULL,
+  `kehadiran5` int NOT NULL,
+  `al5` int NOT NULL,
+  `ta5` int NOT NULL,
+  `kehadiran6` int NOT NULL,
+  `al6` int NOT NULL,
+  `ta6` int NOT NULL,
+  `kehadiran7` int NOT NULL,
+  `al7` int NOT NULL,
+  `ta7` int NOT NULL,
+  `quiz1` int DEFAULT NULL,
+  `quiz2` int DEFAULT NULL,
+  `ujian` int NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbnilai2`
+-- Dumping data for table `tbnilai2`
 --
 
 INSERT INTO `tbnilai2` (`Id`, `npm`, `kehadiran`, `al`, `ta`, `kehadiran1`, `al1`, `ta1`, `kehadiran2`, `al2`, `ta2`, `kehadiran3`, `al3`, `ta3`, `kehadiran4`, `al4`, `ta4`, `kehadiran5`, `al5`, `ta5`, `kehadiran6`, `al6`, `ta6`, `kehadiran7`, `al7`, `ta7`, `quiz1`, `quiz2`, `ujian`) VALUES
@@ -1215,7 +1214,7 @@ INSERT INTO `tbnilai2` (`Id`, `npm`, `kehadiran`, `al`, `ta`, `kehadiran1`, `al1
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbpraktikan`
+-- Table structure for table `tbpraktikan`
 --
 
 CREATE TABLE `tbpraktikan` (
@@ -1225,10 +1224,10 @@ CREATE TABLE `tbpraktikan` (
   `nama` varchar(30) NOT NULL,
   `kelas` varchar(5) NOT NULL,
   `foto` varchar(300) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbpraktikan`
+-- Dumping data for table `tbpraktikan`
 --
 
 INSERT INTO `tbpraktikan` (`npm`, `username`, `password`, `nama`, `kelas`, `foto`) VALUES
@@ -3303,11 +3302,11 @@ INSERT INTO `tbpraktikan` (`npm`, `username`, `password`, `nama`, `kelas`, `foto
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbsoal`
+-- Table structure for table `tbsoal`
 --
 
 CREATE TABLE `tbsoal` (
-  `id` int(4) NOT NULL,
+  `id` int NOT NULL,
   `kd_matkul` varchar(10) DEFAULT NULL,
   `kd_bab` varchar(10) DEFAULT NULL,
   `kd_soal` varchar(10) DEFAULT NULL,
@@ -3318,10 +3317,10 @@ CREATE TABLE `tbsoal` (
   `jaw_d` varchar(500) DEFAULT NULL,
   `kunci_jaw` varchar(500) DEFAULT NULL,
   `keterangan` varchar(2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data untuk tabel `tbsoal`
+-- Dumping data for table `tbsoal`
 --
 
 INSERT INTO `tbsoal` (`id`, `kd_matkul`, `kd_bab`, `kd_soal`, `soal`, `jaw_a`, `jaw_b`, `jaw_c`, `jaw_d`, `kunci_jaw`, `keterangan`) VALUES
@@ -4255,21 +4254,21 @@ INSERT INTO `tbsoal` (`id`, `kd_matkul`, `kd_bab`, `kd_soal`, `soal`, `jaw_a`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbsoal_al`
+-- Table structure for table `tbsoal_al`
 --
 
 CREATE TABLE `tbsoal_al` (
-  `id` int(2) NOT NULL,
+  `id` int NOT NULL,
   `kd_matkul` varchar(10) DEFAULT NULL,
   `kd_bab` varchar(10) DEFAULT NULL,
   `kd_soal` varchar(10) DEFAULT NULL,
   `soal` varchar(5000) DEFAULT NULL,
   `jawaban` varchar(500) DEFAULT NULL,
   `keterangan` varchar(2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbsoal_al`
+-- Dumping data for table `tbsoal_al`
 --
 
 INSERT INTO `tbsoal_al` (`id`, `kd_matkul`, `kd_bab`, `kd_soal`, `soal`, `jawaban`, `keterangan`) VALUES
@@ -4373,11 +4372,11 @@ INSERT INTO `tbsoal_al` (`id`, `kd_matkul`, `kd_bab`, `kd_soal`, `soal`, `jawaba
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbtemp`
+-- Table structure for table `tbtemp`
 --
 
 CREATE TABLE `tbtemp` (
-  `id` int(10) NOT NULL,
+  `id` int NOT NULL,
   `npm` varchar(10) DEFAULT NULL,
   `soal1` varchar(8) NOT NULL,
   `soal2` varchar(8) NOT NULL,
@@ -4389,11 +4388,11 @@ CREATE TABLE `tbtemp` (
   `jawab3` varchar(8) DEFAULT NULL,
   `jawab4` varchar(8) DEFAULT NULL,
   `jawab5` varchar(8) DEFAULT NULL,
-  `tanggal_pengerjaan` datetime DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `tanggal_pengerjaan` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbtemp`
+-- Dumping data for table `tbtemp`
 --
 
 INSERT INTO `tbtemp` (`id`, `npm`, `soal1`, `soal2`, `soal3`, `soal4`, `soal5`, `jawab1`, `jawab2`, `jawab3`, `jawab4`, `jawab5`, `tanggal_pengerjaan`) VALUES
@@ -4442,7 +4441,7 @@ INSERT INTO `tbtemp` (`id`, `npm`, `soal1`, `soal2`, `soal3`, `soal4`, `soal5`, 
 (3990, '16216141', 'RO1052', 'RO1053', 'RO1057', 'RO1063', 'RO1067', 'jaw_b', 'jaw_a', 'jaw_b', 'jaw_b', 'jaw_a', '2017-12-20 11:57:26'),
 (3991, '17216163', 'RO1003', 'RO1018', 'RO1019', 'RO1021', 'RO1022', 'jaw_b', 'jaw_b', 'jaw_c', 'jaw_d', 'jaw_b', '2022-10-02 16:23:53'),
 (3992, '48216130', 'DMK0003', 'DMK0021', 'DMK0023', 'DMK0016', 'DMK0002', 'jaw_b', 'jaw_b', 'jaw_b', 'jaw_c', NULL, '2022-10-03 20:12:16'),
-(4024, '10220027', 'MOO156', 'MOO123', 'MOO133', 'MOO130', 'MOO138', 'jaw_c', 'jaw_c', 'jaw_c', 'jaw_b', 'jaw_d', '2022-10-09 22:27:03'),
+(4024, '10220027', 'MOO156', 'MOO123', 'MOO133', 'MOO130', 'MOO138', 'jaw_a', 'jaw_d', 'jaw_b', 'jaw_a', 'jaw_d', '2022-10-09 22:27:03'),
 (3998, '12345', 'JS033', 'JS026', 'JS015', 'JS011', 'JS036', 'jaw_a', 'jaw_a', 'jaw_d', 'jaw_c', 'jaw_b', '2022-10-05 21:22:18'),
 (4044, '0000', 'JS080', 'JS051', 'JS079', 'JS065', 'JS064', NULL, NULL, NULL, NULL, NULL, '2022-10-10 21:11:33'),
 (4003, '10221016', 'RO1011', 'RO1010', 'RO1007', 'RO1009', 'RO1012', 'jaw_b', 'jaw_d', 'jaw_c', 'jaw_c', 'jaw_c', '2022-10-09 10:41:09'),
@@ -4454,20 +4453,20 @@ INSERT INTO `tbtemp` (`id`, `npm`, `soal1`, `soal2`, `soal3`, `soal4`, `soal5`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbtemp_al`
+-- Table structure for table `tbtemp_al`
 --
 
 CREATE TABLE `tbtemp_al` (
-  `id` int(6) NOT NULL,
-  `tanggal_pengerjaan` datetime DEFAULT current_timestamp(),
+  `id` int NOT NULL,
+  `tanggal_pengerjaan` datetime DEFAULT CURRENT_TIMESTAMP,
   `npm` varchar(9) DEFAULT NULL,
   `soal` varchar(10) DEFAULT NULL,
   `file` varchar(1000) DEFAULT NULL,
   `jawaban` varchar(500) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbtemp_al`
+-- Dumping data for table `tbtemp_al`
 --
 
 INSERT INTO `tbtemp_al` (`id`, `tanggal_pengerjaan`, `npm`, `soal`, `file`, `jawaban`) VALUES
@@ -4477,20 +4476,20 @@ INSERT INTO `tbtemp_al` (`id`, `tanggal_pengerjaan`, `npm`, `soal`, `file`, `jaw
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbujian`
+-- Table structure for table `tbujian`
 --
 
 CREATE TABLE `tbujian` (
-  `id` int(2) NOT NULL,
+  `id` int NOT NULL,
   `kd_ujian` varchar(4) DEFAULT NULL,
   `nama_matkul` varchar(30) DEFAULT NULL,
   `tipe_soal` varchar(30) DEFAULT NULL,
   `file` varchar(300) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `status` int DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbujian`
+-- Dumping data for table `tbujian`
 --
 
 INSERT INTO `tbujian` (`id`, `kd_ujian`, `nama_matkul`, `tipe_soal`, `file`, `status`) VALUES
@@ -4500,242 +4499,312 @@ INSERT INTO `tbujian` (`id`, `kd_ujian`, `nama_matkul`, `tipe_soal`, `file`, `st
 (4, 'UJ04', 'MM002', 'D', 'TIPE_SWIFT.pdf', 1),
 (6, 'ecom', 'MM004', 'Belitung', 'UG_SS.pdf', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jurusan`
+--
+
+CREATE TABLE `tb_jurusan` (
+  `id` int NOT NULL,
+  `jurusan` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_jurusan`
+--
+
+INSERT INTO `tb_jurusan` (`id`, `jurusan`) VALUES
+(1, 'Akuntansi'),
+(2, 'Manajemen'),
+(3, 'Sistem Informasi'),
+(4, 'Teknik Informatika');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_peserta`
+--
+
+CREATE TABLE `tb_peserta` (
+  `id` int NOT NULL,
+  `nama` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `kelas` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `jurusan` int NOT NULL,
+  `region` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `penempatan` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_telp` int NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `ttl` date NOT NULL,
+  `npm` int NOT NULL,
+  `alamat` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `agama` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `sosmed` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `cv` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `krs` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `transkrip_nilai` varchar(128) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `scores`
+-- Indexes for table `scores`
 --
 ALTER TABLE `scores`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbadmin`
+-- Indexes for table `tbadmin`
 --
 ALTER TABLE `tbadmin`
   ADD PRIMARY KEY (`kd_admin`);
 
 --
--- Indeks untuk tabel `tbaktivasi`
+-- Indexes for table `tbaktivasi`
 --
 ALTER TABLE `tbaktivasi`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indeks untuk tabel `tbaktivasi2`
+-- Indexes for table `tbaktivasi2`
 --
 ALTER TABLE `tbaktivasi2`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbasisten`
+-- Indexes for table `tbasisten`
 --
 ALTER TABLE `tbasisten`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbbab`
+-- Indexes for table `tbbab`
 --
 ALTER TABLE `tbbab`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbberita`
+-- Indexes for table `tbberita`
 --
 ALTER TABLE `tbberita`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbkelas`
+-- Indexes for table `tbkelas`
 --
 ALTER TABLE `tbkelas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbmail`
+-- Indexes for table `tbmail`
 --
 ALTER TABLE `tbmail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbmatkul`
+-- Indexes for table `tbmatkul`
 --
 ALTER TABLE `tbmatkul`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbmodul`
+-- Indexes for table `tbmodul`
 --
 ALTER TABLE `tbmodul`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbmodulvideo`
+-- Indexes for table `tbmodulvideo`
 --
 ALTER TABLE `tbmodulvideo`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indeks untuk tabel `tbnilai`
+-- Indexes for table `tbnilai`
 --
 ALTER TABLE `tbnilai`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indeks untuk tabel `tbnilai2`
+-- Indexes for table `tbnilai2`
 --
 ALTER TABLE `tbnilai2`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `Id` (`Id`);
 
 --
--- Indeks untuk tabel `tbpraktikan`
+-- Indexes for table `tbpraktikan`
 --
 ALTER TABLE `tbpraktikan`
   ADD PRIMARY KEY (`npm`);
 
 --
--- Indeks untuk tabel `tbsoal`
+-- Indexes for table `tbsoal`
 --
 ALTER TABLE `tbsoal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbsoal_al`
+-- Indexes for table `tbsoal_al`
 --
 ALTER TABLE `tbsoal_al`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbtemp`
+-- Indexes for table `tbtemp`
 --
 ALTER TABLE `tbtemp`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbtemp_al`
+-- Indexes for table `tbtemp_al`
 --
 ALTER TABLE `tbtemp_al`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbujian`
+-- Indexes for table `tbujian`
 --
 ALTER TABLE `tbujian`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- Indexes for table `tb_jurusan`
+--
+ALTER TABLE `tb_jurusan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_peserta`
+--
+ALTER TABLE `tb_peserta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `scores`
+-- AUTO_INCREMENT for table `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT untuk tabel `tbaktivasi`
+-- AUTO_INCREMENT for table `tbaktivasi`
 --
 ALTER TABLE `tbaktivasi`
-  MODIFY `Id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tbaktivasi2`
+-- AUTO_INCREMENT for table `tbaktivasi2`
 --
 ALTER TABLE `tbaktivasi2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
 
 --
--- AUTO_INCREMENT untuk tabel `tbasisten`
+-- AUTO_INCREMENT for table `tbasisten`
 --
 ALTER TABLE `tbasisten`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT untuk tabel `tbbab`
+-- AUTO_INCREMENT for table `tbbab`
 --
 ALTER TABLE `tbbab`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT untuk tabel `tbberita`
+-- AUTO_INCREMENT for table `tbberita`
 --
 ALTER TABLE `tbberita`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `tbkelas`
+-- AUTO_INCREMENT for table `tbkelas`
 --
 ALTER TABLE `tbkelas`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `tbmail`
+-- AUTO_INCREMENT for table `tbmail`
 --
 ALTER TABLE `tbmail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `tbmatkul`
+-- AUTO_INCREMENT for table `tbmatkul`
 --
 ALTER TABLE `tbmatkul`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `tbmodul`
+-- AUTO_INCREMENT for table `tbmodul`
 --
 ALTER TABLE `tbmodul`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `tbmodulvideo`
+-- AUTO_INCREMENT for table `tbmodulvideo`
 --
 ALTER TABLE `tbmodulvideo`
-  MODIFY `Id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `tbnilai`
+-- AUTO_INCREMENT for table `tbnilai`
 --
 ALTER TABLE `tbnilai`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10220028;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10220028;
 
 --
--- AUTO_INCREMENT untuk tabel `tbnilai2`
+-- AUTO_INCREMENT for table `tbnilai2`
 --
 ALTER TABLE `tbnilai2`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `tbsoal`
+-- AUTO_INCREMENT for table `tbsoal`
 --
 ALTER TABLE `tbsoal`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1401;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1401;
 
 --
--- AUTO_INCREMENT untuk tabel `tbsoal_al`
+-- AUTO_INCREMENT for table `tbsoal_al`
 --
 ALTER TABLE `tbsoal_al`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
--- AUTO_INCREMENT untuk tabel `tbtemp`
+-- AUTO_INCREMENT for table `tbtemp`
 --
 ALTER TABLE `tbtemp`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4045;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4045;
 
 --
--- AUTO_INCREMENT untuk tabel `tbtemp_al`
+-- AUTO_INCREMENT for table `tbtemp_al`
 --
 ALTER TABLE `tbtemp_al`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `tbujian`
+-- AUTO_INCREMENT for table `tbujian`
 --
 ALTER TABLE `tbujian`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tb_jurusan`
+--
+ALTER TABLE `tb_jurusan`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tb_peserta`
+--
+ALTER TABLE `tb_peserta`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
