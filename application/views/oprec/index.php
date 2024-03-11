@@ -261,6 +261,8 @@
                                                 </div>
                                                 <?= form_error('address', '<small class="error-message">', '</small>'); ?>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
                                                     <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
@@ -271,13 +273,18 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('sosmed') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="sosmed">Social Media</label>
+                                                    <label class="control-label" for="sosmed">Sosial Media URL | <small>(Instagram/LinkedIn/TikTok)</small></label>
                                                     <input type="text" id="sosmed" name="sosmed" class="form-control" value="<?= set_value('sosmed'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
                                                 <?= form_error('sosmed', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                         </div>
+                                        <small>
+                                            * Untuk sosial media, cantumkan <mark>salah satu</mark> url profile akun (Instagram/LinkedIn/TikTok).
+                                            <br>
+                                            * Pastikan akun sosmed tidak di private
+                                        </small>
                                     </fieldset>
                                     <br>
                                     <fieldset>

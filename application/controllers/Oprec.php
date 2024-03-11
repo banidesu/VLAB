@@ -20,62 +20,105 @@ class Oprec extends CI_Controller
             [
                 'field' => 'name',
                 'label' => 'Nama Lengkap',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'npm',
                 'label' => 'NPM',
-                'rules' => 'required|trim|numeric|exact_length[8]'
+                'rules' => 'required|trim|numeric|exact_length[8]',
+                'errors' => [
+                    'required' => '{field} harap diisi',
+                    'numeric' => '{field} tidak valid',
+                    'exact_length' => '{field} harus {param} digit'
+                ]
             ],
             [
                 'field' => 'class',
                 'label' => 'Kelas',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'jurusan',
                 'label' => 'Jurusan',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'region',
                 'label' => 'Region',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'placement',
                 'label' => 'Penempatan',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'agama',
                 'label' => 'Agama',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'email',
                 'label' => 'Email',
-                'rules' => 'required|trim|valid_email'
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => '{field} harap diisi',
+                    'valid_email' => 'Alamat {field} tidak valid'
+                ]
             ],
             [
                 'field' => 'no_telp',
                 'label' => 'No HP',
-                'rules' => 'required|trim|numeric|min_length[12]|max_length[13]'
+                'rules' => 'required|trim|numeric|min_length[12]|max_length[13]',
+                'errors' => [
+                    'required' => '{field} harap diisi',
+                    'numeric' => '{field} tidak valid',
+                    'min_length' => '{field} minimal {param} digit',
+                    'max_length' => '{field} maksimal {param} digit'
+                ]
             ],
             [
                 'field' => 'address',
                 'label' => 'Alamat',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'ttl',
                 'label' => 'TTL',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} harap diisi'
+                ]
             ],
             [
                 'field' => 'sosmed',
-                'label' => 'Social Media',
-                'rules' => 'required|trim'
+                'label' => 'Sosial Media',
+                'rules' => 'required|trim|valid_url',
+                'errors' => [
+                    'required' => '{field} harap diisi',
+                    'valid_url' => '{field} URL tidak valid'
+                ]
             ],
             // [
             //     'field' => 'cv',
