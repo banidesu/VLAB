@@ -74,8 +74,8 @@ class Oprec extends CI_Controller
             ],
             [
                 'field' => 'sosmed',
-                'label' => 'Social Media',
-                'rules' => 'required|trim'
+                'label' => 'Sosial Media',
+                'rules' => 'required|trim|valid_url'
             ],
             // [
             //     'field' => 'cv',
