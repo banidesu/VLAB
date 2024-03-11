@@ -98,9 +98,13 @@ class Oprec extends CI_Controller
         }
     }
 
-    public function _submitData()
+    private function _submitData()
     {
-        $data = [
+        $jurusans = $this->db->get("tb_jurusan");
+        $data['jurusans'] = $jurusans->result_array();
+        $data['judul'] = "Registrasi Lab Manajemen Menengah";
+
+        $data2 = [
             'name' => htmlspecialchars($this->input->post('name'), true),
             'npm' => htmlspecialchars($this->input->post('npm', true)),
             'class' => htmlspecialchars($this->input->post('class', true)),
@@ -123,7 +127,7 @@ class Oprec extends CI_Controller
             die;
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Please upload all required files...</div></div>');
-            redirect('oprec');
+            $this->load->view('oprec/index', $data);
         }
     }
 }
