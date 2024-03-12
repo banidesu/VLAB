@@ -82,6 +82,7 @@
 							<li><a href="javascript:ShowPeraturanPraktikum();">Peraturan</a></li>
 							<li><a href="javascript:ShowMateriPraktikum();">Materi</a></li>
 							<li><a href="javascript:ShowJadwalPraktikum();">Jadwal</a></li>
+							<li><a href="https://praktikum.gunadarma.ac.id">iLab</a></li>
 						</ul>
 					</li>
 					<li>
