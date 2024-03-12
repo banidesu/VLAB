@@ -308,10 +308,13 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="rar" class="form-label <?= form_error('rar') ? ' text-danger' : '' ?>">.RAR / .ZIP <small>(berisi cv, krs, transkrip nilai)</small></label>
-                                                    <label for="rar" class="custom-file-input-label <?= form_error('rar') ? ' error' : '' ?>">No file uploaded</label>
-                                                    <input type="file" name="rar" id="rar" class="custom-file-input" accept=".rar, .zip">
-                                                    <?= form_error('rar', '<small class="error-message">', '</small>'); ?>
+                                                    <label for="archive" class="form-label <?= form_error('archive') ? ' text-danger' : 'text-muted' ?>" style="margin-bottom: 1rem;">
+                                                        <i class="fa fa-fw fa-lg fa-file-archive-o" aria-hidden="true"></i>
+                                                        .RAR / .ZIP <small>(berisi cv, krs, transkrip nilai)</small>
+                                                    </label>
+                                                    <label for="archive" class="custom-file-input-label <?= form_error('archive') ? ' error' : '' ?>">No file uploaded</label>
+                                                    <input type="file" name="archive" id="archive" class="custom-file-input" accept=".rar, .zip">
+                                                    <?= form_error('archive', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-12">
@@ -334,9 +337,9 @@
                                         <small>
                                             * Upload file hanya berupa RAR / ZIP (.rar / .zip)
                                             <br>
-                                            * File .RAR / .ZIP sudah berisi file CV, KRS, dan Transkrip Nilai
+                                            * Mohon pastikan file .RAR / .ZIP sudah berisi file CV, KRS, dan Transkrip Nilai
                                             <br>
-                                            * Untuk transktrip nilai yang di upload adalah nilai semester terakhir.
+                                            * Untuk transktrip nilai yang di upload adalah nilai semester terakhir
                                             <br>
                                             * Ukuran file maksimal yaitu 5120KB (5MB)
                                         </small>
@@ -409,6 +412,7 @@
                 var file = $(this)[0].files[0],
                     fileName = file ? file.name : 'No file uploaded',
                     fileType = file ? file.type : '',
+                    fileSize = returnFileSize(file.size),
                     allowedTypes = ['application/x-compressed', 'application/x-zip-compressed'];
 
                 if (!allowedTypes.includes(fileType)) {
@@ -425,14 +429,36 @@
                         // Append error message after the file input
                         $(this).after(errorMessage);
                     }
+                } else if (file.size > 5 * 1024 * 1024) {
+                    // File size exceeds 5MB, show error
+                    $(this).prev().addClass('error');
+
+                    var errorMessage = $(this).next('.error-message');
+                    if (errorMessage.length === 0) {
+                        errorMessage = $('<small/>', {
+                            class: 'error-message',
+                            text: 'Ukuran file terlalu besar!'
+                        });
+                        $(this).after(errorMessage);
+                    }
                 } else {
                     $(this).prev().removeClass('error');
                     // Remove error message if exists
                     $(this).next('.error-message').remove();
                 }
 
-                $(this).prev().text(fileName);
+                $(this).prev().text(fileName + " | " + fileSize);
             });
+
+            function returnFileSize(number) {
+                if (number < 1024) {
+                    return `${number} bytes`;
+                } else if (number >= 1024 && number < 1048576) {
+                    return `${(number / 1024).toFixed(1)} KB`;
+                } else if (number >= 1048576) {
+                    return `${(number / 1048576).toFixed(1)} MB`;
+                }
+            }
         });
     </script>
 </body>
