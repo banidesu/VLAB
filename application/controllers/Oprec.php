@@ -22,7 +22,7 @@ class Oprec extends CI_Controller
                 'label' => 'Nama Lengkap',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -30,7 +30,7 @@ class Oprec extends CI_Controller
                 'label' => 'NPM',
                 'rules' => 'required|trim|numeric|exact_length[8]',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'numeric' => '{field} tidak valid',
                     'exact_length' => '{field} harus {param} digit'
                 ]
@@ -40,7 +40,7 @@ class Oprec extends CI_Controller
                 'label' => 'Kelas',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -48,7 +48,7 @@ class Oprec extends CI_Controller
                 'label' => 'Jurusan',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -56,7 +56,7 @@ class Oprec extends CI_Controller
                 'label' => 'Region',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -64,7 +64,7 @@ class Oprec extends CI_Controller
                 'label' => 'Penempatan',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -72,7 +72,7 @@ class Oprec extends CI_Controller
                 'label' => 'Agama',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -80,7 +80,7 @@ class Oprec extends CI_Controller
                 'label' => 'Email',
                 'rules' => 'required|trim|valid_email|is_unique[tb_peserta.email]',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'valid_email' => 'Alamat {field} tidak valid',
                     'is_unique' => 'Alamat {field} ini sudah terdaftar!'
                 ]
@@ -90,7 +90,7 @@ class Oprec extends CI_Controller
                 'label' => 'No HP',
                 'rules' => 'required|trim|numeric|min_length[12]|max_length[13]',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'numeric' => '{field} tidak valid',
                     'min_length' => '{field} minimal {param} digit',
                     'max_length' => '{field} maksimal {param} digit'
@@ -101,7 +101,7 @@ class Oprec extends CI_Controller
                 'label' => 'Alamat',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -109,7 +109,7 @@ class Oprec extends CI_Controller
                 'label' => 'Tempat lahir',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -117,7 +117,7 @@ class Oprec extends CI_Controller
                 'label' => 'Tanggal lahir',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -125,7 +125,7 @@ class Oprec extends CI_Controller
                 'label' => 'Sosial Media',
                 'rules' => 'required|trim|valid_url',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'valid_url' => '{field} URL tidak valid'
                 ]
             ]
