@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/virtual/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="<?= base_url(); ?>assets/virtual/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/virtual/img/logo-mamen-hd.png">
+	<link rel="icon" type="image/png" href="<?= base_url(); ?>assets/virtual/img/logo-mamen-hd.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title><?= $Judul; ?>| Portal</title>
@@ -41,8 +41,8 @@
 				</button>
 				<a href="<?= base_url(); ?>">
 					<div class="logo-container">
-						<div class="logo">
-							<img src="<?= base_url(); ?>assets/img/logo-mamen.png" alt="Creative Tim Logo" rel="tooltip" title="<b>Lab Manajemen Menengah</b> was Designed & Coded with care by the staff from <b>Vlab Tim</b>" data-placement="bottom" data-html="true">
+						<div class="logo" style="border: none;">
+							<img src="<?= base_url(); ?>assets/virtual/img/logo-mamen-hd.png" alt="Creative Tim Logo" rel="tooltip" title="<b>Lab Manajemen Menengah</b> was Designed & Coded with care by the staff from <b>Vlab Tim</b>" data-placement="bottom" data-html="true">
 						</div>
 						<div class="brand">
 							V-Lab MaMen
@@ -550,7 +550,7 @@
 										<div class="panel-body">
 											<div class="row">
 												<div class="col-md-4">
-													<img src="<?php echo base_url(); ?>assets/usr/img/template-easy-customize.png" alt="" class="img-responsive">
+													<img src="<?php echo base_url(); ?>assets/virtual/img/logo-mamen-hd.png" alt="" class="img-responsive">
 												</div>
 
 												<?php
@@ -591,7 +591,7 @@
 													<br>
 													<b>Logo Laboratorium Manajemen Menengah Gunadarma - <a href="
 							                           http://www.4shared.com/photo/HcdNsZZOba/logo_mamen.html" target="_blank"> Download Disini </a></b>
-													<img src="<?php echo base_url(); ?>assets/usr/img/logo-mamen1.JPG"><br>
+													<img width="300px" src="<?php echo base_url(); ?>assets/virtual/img/logo-mamen-hd.png"><br>
 													<b>DOWNLOAD APLIKASI PENUNJANG PRAKTIKUM :</b>
 													<ul>
 														<li>Download Software Smart Method Management (SMM) v 15.4.1 <a href="https://www.dropbox.com/s/gh0eqmx3rcdbkvm/SMM%20v15.4.1.rar?dl=0"> disini </a></li>
