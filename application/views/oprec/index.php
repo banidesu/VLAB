@@ -219,6 +219,7 @@
                                                         <option value="depok" <?= (set_value('region') == 'depok') ? 'selected' : '' ?>>Depok</option>
                                                         <option value="kalimalang" <?= (set_value('region') == 'kalimalang') ? 'selected' : '' ?>>Kalimalang</option>
                                                         <option value="salemba" <?= (set_value('region') == 'salemba') ? 'selected' : '' ?>>Salemba</option>
+                                                        <option value="karawaci" <?= (set_value('region') == 'karawaci') ? 'selected' : '' ?>>Karawaci</option>
                                                     </select>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
