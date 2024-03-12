@@ -166,7 +166,9 @@
                                 <hr>
                                 <div class="card-body text-left">
                                     <?= $this->session->flashdata('message'); ?>
-                                    <?= form_open_multipart('oprec/'); ?>
+                                    <?= form_open_multipart('oprec/', [
+                                        "onsubmit" => "return confirm('Apakah semua data sudah benar?');"
+                                    ]); ?>
                                     <fieldset>
                                         <legend class="fw-bold">Data Diri</legend>
                                         <div class="row">
@@ -322,7 +324,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="nilai" class="form-label <?= form_error('nilai') ? ' text-danger' : '' ?>">Transkrip Nilai</label>
+                                                    <label for="nilai" class="form-label <?= form_error('nilai') ? ' text-danger' : '' ?>">Transkrip Nilai <small>(semester terakhir)</small></label>
                                                     <label for="nilai" class="custom-file-input-label <?= form_error('nilai') ? ' error' : '' ?>">No file uploaded</label>
                                                     <input type="file" name="transkrip_nilai" id="nilai" class="custom-file-input" accept=".pdf">
                                                     <?= form_error('nilai', '<small class="error-message">', '</small>'); ?>
