@@ -196,7 +196,7 @@ class Oprec extends CI_Controller
             foreach ($upload_errors as $file => $error) {
                 $this->session->set_flashdata('message', "<div class='alert alert-danger'><div class='container-fluid'><div class='alert-icon'><i class='material-icons'>error_outline</i></div><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'><i class='material-icons'>clear</i></span></button><b>Error Alert:</b> $error</div></div>");
             }
-            redirect('oprec');
+            $this->load->view('oprec/index', $data);
         } else {
             // Semua file lulus validasi, lanjutkan dengan upload
             foreach ($files as $file) {
