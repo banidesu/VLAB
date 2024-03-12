@@ -342,8 +342,9 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary" type="submit">Submit</button>
-                                            <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <button class="btn btn-primary fw-bold" title="Kirim" type="submit"><i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i> Kirim</button>
+                                            <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-fw fa-trash-o" aria-hidden="true"></i></button>
+                                            <a href="<?= base_url(); ?>" title="Kembali" class="btn btn-info" type="button"><i class="fa fa-fw fa-arrow-circle-left" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                     </form>
