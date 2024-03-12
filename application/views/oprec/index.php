@@ -226,11 +226,11 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('placement') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="placement">Penempatan</label>
+                                                    <label class="control-label" for="placement">Posisi Lamaran</label>
                                                     <select name="placement" id="placement" class="form-control" required>
                                                         <option selected disabled></option>
-                                                        <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten</option>
-                                                        <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer</option>
+                                                        <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten <small>(Manajemen/Akuntansi)</small></option>
+                                                        <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer <small>(Informatika/S. Informasi)</small></option>
                                                     </select>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>

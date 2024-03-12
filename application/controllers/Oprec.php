@@ -178,7 +178,7 @@ class Oprec extends CI_Controller
                 $config['allowed_types'] = 'pdf';
                 $config['max_size'] = '1024'; // 1 MB
                 $config['upload_path'] = './assets/uploads/pdf/oprec';
-                $config['file_name'] = $data_calas['nama'] . '_' . explode('.', $_FILES[$file]['name'])[0] . '_' . $data_calas['npm'] . '_' . $data_calas['kelas'] . '_' . uniqid();
+                $config['file_name'] = $data_calas['nama'] . '_' . $data_calas['npm'] . '_' . $data_calas['penempatan'] . '_' . $data_calas['region'] . '_' . uniqid();
                 $this->upload->initialize($config);
 
                 if (!$this->upload->do_upload($file)) {
