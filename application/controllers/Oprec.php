@@ -147,21 +147,21 @@ class Oprec extends CI_Controller
         $data['judul'] = "Registrasi Lab Manajemen Menengah";
 
         $data_calas = [
-            'nama' => htmlspecialchars($this->input->post('name'), true),
+            'nama' => htmlspecialchars(ucwords($this->input->post('name', true))),
             'npm' => htmlspecialchars($this->input->post('npm', true)),
-            'kelas' => htmlspecialchars($this->input->post('class', true)),
+            'kelas' => htmlspecialchars(strtoupper($this->input->post('class', true))),
             'jurusan' => htmlspecialchars($this->input->post('jurusan', true)),
-            'region' => htmlspecialchars($this->input->post('region', true)),
-            'penempatan' => htmlspecialchars($this->input->post('placement', true)),
-            'agama' => htmlspecialchars($this->input->post('agama', true)),
-            'email' => htmlspecialchars($this->input->post('email', true)),
+            'region' => htmlspecialchars(ucfirst($this->input->post('region', true))),
+            'penempatan' => htmlspecialchars(ucfirst($this->input->post('placement', true))),
+            'agama' => htmlspecialchars(ucwords($this->input->post('agama', true))),
+            'email' => htmlspecialchars(strtolower($this->input->post('email', true))),
             'no_telp' => htmlspecialchars($this->input->post('no_telp', true)),
             'alamat' => htmlspecialchars($this->input->post('address', true)),
-            'ttl' => htmlspecialchars($this->input->post('tempat-lahir', true)) . ' ' . htmlspecialchars($this->input->post('tanggal-lahir', true)),
-            'sosmed' => htmlspecialchars($this->input->post('sosmed', true))
+            'ttl' => htmlspecialchars(ucwords($this->input->post('tempat-lahir', true))) . ' ' . htmlspecialchars($this->input->post('tanggal-lahir', true)),
+            'sosmed' => htmlspecialchars(strtolower($this->input->post('sosmed', true)))
         ];
 
-        $files = ['cv', 'krs', 'transkrip_nilai'];
+        $files = ['archive'];
         $upload_errors = [];
 
         // Load library upload
@@ -171,13 +171,13 @@ class Oprec extends CI_Controller
         foreach ($files as $file) {
             if (!isset($_FILES[$file]['name'])) {
                 $upload_errors[$file] = "File $file is required.";
-            } elseif ($_FILES[$file]['size'] > 1024 * 1024) { // Check file size
-                $upload_errors[$file] = "File $file exceeds the maximum allowed size of 1 MB.";
+            } elseif ($_FILES[$file]['size'] > 5 * 1024 * 1024) { // Check file size
+                $upload_errors[$file] = "File $file exceeds the maximum allowed size of 5 MB.";
             } else {
                 // Configuration for uploading file
-                $config['allowed_types'] = 'pdf';
-                $config['max_size'] = '1024'; // 1 MB
-                $config['upload_path'] = './assets/uploads/pdf/oprec';
+                $config['allowed_types'] = 'rar|zip';
+                $config['max_size'] = '5120'; // 5 MB
+                $config['upload_path'] = './assets/uploads/oprec';
                 $config['file_name'] = $data_calas['nama'] . '_' . $data_calas['npm'] . '_' . $data_calas['penempatan'] . '_' . $data_calas['region'] . '_' . uniqid();
                 $this->upload->initialize($config);
 
