@@ -78,10 +78,11 @@ class Oprec extends CI_Controller
             [
                 'field' => 'email',
                 'label' => 'Email',
-                'rules' => 'required|trim|valid_email',
+                'rules' => 'required|trim|valid_email|is_unique[tb_peserta.email]',
                 'errors' => [
                     'required' => '{field} harap diisi',
-                    'valid_email' => 'Alamat {field} tidak valid'
+                    'valid_email' => 'Alamat {field} tidak valid',
+                    'is_unique' => 'Alamat {field} ini sudah terdaftar!'
                 ]
             ],
             [
