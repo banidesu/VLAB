@@ -308,13 +308,13 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="cv" class="form-label <?= form_error('cv') ? ' text-danger' : '' ?>">CV</label>
-                                                    <label for="cv" class="custom-file-input-label <?= form_error('cv') ? ' error' : '' ?>">No file uploaded</label>
-                                                    <input type="file" name="cv" id="cv" class="custom-file-input" accept=".pdf">
-                                                    <?= form_error('cv', '<small class="error-message">', '</small>'); ?>
+                                                    <label for="rar" class="form-label <?= form_error('rar') ? ' text-danger' : '' ?>">.RAR / .ZIP <small>(berisi cv, krs, transkrip nilai)</small></label>
+                                                    <label for="rar" class="custom-file-input-label <?= form_error('rar') ? ' error' : '' ?>">No file uploaded</label>
+                                                    <input type="file" name="rar" id="rar" class="custom-file-input" accept=".rar, .zip">
+                                                    <?= form_error('rar', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <!-- <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
                                                     <label for="krs" class="form-label <?= form_error('krs') ? ' text-danger' : '' ?>">KRS</label>
                                                     <label for="krs" class="custom-file-input-label <?= form_error('krs') ? ' error' : '' ?>">No file uploaded</label>
@@ -329,14 +329,16 @@
                                                     <input type="file" name="transkrip_nilai" id="nilai" class="custom-file-input" accept=".pdf">
                                                     <?= form_error('nilai', '<small class="error-message">', '</small>'); ?>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <small>
+                                            * Upload file hanya berupa RAR / ZIP (.rar / .zip)
+                                            <br>
+                                            * File .RAR / .ZIP sudah berisi file CV, KRS, dan Transkrip Nilai
+                                            <br>
                                             * Untuk transktrip nilai yang di upload adalah nilai semester terakhir.
                                             <br>
-                                            * Upload file hanya berupa PDF (.pdf)
-                                            <br>
-                                            * Ukuran file maksimal yaitu 1024KB (1MB)
+                                            * Ukuran file maksimal yaitu 5120KB (5MB)
                                         </small>
                                     </fieldset>
                                     <br>
@@ -407,7 +409,7 @@
                 var file = $(this)[0].files[0],
                     fileName = file ? file.name : 'No file uploaded',
                     fileType = file ? file.type : '',
-                    allowedTypes = ['application/pdf'];
+                    allowedTypes = ['application/x-compressed', 'application/x-zip-compressed'];
 
                 if (!allowedTypes.includes(fileType)) {
                     $(this).prev().addClass('error');
@@ -418,7 +420,7 @@
                         // Create error message element only if it doesn't exist
                         errorMessage = $('<small/>', {
                             class: 'error-message',
-                            text: 'Silakan pilih file PDF!'
+                            text: 'Silakan pilih file RAR / ZIP!'
                         });
                         // Append error message after the file input
                         $(this).after(errorMessage);
