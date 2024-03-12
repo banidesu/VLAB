@@ -139,7 +139,7 @@
 
 		<!-- Content -->
 		<!-- HOME-->
-		<div class="main main-raised" id="home" style="">
+		<div class="main main-raised" id="home">
 			<div class="container">
 				<div class="section text-center section-landing">
 					<div class="row">
@@ -182,7 +182,7 @@
 					</div>
 				</div>
 
-				<div style="">
+				<div>
 					<h1>News</h1>
 					<?php
 					$DataBerita = $this->db->query("SELECT * FROM tbberita WHERE status = 1");
@@ -719,7 +719,7 @@
 					<div align="center" style="padding-top: 30px;">
 						<img src="<?php echo base_url(); ?>assets/uploads/images/berita/<?= $Row2->gambar; ?>" alt="<?= $Row2->gambar; ?>" class="img-rounded img-responsive" style="width: 300px; height: 300px;">
 					</div>
-					<div class="modal-body" style="">
+					<div class="modal-body">
 						<?= $Row2->isi ?>
 						<hr>
 						<small>
