@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/virtual/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/virtual/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/virtual/img/logo-mamen-hd.png">
+    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/virtual/img/logo-mamen-hd.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title><?= $judul; ?> | Portal</title>
@@ -137,6 +137,11 @@
             font-weight: bold;
         }
 
+        .alert.alert-danger .container-fluid p {
+            display: inline;
+            margin: 0;
+        }
+
         @media (min-width: 768px) {
             .index-page .wrapper>.header {
                 height: 100%;
@@ -161,13 +166,15 @@
                                 <hr>
                                 <div class="card-body text-left">
                                     <?= $this->session->flashdata('message'); ?>
-                                    <?= form_open_multipart('oprec/'); ?>
+                                    <?= form_open_multipart('oprec/', [
+                                        "onsubmit" => "return confirm('Apakah semua data sudah benar?');"
+                                    ]); ?>
                                     <fieldset>
                                         <legend class="fw-bold">Data Diri</legend>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('name') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="name">Nama Lengkap</label>
+                                                    <label class="control-label" for="name">Nama Lengkap *</label>
                                                     <input type="text" id="name" name="name" class="form-control" value="<?= set_value('name'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -175,7 +182,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('npm') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="npm">NPM</label>
+                                                    <label class="control-label" for="npm">NPM *</label>
                                                     <input type="text" id="npm" name="npm" class="form-control" value="<?= set_value('npm'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -183,7 +190,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('class') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="class">Kelas</label>
+                                                    <label class="control-label" for="class">Kelas *</label>
                                                     <input type="text" id="class" name="class" class="form-control" value="<?= set_value('class'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -191,7 +198,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('jurusan') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="jurusan">Jurusan</label>
+                                                    <label class="control-label" for="jurusan">Jurusan *</label>
                                                     <select name="jurusan" id="jurusan" class="form-control" required>
                                                         <option selected disabled></option>
                                                         <?php foreach ($jurusans as $jurusan) : ?>
@@ -206,12 +213,13 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('region') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="region">Region</label>
+                                                    <label class="control-label" for="region">Region *</label>
                                                     <select name="region" id="region" class="form-control" required>
                                                         <option selected disabled></option>
                                                         <option value="depok" <?= (set_value('region') == 'depok') ? 'selected' : '' ?>>Depok</option>
                                                         <option value="kalimalang" <?= (set_value('region') == 'kalimalang') ? 'selected' : '' ?>>Kalimalang</option>
                                                         <option value="salemba" <?= (set_value('region') == 'salemba') ? 'selected' : '' ?>>Salemba</option>
+                                                        <option value="karawaci" <?= (set_value('region') == 'karawaci') ? 'selected' : '' ?>>Karawaci</option>
                                                     </select>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -219,11 +227,11 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('placement') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="placement">Penempatan</label>
+                                                    <label class="control-label" for="placement">Posisi Lamaran *</label>
                                                     <select name="placement" id="placement" class="form-control" required>
                                                         <option selected disabled></option>
-                                                        <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten</option>
-                                                        <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer</option>
+                                                        <option value="asisten" <?= (set_value('placement') == 'asisten') ? 'selected' : '' ?>>Asisten <small>(Manajemen/Akuntansi)</small></option>
+                                                        <option value="programmer" <?= (set_value('placement') == 'programmer') ? 'selected' : '' ?>>Programmer <small>(Informatika/S.Informasi)</small></option>
                                                     </select>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -231,7 +239,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('agama') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="agama">Agama</label>
+                                                    <label class="control-label" for="agama">Agama *</label>
                                                     <input type="text" id="agama" name="agama" class="form-control" value="<?= set_value('agama'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -239,7 +247,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('email') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="email">Email</label>
+                                                    <label class="control-label" for="email">Email *</label>
                                                     <input type="email" id="email" name="email" class="form-control" value="<?= set_value('email'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -247,7 +255,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('no_telp') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="no_telp">No Telp</label>
+                                                    <label class="control-label" for="no_telp">No Telp *</label>
                                                     <input type="text" id="no_telp" name="no_telp" class="form-control" value="<?= set_value('no_telp'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -255,7 +263,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('address') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="address">Alamat</label>
+                                                    <label class="control-label" for="address">Alamat *</label>
                                                     <textarea id="address" name="address" class="form-control" rows="1" required><?= set_value('address'); ?></textarea>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -265,15 +273,24 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('ttl') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="ttl">Tempat Tgl Lahir</label>
-                                                    <input type="text" id="ttl" name="ttl" class="form-control datepicker" value="<?= set_value('ttl'); ?>" required>
-                                                    <span class="material-icons form-control-feedback">clear</span>
+                                                    <label class="control-label" for="tempat-lahir">Tempat Tgl Lahir *</label>
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <input type="text" id="tempat-lahir" name="tempat-lahir" class="form-control" value="<?= set_value('tempat-lahir'); ?>" placeholder="Tempat lahir">
+                                                            <span class="material-icons form-control-feedback">clear</span>
+                                                            <?= form_error('tempat-lahir', '<small class="error-message">', '</small>'); ?>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <input type="text" id="tanggal-lahir" name="tanggal-lahir" class="form-control datepicker" value="<?= set_value('tanggal-lahir'); ?>" placeholder="Tanggal Lahir">
+                                                            <span class="material-icons form-control-feedback">clear</span>
+                                                            <?= form_error('tanggal-lahir', '<small class="error-message">', '</small>'); ?>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <?= form_error('ttl', '<small class="error-message">', '</small>'); ?>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group <?= form_error('sosmed') ? ' has-error' : '' ?>">
-                                                    <label class="control-label" for="sosmed">Sosial Media URL | <small>(Instagram/LinkedIn/TikTok)</small></label>
+                                                    <label class="control-label" for="sosmed">Sosial Media URL | <small>(Instagram/LinkedIn/TikTok)</small> *</label>
                                                     <input type="text" id="sosmed" name="sosmed" class="form-control" value="<?= set_value('sosmed'); ?>" required>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
@@ -281,6 +298,9 @@
                                             </div>
                                         </div>
                                         <small>
+                                            <br>
+                                            * Pilih posisi lamaran yang sesuai dengan jurusan masing-masing
+                                            <br>
                                             * Untuk sosial media, cantumkan <mark>salah satu</mark> url profile akun (Instagram/LinkedIn/TikTok).
                                             <br>
                                             * Pastikan akun sosmed tidak di private
@@ -292,42 +312,32 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div style="margin-bottom: 2rem;">
-                                                    <label for="cv" class="form-label <?= form_error('cv') ? ' text-danger' : '' ?>">CV</label>
-                                                    <label for="cv" class="custom-file-input-label <?= form_error('cv') ? ' error' : '' ?>">No file uploaded</label>
-                                                    <input type="file" name="cv" id="cv" class="custom-file-input" accept=".pdf">
-                                                    <?= form_error('cv', '<small class="error-message">', '</small>'); ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div style="margin-bottom: 2rem;">
-                                                    <label for="krs" class="form-label <?= form_error('krs') ? ' text-danger' : '' ?>">KRS</label>
-                                                    <label for="krs" class="custom-file-input-label <?= form_error('krs') ? ' error' : '' ?>">No file uploaded</label>
-                                                    <input type="file" name="krs" id="krs" class="custom-file-input" accept=".pdf">
-                                                    <?= form_error('krs', '<small class="error-message">', '</small>'); ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div style="margin-bottom: 2rem;">
-                                                    <label for="nilai" class="form-label <?= form_error('nilai') ? ' text-danger' : '' ?>">Transkrip Nilai</label>
-                                                    <label for="nilai" class="custom-file-input-label <?= form_error('nilai') ? ' error' : '' ?>">No file uploaded</label>
-                                                    <input type="file" name="nilai" id="nilai" class="custom-file-input" accept=".pdf">
-                                                    <?= form_error('nilai', '<small class="error-message">', '</small>'); ?>
+                                                    <label for="archive" class="form-label <?= form_error('archive') ? ' text-danger' : 'text-muted' ?>" style="margin-bottom: 1rem;">
+                                                        <i class="fa fa-fw fa-lg fa-file-archive-o" aria-hidden="true"></i>
+                                                        .RAR / .ZIP <small>(berisi cv, krs, transkrip nilai)</small> *
+                                                    </label>
+                                                    <label for="archive" class="custom-file-input-label <?= form_error('archive') ? ' error' : '' ?>">No file uploaded</label>
+                                                    <input type="file" name="archive" id="archive" class="custom-file-input" accept=".rar, .zip">
+                                                    <?= form_error('archive', '<small class="error-message">', '</small>'); ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <small>
-                                            * Untuk transktrip nilai yang di upload adalah nilai semester terakhir.
+                                            * Upload file hanya berupa RAR / ZIP (.rar / .zip)
                                             <br>
-                                            * Upload file hanya berupa PDF (.pdf)
+                                            * Mohon pastikan file .RAR / .ZIP sudah berisi file CV, KRS, dan Transkrip Nilai
                                             <br>
-                                            * Ukuran file maksimal yaitu 2048 KB (2 MB)
+                                            * Untuk transktrip nilai yang di upload adalah nilai semester terakhir
+                                            <br>
+                                            * Ukuran file maksimal yaitu 5120KB (5MB)
                                         </small>
                                     </fieldset>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary" type="submit">Submit</button>
-                                            <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <button class="btn btn-primary fw-bold" title="Kirim" type="submit"><i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i> Kirim</button>
+                                            <button class="btn btn-danger" title="Reset" type="reset"><i class="fa fa-fw fa-trash-o" aria-hidden="true"></i></button>
+                                            <a href="<?= base_url(); ?>" title="Kembali" class="btn btn-info" type="button"><i class="fa fa-fw fa-arrow-circle-left" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                     </form>
@@ -362,11 +372,11 @@
     <script src="<?= base_url(); ?>assets/virtual/js/Function.js" type="text/javascript"></script>
 
     <script>
+        $('.datepicker').datepicker({
+            format: "dd-mm-yyyy",
+            autoclose: 1
+        });
         $(document).ready(function() {
-            $('.datepicker').datepicker({
-                autoclose: true
-            });
-
             $('#no_telp').on('input', function(e) {
                 var input = $(this).val();
                 input = input.replace(/\D/g, '');
@@ -390,7 +400,8 @@
                 var file = $(this)[0].files[0],
                     fileName = file ? file.name : 'No file uploaded',
                     fileType = file ? file.type : '',
-                    allowedTypes = ['application/pdf'];
+                    fileSize = returnFileSize(file.size),
+                    allowedTypes = ['application/x-compressed', 'application/x-zip-compressed'];
 
                 if (!allowedTypes.includes(fileType)) {
                     $(this).prev().addClass('error');
@@ -401,9 +412,21 @@
                         // Create error message element only if it doesn't exist
                         errorMessage = $('<small/>', {
                             class: 'error-message',
-                            text: 'Silakan pilih file PDF!'
+                            text: 'Silakan pilih file RAR / ZIP!'
                         });
                         // Append error message after the file input
+                        $(this).after(errorMessage);
+                    }
+                } else if (file.size > 5 * 1024 * 1024) {
+                    // File size exceeds 5MB, show error
+                    $(this).prev().addClass('error');
+
+                    var errorMessage = $(this).next('.error-message');
+                    if (errorMessage.length === 0) {
+                        errorMessage = $('<small/>', {
+                            class: 'error-message',
+                            text: 'Ukuran file terlalu besar!'
+                        });
                         $(this).after(errorMessage);
                     }
                 } else {
@@ -412,8 +435,18 @@
                     $(this).next('.error-message').remove();
                 }
 
-                $(this).prev().text(fileName);
+                $(this).prev().text(fileName + " | " + fileSize);
             });
+
+            function returnFileSize(number) {
+                if (number < 1024) {
+                    return `${number} bytes`;
+                } else if (number >= 1024 && number < 1048576) {
+                    return `${(number / 1024).toFixed(1)} KB`;
+                } else if (number >= 1048576) {
+                    return `${(number / 1048576).toFixed(1)} MB`;
+                }
+            }
         });
     </script>
 </body>

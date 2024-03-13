@@ -22,7 +22,7 @@ class Oprec extends CI_Controller
                 'label' => 'Nama Lengkap',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -30,7 +30,7 @@ class Oprec extends CI_Controller
                 'label' => 'NPM',
                 'rules' => 'required|trim|numeric|exact_length[8]',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'numeric' => '{field} tidak valid',
                     'exact_length' => '{field} harus {param} digit'
                 ]
@@ -40,7 +40,7 @@ class Oprec extends CI_Controller
                 'label' => 'Kelas',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -48,7 +48,7 @@ class Oprec extends CI_Controller
                 'label' => 'Jurusan',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -56,7 +56,7 @@ class Oprec extends CI_Controller
                 'label' => 'Region',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -64,7 +64,7 @@ class Oprec extends CI_Controller
                 'label' => 'Penempatan',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -72,16 +72,17 @@ class Oprec extends CI_Controller
                 'label' => 'Agama',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
                 'field' => 'email',
                 'label' => 'Email',
-                'rules' => 'required|trim|valid_email',
+                'rules' => 'required|trim|valid_email|is_unique[tb_peserta.email]',
                 'errors' => [
-                    'required' => '{field} harap diisi',
-                    'valid_email' => 'Alamat {field} tidak valid'
+                    'required' => '{field} wajib diisi',
+                    'valid_email' => 'Alamat {field} tidak valid',
+                    'is_unique' => 'Alamat {field} ini sudah terdaftar!'
                 ]
             ],
             [
@@ -89,7 +90,7 @@ class Oprec extends CI_Controller
                 'label' => 'No HP',
                 'rules' => 'required|trim|numeric|min_length[12]|max_length[13]',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'numeric' => '{field} tidak valid',
                     'min_length' => '{field} minimal {param} digit',
                     'max_length' => '{field} maksimal {param} digit'
@@ -100,15 +101,23 @@ class Oprec extends CI_Controller
                 'label' => 'Alamat',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
-                'field' => 'ttl',
-                'label' => 'TTL',
+                'field' => 'tempat-lahir',
+                'label' => 'Tempat lahir',
                 'rules' => 'required|trim',
                 'errors' => [
-                    'required' => '{field} harap diisi'
+                    'required' => '{field} wajib diisi'
+                ]
+            ],
+            [
+                'field' => 'tanggal-lahir',
+                'label' => 'Tanggal lahir',
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => '{field} wajib diisi'
                 ]
             ],
             [
@@ -116,25 +125,10 @@ class Oprec extends CI_Controller
                 'label' => 'Sosial Media',
                 'rules' => 'required|trim|valid_url',
                 'errors' => [
-                    'required' => '{field} harap diisi',
+                    'required' => '{field} wajib diisi',
                     'valid_url' => '{field} URL tidak valid'
                 ]
-            ],
-            // [
-            //     'field' => 'cv',
-            //     'label' => 'CV',
-            //     'rules' => 'required|trim'
-            // ],
-            // [
-            //     'field' => 'krs',
-            //     'label' => 'KRS',
-            //     'rules' => 'required|trim'
-            // ],
-            // [
-            //     'field' => 'nilai',
-            //     'label' => 'Transkrip Nilai',
-            //     'rules' => 'required|trim'
-            // ],
+            ]
         ];
 
         $this->form_validation->set_rules($rules);
@@ -152,30 +146,106 @@ class Oprec extends CI_Controller
         $data['jurusans'] = $jurusans->result_array();
         $data['judul'] = "Registrasi Lab Manajemen Menengah";
 
-        $data2 = [
-            'name' => htmlspecialchars($this->input->post('name'), true),
+        $data_calas = [
+            'nama' => htmlspecialchars(ucwords($this->input->post('name', true))),
             'npm' => htmlspecialchars($this->input->post('npm', true)),
-            'class' => htmlspecialchars($this->input->post('class', true)),
+            'kelas' => htmlspecialchars(strtoupper($this->input->post('class', true))),
             'jurusan' => htmlspecialchars($this->input->post('jurusan', true)),
-            'region' => htmlspecialchars($this->input->post('region', true)),
-            'placement' => htmlspecialchars($this->input->post('placement', true)),
-            'agama' => htmlspecialchars($this->input->post('agama', true)),
-            'email' => htmlspecialchars($this->input->post('email', true)),
+            'region' => htmlspecialchars(ucfirst($this->input->post('region', true))),
+            'penempatan' => htmlspecialchars(ucfirst($this->input->post('placement', true))),
+            'agama' => htmlspecialchars(ucwords($this->input->post('agama', true))),
+            'email' => htmlspecialchars(strtolower($this->input->post('email', true))),
             'no_telp' => htmlspecialchars($this->input->post('no_telp', true)),
-            'address' => htmlspecialchars($this->input->post('address', true)),
-            'ttl' => htmlspecialchars($this->input->post('ttl', true)),
+            'alamat' => htmlspecialchars($this->input->post('address', true)),
+            'ttl' => htmlspecialchars(ucwords($this->input->post('tempat-lahir', true))) . ' ' . htmlspecialchars($this->input->post('tanggal-lahir', true)),
+            'sosmed' => htmlspecialchars(strtolower($this->input->post('sosmed', true)))
         ];
 
-        $cv = $_FILES['cv']['name'];
-        $krs = $_FILES['krs']['name'];
-        $nilai = $_FILES['nilai']['name'];
+        $files = ['archive'];
+        $upload_errors = [];
 
-        if ($cv && $krs && $nilai) {
-            var_dump("OKE");
-            die;
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Please upload all required files...</div></div>');
+        // Load library upload
+        $this->load->library('upload');
+
+        // Validate each file individually
+        foreach ($files as $file) {
+            if (!isset($_FILES[$file]['name'])) {
+                $upload_errors[$file] = "File $file is required.";
+            } elseif ($_FILES[$file]['size'] > 5 * 1024 * 1024) { // Check file size
+                $upload_errors[$file] = "File $file exceeds the maximum allowed size of 5 MB.";
+            } else {
+                // Configuration for uploading file
+                $config['allowed_types'] = 'rar|zip';
+                $config['max_size'] = '5120'; // 5 MB
+                $config['upload_path'] = './assets/uploads/oprec';
+                $config['file_name'] = $data_calas['nama'] . '_' . $data_calas['npm'] . '_' . $data_calas['penempatan'] . '_' . $data_calas['region'] . '_' . uniqid();
+                $this->upload->initialize($config);
+
+                if (!$this->upload->do_upload($file)) {
+                    $upload_errors[$file] = $this->upload->display_errors();
+                }
+            }
+
+            // If any errors found, stop further processing
+            if ($upload_errors) {
+                break;
+            }
+        }
+
+        if ($upload_errors) {
+            foreach ($upload_errors as $file => $error) {
+                $this->session->set_flashdata('message', "<div class='alert alert-danger'><div class='container-fluid'><div class='alert-icon'><i class='material-icons'>error_outline</i></div><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'><i class='material-icons'>clear</i></span></button><b>Error Alert:</b> $error</div></div>");
+            }
             $this->load->view('oprec/index', $data);
+        } else {
+            // Semua file lulus validasi, lanjutkan dengan upload
+            foreach ($files as $file) {
+                $upload_data = $this->upload->data();
+                $data_calas[$file] = $upload_data['file_name'];
+            }
+
+            // Semua data aman, lanjutkan dengan insert database
+            if ($this->db->insert('tb_peserta', $data_calas)) {
+
+                // Kirim Email untuk validasi kembali data mereka
+                $this->_sendEmail($data_calas['email'], 'oprec');
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">check</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Berhasil:</b> Silahkan cek email anda untuk memastikan data anda!</div></div>');
+                redirect('oprec');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Terjadi kesalahan...</div></div>');
+                redirect('oprec');
+            }
+        }
+    }
+
+    private function _sendEmail($email, $type)
+    {
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'opreclabmamen@gmail.com',
+            'smtp_pass' => 'mofz neol yybc zwyz',
+            'smtp_port' => 465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+
+        $this->email->initialize($config);
+        $this->email->from('opreclabmamen@gmail.com', 'Open Recruitment Laboratorium Manajemen Menengah');
+        $this->email->to($email);
+
+        if ($type == 'oprec') {
+            $this->email->subject('Data Verification');
+            $this->email->message('Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada Lab Mamen. Mohon tunggu hasilnya pada halaman hasil. Sabarinn... <br>Berikut ini adalah lampiran data yang anda input untuk dapat diperiksa kembali apakah ada kesalahan atau tidak : <a href="' . base_url() . '">Unduh</a><br><br>Apabila data sudah benar, silahkan print file ini untuk menlanjutkan tahap administrasi.');
+        }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
         }
     }
 
