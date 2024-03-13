@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 11, 2024 at 04:17 AM
+-- Generation Time: Mar 13, 2024 at 03:49 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -4518,7 +4518,7 @@ INSERT INTO `tb_jurusan` (`id`, `jurusan`) VALUES
 (1, 'Akuntansi'),
 (2, 'Manajemen'),
 (3, 'Sistem Informasi'),
-(4, 'Teknik Informatika');
+(4, 'Informatika');
 
 -- --------------------------------------------------------
 
@@ -4533,17 +4533,22 @@ CREATE TABLE `tb_peserta` (
   `jurusan` int NOT NULL,
   `region` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `penempatan` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `no_telp` int NOT NULL,
+  `no_telp` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `ttl` date NOT NULL,
+  `ttl` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `npm` int NOT NULL,
   `alamat` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
   `agama` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `sosmed` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `cv` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `krs` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `transkrip_nilai` varchar(128) COLLATE utf8mb4_general_ci NOT NULL
+  `archive` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_peserta`
+--
+
+INSERT INTO `tb_peserta` (`id`, `nama`, `kelas`, `jurusan`, `region`, `penempatan`, `no_telp`, `email`, `ttl`, `npm`, `alamat`, `agama`, `sosmed`, `archive`) VALUES
+(1, 'Mohammad Robbani', '3IA23', 4, 'Karawaci', 'Programmer', '082312394001', 'muhammadrobbani77@gmail.com', 'Jakarta 29-06-2003', 50421847, 'Jl.Palem II', 'Islam', 'url', 'Mohammad_Robbani_50421847_Programmer_Karawaci_65f11f33e7052.zip');
 
 --
 -- Indexes for dumped tables
@@ -4804,7 +4809,7 @@ ALTER TABLE `tb_jurusan`
 -- AUTO_INCREMENT for table `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
