@@ -238,7 +238,7 @@ class Oprec extends CI_Controller
 
         if ($type == 'oprec') {
             $this->email->subject('Data Verification');
-            $this->email->message('Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada Lab Mamen. Mohon tunggu hasilnya pada halaman hasil. Sabarinn... <br>Berikut ini adalah lampiran data yang anda input untuk sekiranya dapat diperiksa kembali apakah ada kesalahan atau tidak : <a href="' . base_url() . '">Unduh</a><br><br>Apabila data sudah benar, silahkan print file ini untuk menlanjutkan pendaftaran.');
+            $this->email->message('Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada Lab Mamen. Mohon tunggu hasilnya pada halaman hasil. Sabarinn... <br>Berikut ini adalah lampiran data yang anda input untuk dapat diperiksa kembali apakah ada kesalahan atau tidak : <a href="' . base_url() . '">Unduh</a><br><br>Apabila data sudah benar, silahkan print file ini untuk menlanjutkan tahap administrasi.');
         }
 
         if ($this->email->send()) {
