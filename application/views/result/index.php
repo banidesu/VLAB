@@ -86,12 +86,12 @@
         <div>
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Nama Siswa yang Lulus Tahap 1
+                    Nama Siswa yang Lulus Tahap 1 (Pemberkasan)
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Selamat kepada peserta yang lulus tahap 1, cek disini!
+                    Selamat kepada peserta yang lulus tahap 1, <a href="https://drive.google.com/file/d/1d9oIZjgyFf_boYJ6Yk4t3ZpA7iieDpAn/view" target="_blank">Cek Disini!</a>
                 </div>
             </div>
         </div>
@@ -99,12 +99,12 @@
         <div>
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Nama Siswa yang Lulus Tahap 2
+                    Nama Siswa yang Lulus Tahap 2 (Tes Tertulis dan live coding)
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Selamat kepada peserta yang lulus tahap 2, cek disini!
+                    Selamat kepada peserta yang lulus tahap 2, <a href="">Cek Disini!</a>
                 </div>
             </div>
         </div>
@@ -112,12 +112,36 @@
         <div>
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Nama Siswa yang Lulus Tahap 3
+                    Nama Siswa yang Lulus Tahap 3 (Test Desain Khusus Programmer)
                 </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Selamat kepada peserta yang lulus tahap 3, cek disini!
+                    Selamat kepada peserta yang lulus tahap 3, <a href="">Cek Disini!</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Nama Siswa yang Lulus Tahap 4 (Test Tutor)
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Selamat kepada peserta yang lulus tahap 4, <a href="">Cek Disini!</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Nama Siswa yang Lulus Tahap 5 (Test Interview 1)
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Selamat kepada peserta yang lulus tahap 5, <a href="">Cek Disini!</a>
                 </div>
             </div>
         </div>
