@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use Dompdf\Dompdf;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Oprec extends CI_Controller
 {
     public function __construct()
@@ -221,32 +225,57 @@ class Oprec extends CI_Controller
 
     private function _sendEmail($email, $type)
     {
-        $config = [
-            'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'opreclabmamen@gmail.com',
-            'smtp_pass' => 'mofz neol yybc zwyz',
-            'smtp_port' => 465,
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'newline'   => "\r\n"
-        ];
+        // Load PHPMailer library
+        require_once APPPATH . '../vendor/autoload.php';
 
-        $this->email->initialize($config);
-        $this->email->from('opreclabmamen@gmail.com', 'Open Recruitment Laboratorium Manajemen Menengah');
-        $this->email->to($email);
+        $this->config->load('phpmailer_config');
 
-        if ($type == 'oprec') {
-            $this->email->subject('Data Verification');
-            $this->email->message('Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada Lab Mamen. Mohon tunggu hasilnya pada halaman hasil. Sabarinn... <br>Berikut ini adalah lampiran data yang anda input untuk dapat diperiksa kembali apakah ada kesalahan atau tidak : <a href="' . base_url() . '">Unduh</a><br><br>Apabila data sudah benar, silahkan print file ini untuk menlanjutkan tahap administrasi.');
-        }
+        $mail = new PHPMailer(TRUE);
 
-        if ($this->email->send()) {
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host = $this->config->item('smtp_host');
+            $mail->Port = $this->config->item('smtp_port');
+            $mail->SMTPAuth = true;
+            $mail->Username = $this->config->item('smtp_user');
+            $mail->Password = $this->config->item('smtp_pass');
+            $mail->SMTPSecure = $this->config->item('smtp_crypto');
+            $mail->CharSet = $this->config->item('charset');
+
+            // Penerima (calas)
+            $mail->setFrom('opreclabmamen@gmail.com', 'Open Recruitment Laboratorium Manajemen Menengah');
+            $mail->addAddress($email, ucwords($this->input->post('name', true)));
+
+            // Lampirkan PDF
+            $pdfContent = $this->_generate_pdf();
+            $mail->addStringAttachment($pdfContent, ucwords($this->input->post('name', true)) . '_' . $this->input->post('npm', true) . '_' . ucfirst($this->input->post('penempatan', true)) . '_' . ucfirst($this->input->post('region', true)) . '.pdf');
+
+            // Konten
+            $mail->isHTML(true);
+            $mail->Subject = 'Terimakasih Telah Mendaftar!';
+            $mail->Body = 'Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada Lab Mamen. Mohon menunggu untuk hasil seleksi pada halaman hasil. Sabarinn... <br>Berikut ini adalah lampiran data yang anda input untuk dapat diperiksa kembali apakah ada kesalahan atau tidak. <br><br>Apabila data sudah benar, silahkan print file dibawah ini untuk menlanjutkan tahap administrasi.';
+
+            // Send email
+            $mail->send();
             return true;
-        } else {
-            echo $this->email->print_debugger();
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
             die;
         }
+    }
+
+    private function _generate_pdf()
+    {
+        // Load Dompdf library
+        require_once APPPATH . '../vendor/dompdf/autoload.inc.php';
+
+        $html = '<html><body><h1>User Registration Data</h1><p>Name: John Doe<br>Email: john@example.com</p></body></html>';
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        return $dompdf->output();
     }
 
     public function result()

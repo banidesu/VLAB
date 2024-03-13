@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ec987869a17a14778cce9c9dee25baab79f5bb46',
+        'reference' => 'ef730375eb6b92d3b5d05fc93e267468447bd13a',
         'name' => 'codeigniter/framework',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ec987869a17a14778cce9c9dee25baab79f5bb46',
+            'reference' => 'ef730375eb6b92d3b5d05fc93e267468447bd13a',
             'dev_requirement' => false,
         ),
         'dompdf/dompdf' => array(

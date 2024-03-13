@@ -1,0 +1,12 @@
+{
+    "lobster two": {
+        "italic": "lobster_two_italic_40abff426c32014925602fed7a1fa0fe"
+    },
+    "poppins": {
+        "bold_italic": "C:\\laragon\\www\\kopa-kopi\\dompdf\\vendor\\dompdf\\dompdf\/lib\/fonts\/poppins_bold_italic_812d90b721ed99ea43d47c5ee855951d",
+        "100": "C:\\laragon\\www\\kopa-kopi\\dompdf\\vendor\\dompdf\\dompdf\/lib\/fonts\/poppins_100_9516b5e61c50e1848d59fd3ff2402f66",
+        "300": "C:\\laragon\\www\\kopa-kopi\\dompdf\\vendor\\dompdf\\dompdf\/lib\/fonts\/poppins_300_4a08cccbc2911e3077321a0298f4e093",
+        "normal": "C:\\laragon\\www\\kopa-kopi\\dompdf\\vendor\\dompdf\\dompdf\/lib\/fonts\/poppins_normal_442dffd12abdf0df26c14405d3f49bfa",
+        "bold": "poppins_bold_2d1c4b360c3ac297e98fc2cfd808a2cc"
+    }
+}
