@@ -206,12 +206,46 @@ class Oprec extends CI_Controller
 
             // Semua data aman, lanjutkan dengan insert database
             if ($this->db->insert('tb_peserta', $data_calas)) {
+
+                // Kirim Email untuk validasi kembali data mereka
+                $this->_sendEmail($data_calas['email'], 'oprec');
+
                 $this->session->set_flashdata('message', '<div class="alert alert-success"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">check</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Berhasil:</b> Silahkan cek email anda untuk memastikan data anda!</div></div>');
                 redirect('oprec');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger"><div class="container-fluid"><div class="alert-icon"><i class="material-icons">error_outline</i></div><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="material-icons">clear</i></span></button><b>Error Alert:</b> Terjadi kesalahan...</div></div>');
                 redirect('oprec');
             }
+        }
+    }
+
+    private function _sendEmail($email, $type)
+    {
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'opreclabmamen@gmail.com',
+            'smtp_pass' => 'mofz neol yybc zwyz',
+            'smtp_port' => 465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+
+        $this->email->initialize($config);
+        $this->email->from('opreclabmamen@gmail.com', 'Open Recruitment Laboratorium Manajemen Menengah');
+        $this->email->to($email);
+
+        if ($type == 'oprec') {
+            $this->email->subject('Data Verification');
+            $this->email->message('Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada Lab Mamen. Mohon tunggu hasilnya pada halaman hasil. Sabarinn... <br>Berikut ini adalah lampiran data yang anda input untuk sekiranya dapat diperiksa kembali apakah ada kesalahan atau tidak : <a href="' . base_url() . '">Unduh</a><br><br>Apabila data sudah benar, silahkan print file ini untuk menlanjutkan pendaftaran.');
+        }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
         }
     }
 
