@@ -249,7 +249,7 @@ class Oprec extends CI_Controller
 
             // Lampirkan PDF
             $pdfContent = $this->_generate_pdf();
-            $mail->addStringAttachment($pdfContent, ucwords($this->input->post('name', true)) . '_' . $this->input->post('npm', true) . '_' . ucfirst($this->input->post('penempatan', true)) . '_' . ucfirst($this->input->post('region', true)) . '.pdf');
+            $mail->addStringAttachment($pdfContent, ucwords($this->input->post('name', true)) . '_' . $this->input->post('npm', true) . '_' . ucfirst($this->input->post('placement', true)) . '_' . ucfirst($this->input->post('region', true)) . '.pdf');
 
             // Konten
             $mail->isHTML(true);
@@ -270,7 +270,9 @@ class Oprec extends CI_Controller
         // Load Dompdf library
         require_once APPPATH . '../vendor/dompdf/autoload.inc.php';
 
-        $html = '<html><body><h1>User Registration Data</h1><p>Name: John Doe<br>Email: john@example.com</p></body></html>';
+        ob_start();
+        require_once APPPATH . 'views/oprec/buktiPendaftaran.php';
+        $html = ob_get_clean();
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
