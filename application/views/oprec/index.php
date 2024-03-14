@@ -220,6 +220,7 @@
                                                         <option value="kalimalang" <?= (set_value('region') == 'kalimalang') ? 'selected' : '' ?>>Kalimalang</option>
                                                         <option value="salemba" <?= (set_value('region') == 'salemba') ? 'selected' : '' ?>>Salemba</option>
                                                         <option value="karawaci" <?= (set_value('region') == 'karawaci') ? 'selected' : '' ?>>Karawaci</option>
+                                                        <option value="cengkareng" <?= (set_value('region') == 'cengkareng') ? 'selected' : '' ?>>Cengkareng</option>
                                                     </select>
                                                     <span class="material-icons form-control-feedback">clear</span>
                                                 </div>
