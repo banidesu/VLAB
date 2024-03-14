@@ -1,118 +1,110 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="<?= base_url() ?>assets/vendor" data-template="vertical-menu-template-free">
+
 <head>
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="<?=base_url();?>assets/virtual/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="<?=base_url();?>assets/virtual/img/favicon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Sign In <?=$User;?>- V-Lab MaMen</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-	<!--     Fonts and icons     -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-	<!-- CSS Files -->
-    <link href="<?=base_url();?>assets/virtual/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<?=base_url();?>assets/virtual/css/material-kit.css" rel="stylesheet"/>
+    <title>Laboratorium Manajemen Menengah | <?= $judul; ?></title>
 
+    <meta name="description" content="V-Lab Manajemen Menengah adalah website resmi Laboratorium Manajemen Menengah Universitas Gunadarma">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets/virtual/img/logo-mamen-hd.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/vendor/fonts/boxicons.css">
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/vendor/css/core.css" class="template-customizer-core-css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/vendor/css/theme-default.css" class="template-customizer-theme-css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/css/demo.css">
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/vendor/css/pages/page-auth.css" />
+    <!-- Helpers -->
+    <script src="<?= base_url() ?>assets/vendor/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="<?= base_url() ?>assets/vendor/js/config.js"></script>
 </head>
 
-<body class="signup-page">
-	<nav class="navbar navbar-transparent navbar-absolute">
-    	<div class="container">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-        	<div class="navbar-header">
-        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-            		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="<?=base_url();?>">V-Lab MaMen</a>
-        	</div>
+<body>
+    <!-- Content -->
 
-        	<div class="collapse navbar-collapse" id="navigation-example">
-        		<ul class="nav navbar-nav navbar-right">
-		            
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <!-- Register -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="index.html" class="app-brand-link flex-column gap-3">
+                                <span class="app-brand-logo">
+                                    <img src="<?= base_url() ?>assets/virtual/img/logo-mamen-hd.png" alt="Logo Mamen" width="70px;">
+                                </span>
+                                <span class="app-brand-text demo text-body fw-bolder text-capitalize">V-Lab Mamen</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
 
-    <div class="wrapper">
-		<div class="header header-filter" style="background-image: url('<?=base_url();?>assets/virtual/img/Login_Background.jpg'); background-size: cover; background-position: top center;">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-						<div class="card card-signup">
-							<form class="form" method="POST" action="<?= base_url();?>login/GetLogin<?=$User;?>">
-								<div class="header header-primary text-center">
-									<h4>Sign In</h4>
-								</div>
-								<p class="text-divider">As <?=$User;?></p>
-								<div class="content">
-									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">face</i>
-										</span>
-										<input name="username" type="text" class="form-control" placeholder="Username...">
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">lock_outline</i>
-										</span>
-										<input name="password" type="password" placeholder="Password..." class="form-control" />
-									</div>
-								</div>
-								<div class="footer text-center">
-									<input type="submit" name="submit" class="btn btn-simple btn-primary btn-lg" value="Login">
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-	<!-- Fopter -->
-		<footer class="footer" style="padding-top: 90px;">
-		  
-		        <div class="copyright text-center">
-		            &copy; 2017, made with <i class="material-icons">favorite</i> by MaMen Tim for a better web.
-		        </div>
-		    </div>
-		</footer>
-	<!-- End Fopter -->
-
-
-		</div>
-
+                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Nama Pengguna</label>
+                                <input type="text" class="form-control" id="email" name="email-username" placeholder="Masukkan nama pengguna" autofocus />
+                            </div>
+                            <div class="mb-3 form-password-toggle">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password">Kata Sandi</label>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- / Content -->
 
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="<?= base_url() ?>assets/vendor/vendor/libs/jquery/jquery.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/vendor/libs/popper/popper.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/vendor/js/bootstrap.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="<?= base_url() ?>assets/vendor/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="<?= base_url() ?>assets/vendor/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
-	<!--   Core JS Files   -->
-	<script src="<?=base_url();?>assets/virtual/js/jquery.min.js" type="text/javascript"></script>
-	<script src="<?=base_url();?>assets/virtual/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="<?=base_url();?>assets/virtual/js/material.min.js"></script>
 
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="<?=base_url();?>assets/virtual/js/nouislider.min.js" type="text/javascript"></script>
-
-	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-	<script src="<?=base_url();?>assets/virtual/js/bootstrap-datepicker.js" type="text/javascript"></script>
-
-	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-	<script src="<?=base_url();?>assets/virtual/js/material-kit.js" type="text/javascript"></script>
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/58c7bb542dfdd91cf6f232c3/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
 </html>

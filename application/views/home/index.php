@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href="<?= base_url(); ?>assets/virtual/img/logo-mamen-hd.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title><?= $Judul; ?>| Portal</title>
+	<title><?= $Judul; ?> | Portal</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<!--     Fonts and icons     -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -96,7 +96,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="<?= base_url(); ?>beranda">
+						<a href="<?= base_url(); ?>login">
 							<i class="material-icons">fingerprint</i>Login
 						</a>
 					</li>
