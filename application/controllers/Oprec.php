@@ -254,7 +254,7 @@ class Oprec extends CI_Controller
             // Konten
             $mail->isHTML(true);
             $mail->Subject = 'Terimakasih Telah Mendaftar!';
-            $mail->Body = 'Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada lab kami, bersamaan dengan email ini kami beritahukan bahwa berkas anda sudah kami terima. <br>Berikut ini adalah lampiran data yang anda input untuk dapat diperiksa kembali apakah ada kesalahan atau tidak. <br><br>Apabila data dirasa sudah benar, silahkan print file dibawah ini untuk digunakan pada tahap selanjutnya.<br><br>Terimakasih dan pantau terus perkembangan oprec lab kami di website resmi kami : <a href="https://v-lab.gunadarma.ac.id/">Laboratorium Manajemen Menengah</a>';
+            $mail->Body = 'Hai <b>' . ucwords($this->input->post('name', true)) . '</b>, Terimakasih telah mendaftarkan diri anda pada lab kami, bersamaan dengan email ini kami beritahukan bahwa berkas anda sudah kami terima. <br>Berikut ini adalah lampiran data yang anda input untuk dapat diperiksa kembali apakah ada kesalahan atau tidak. <br><br>Apabila data dirasa sudah benar, silahkan print file dibawah ini untuk digunakan pada tahap selanjutnya.<br><br>Terimakasih dan pantau terus perkembangan oprec lab kami di website resmi kami : <a href=' . base_url() . '>Laboratorium Manajemen Menengah</a>';
 
             // Send email
             $mail->send();
