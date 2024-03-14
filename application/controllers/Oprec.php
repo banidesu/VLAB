@@ -92,7 +92,7 @@ class Oprec extends CI_Controller
             [
                 'field' => 'no_telp',
                 'label' => 'No HP',
-                'rules' => 'required|trim|numeric|min_length[12]|max_length[13]',
+                'rules' => 'required|trim|numeric|min_length[11]|max_length[13]',
                 'errors' => [
                     'required' => '{field} wajib diisi',
                     'numeric' => '{field} tidak valid',
