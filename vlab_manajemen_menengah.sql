@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 13, 2024 at 03:49 AM
+-- Generation Time: Mar 14, 2024 at 01:26 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -4537,18 +4537,11 @@ CREATE TABLE `tb_peserta` (
   `email` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
   `ttl` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `npm` int NOT NULL,
-  `alamat` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `agama` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `sosmed` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
   `archive` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tb_peserta`
---
-
-INSERT INTO `tb_peserta` (`id`, `nama`, `kelas`, `jurusan`, `region`, `penempatan`, `no_telp`, `email`, `ttl`, `npm`, `alamat`, `agama`, `sosmed`, `archive`) VALUES
-(1, 'Mohammad Robbani', '3IA23', 4, 'Karawaci', 'Programmer', '082312394001', 'muhammadrobbani77@gmail.com', 'Jakarta 29-06-2003', 50421847, 'Jl.Palem II', 'Islam', 'url', 'Mohammad_Robbani_50421847_Programmer_Karawaci_65f11f33e7052.zip');
 
 --
 -- Indexes for dumped tables
@@ -4809,7 +4802,7 @@ ALTER TABLE `tb_jurusan`
 -- AUTO_INCREMENT for table `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
