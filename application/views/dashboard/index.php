@@ -4,7 +4,7 @@
             <div class="card-header">Calon Asisten / Programmer</div>
             <div class="card-body text-primary">
                 <p class="card-text">Depok</p>
-                <h5 class="card-title">17 Orang.</h5>
+                <h5 class="card-title"><?= $depok; ?> Orang.</h5>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
             <div class="card-header">Calon Asisten / Programmer</div>
             <div class="card-body text-primary">
                 <p class="card-text">Kalimalang</p>
-                <h5 class="card-title">15 Orang.</h5>
+                <h5 class="card-title"><?= $kalmal; ?> Orang.</h5>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="card-header">Calon Asisten / Programmer</div>
             <div class="card-body text-primary">
                 <p class="card-text">Salemba</p>
-                <h5 class="card-title">6 Orang.</h5>
+                <h5 class="card-title"><?= $salemba; ?> Orang.</h5>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <div class="card-header">Calon Asisten / Programmer</div>
             <div class="card-body text-primary">
                 <p class="card-text">Karawaci</p>
-                <h5 class="card-title">4 Orang.</h5>
+                <h5 class="card-title"><?= $karawaci; ?> Orang.</h5>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
             <div class="card-header">Calon Asisten / Programmer</div>
             <div class="card-body text-primary">
                 <p class="card-text">Cengkareng</p>
-                <h5 class="card-title">5 Orang.</h5>
+                <h5 class="card-title"><?= $cengkareng; ?> Orang.</h5>
             </div>
         </div>
     </div>
