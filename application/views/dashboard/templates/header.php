@@ -35,7 +35,18 @@
     <link rel="stylesheet" href="<?= base_url() ?>vendor/datatables/datatables.min.css">
 
     <!-- Page CSS -->
-
+    <style>
+        table.dataTable thead>tr>th.dt-orderable-asc,
+        table.dataTable thead>tr>th.dt-orderable-desc,
+        table.dataTable thead>tr>td.dt-orderable-asc,
+        table.dataTable thead>tr>td.dt-orderable-desc,
+        table.dataTable th.dt-type-numeric,
+        table.dataTable th.dt-type-date,
+        table.dataTable td.dt-type-numeric,
+        table.dataTable td.dt-type-date {
+            text-align: center;
+        }
+    </style>
     <!-- Helpers -->
     <script src="<?= base_url() ?>assets/vendor/vendor/js/helpers.js"></script>
 

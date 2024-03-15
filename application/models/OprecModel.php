@@ -9,6 +9,6 @@ class OprecModel extends CI_Model
         $this->db->from('tb_peserta');
         $this->db->join('tb_jurusan', 'tb_peserta.jurusan = tb_jurusan.id');
         $query = $this->db->get();
-        return $query->result();
+        return $query->result_array();
     }
 }
