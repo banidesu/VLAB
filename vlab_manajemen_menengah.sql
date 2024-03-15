@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2024 at 01:26 PM
+-- Generation Time: Mar 15, 2024 at 09:22 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -65,27 +65,6 @@ INSERT INTO `scores` (`id`, `name`, `score`, `layout`, `leaderboard`) VALUES
 (75, 'sisi', 44, 2, NULL),
 (76, 'rivcan', 45, 2, NULL),
 (77, 'alvaro', 46, 2, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbadmin`
---
-
-CREATE TABLE `tbadmin` (
-  `kd_admin` varchar(5) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `nama` varchar(50) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `username` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `password` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `foto` varchar(100) COLLATE utf8mb3_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
---
--- Dumping data for table `tbadmin`
---
-
-INSERT INTO `tbadmin` (`kd_admin`, `nama`, `username`, `password`, `foto`) VALUES
-('ADM01', 'Admin 1', 'admin', 'admin', '2L.jpg');
 
 -- --------------------------------------------------------
 
@@ -4502,6 +4481,27 @@ INSERT INTO `tbujian` (`id`, `kd_ujian`, `nama_matkul`, `tipe_soal`, `file`, `st
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_admin`
+--
+
+CREATE TABLE `tb_admin` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `profile` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tb_admin`
+--
+
+INSERT INTO `tb_admin` (`id`, `name`, `username`, `password`, `profile`) VALUES
+(1, 'Oprec', 'oprecmamen2024', '$2y$10$Y4Ce13pUjKTnE4c/ayeh1eO0.SmGuU1oDsSGM00ySRv4n9N5QYNe2', '5L2.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_jurusan`
 --
 
@@ -4543,6 +4543,27 @@ CREATE TABLE `tb_peserta` (
   `archive` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `_tbadmin`
+--
+
+CREATE TABLE `_tbadmin` (
+  `kd_admin` varchar(5) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nama` varchar(50) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `username` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `foto` varchar(100) COLLATE utf8mb3_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+--
+-- Dumping data for table `_tbadmin`
+--
+
+INSERT INTO `_tbadmin` (`kd_admin`, `nama`, `username`, `password`, `foto`) VALUES
+('ADM01', 'Admin 1', 'admin', 'admin', '2L.jpg');
+
 --
 -- Indexes for dumped tables
 --
@@ -4552,12 +4573,6 @@ CREATE TABLE `tb_peserta` (
 --
 ALTER TABLE `scores`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbadmin`
---
-ALTER TABLE `tbadmin`
-  ADD PRIMARY KEY (`kd_admin`);
 
 --
 -- Indexes for table `tbaktivasi`
@@ -4669,6 +4684,12 @@ ALTER TABLE `tbujian`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
@@ -4679,6 +4700,12 @@ ALTER TABLE `tb_jurusan`
 --
 ALTER TABLE `tb_peserta`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `_tbadmin`
+--
+ALTER TABLE `_tbadmin`
+  ADD PRIMARY KEY (`kd_admin`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -4791,6 +4818,12 @@ ALTER TABLE `tbtemp_al`
 --
 ALTER TABLE `tbujian`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_jurusan`
