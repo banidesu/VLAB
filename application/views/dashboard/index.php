@@ -1,4 +1,44 @@
 <div class="row mb-4">
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="d-flex align-items-center">
+                <div class="flex-column <?= ($periode_active) ? 'text-success' : 'text-dark' ?>">
+                    <div class="card-header"><span class="fw-bold lead"><?= ($periode_active) ? $periode_active['title'] : 'Tidak sedang oprec' ?></span><?= ($periode_active) ? ' : ' . $periode_active['description'] : '' ?></div>
+                    <div class="card-body <?= ($periode_active) ? 'd-block' : 'd-none' ?>">
+                        <p class="card-text">01 April 2024 s/d 01 Mei 2024</p>
+                    </div>
+                </div>
+                <!-- <div class="flex-column">
+                    <div class="card-header"><i class='bx bx-chevron-right bx-sm'></i></div>
+                </div>
+                <div class="flex-column text-muted">
+                    <div class="card-header"><span class="fw-bold lead">Periode 2</span> : Seleksi Berkas</div>
+                    <div class="card-body">
+                        <p class="card-text">01 Mei 2024 s/d 01 Juni 2024</p>
+                    </div>
+                </div>
+                <div class="flex-column">
+                    <div class="card-header"><i class='bx bx-chevron-right bx-sm'></i></div>
+                </div>
+                <div class="text-muted">
+                    <div class="row flex-column justify-content-center">
+                        <div class="col">
+                            <div class="card-header"><span class="fw-bold lead">Periode 3</span> : Tes Tulis (Asisten)</div>
+                            <div class="card-body">
+                                <p class="card-text">01 Juni 2024 s/d 01 Juli 2024</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card-header"><span class="fw-bold lead">Periode 3</span> : Live Coding (Programmer)</div>
+                            <div class="card-body">
+                                <p class="card-text">01 Juni 2024 s/d 01 Juli 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
     <div class="col-md">
         <div class="card">
             <div class="card-header">Calon Asisten / Programmer</div>
@@ -71,7 +111,7 @@
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="admin/<?= $values['id'] ?>"><i class="bx bx-edit-alt me-1"></i>Lihat</a>
+                                    <a class="dropdown-item" href="admin/show/<?= $values['id']; ?>"><i class="bx bx-edit-alt me-1"></i>Lihat</a>
                                     <!-- <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Delete</a> -->
                                 </div>
                             </div>

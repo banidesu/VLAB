@@ -46,6 +46,18 @@
         table.dataTable td.dt-type-date {
             text-align: center;
         }
+
+        .menu-vertical .menu-inner>.menu-item {
+            position: relative;
+        }
+
+        .layout-wrapper:not(.layout-horizontal) .bg-menu-theme .menu-inner>.menu-item.active:before {
+            height: 100%;
+        }
+
+        #arrowPeriode:last-child {
+            display: none;
+        }
     </style>
     <!-- Helpers -->
     <script src="<?= base_url() ?>assets/vendor/vendor/js/helpers.js"></script>

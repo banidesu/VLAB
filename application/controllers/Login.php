@@ -43,7 +43,7 @@ class Login extends CI_Controller
                 $data['judul'] = 'Login';
                 $this->load->view('home/login', $data);
                 
-                header('refresh:3;url=admin');
+                header('refresh:2;url=admin');
                 $this->session->set_userdata('username', $username);
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><b>Gagal:</b> Password salah!</div>');
