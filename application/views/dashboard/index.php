@@ -5,7 +5,7 @@
                 <div class="flex-column <?= ($periode_active) ? 'text-success' : 'text-dark' ?>">
                     <div class="card-header"><span class="fw-bold lead"><?= ($periode_active) ? $periode_active['title'] : 'Tidak sedang oprec' ?></span><?= ($periode_active) ? ' : ' . $periode_active['description'] : '' ?></div>
                     <div class="card-body <?= ($periode_active) ? 'd-block' : 'd-none' ?>">
-                        <p class="card-text">01 April 2024 s/d 01 Mei 2024</p>
+                        <p class="card-text"><?= ($periode_active['date_start'] == $periode_active['date_end']) ? $periode_active['date_start'] : $periode_active['date_start'] . ' s/d ' . $periode_active['date_end'] ?></p>
                     </div>
                 </div>
                 <!-- <div class="flex-column">

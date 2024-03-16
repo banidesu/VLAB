@@ -96,14 +96,14 @@ class Admin extends CI_Controller
             } else {
                 $title = htmlspecialchars($this->input->post('title', true));
                 $description = htmlspecialchars($this->input->post('description', true));
-                $date1 = $this->input->post('date1', true);
-                $date2 = $this->input->post('date2', true);
+                $date1 = date_create($this->input->post('date1', true));
+                $date2 = date_create($this->input->post('date2', true));
 
                 $data = [
                     'title' => $title,
                     'description' => $description,
-                    'date_start' => $date1,
-                    'date_end' => $date2,
+                    'date_start' => date_format($date1, 'd M Y'),
+                    'date_end' => date_format($date2, 'd M Y'),
                     'is_active' => 0
                 ];
 
@@ -124,7 +124,7 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
 
         $data['periodes'] = $this->OprecModel->getAllPeriod();
-        
+
         $this->load->view('dashboard/templates/header', $data);
         $this->load->view('dashboard/templates/sidebar', $data);
         $this->load->view('dashboard/templates/topbar', $data);

@@ -72,7 +72,8 @@
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#inputPeriode"><i class='bx bx-bookmark-alt-plus bx-icon me-1'></i> Tambah Periode</button>
                 </div>
-                <div class="table-responsive">
+                <div class="text-center <?= ($periodes) ? 'd-none' : 'd-block' ?>">Tidak ada data</div>
+                <div class="table-responsive <?= ($periodes) ? 'd-block' : 'd-none' ?>">
                     <table class="table table-bordered text-center">
                         <thead>
                             <tr>
