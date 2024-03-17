@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="flex-column" id="arrowPeriode">
-                            <div class="card-header"><i class='bx bx-chevron-down bx-sm'></i></div>
+                            <div class="card-header p-0"><i class='bx bx-chevron-down bx-sm'></i></div>
                         </div>
                     <?php endforeach; ?>
                     <!-- <div class="text-muted">
