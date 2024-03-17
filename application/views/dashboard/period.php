@@ -75,8 +75,9 @@
                 <div class="d-flex justify-content-end align-items-center">
                     <?php if ($periodes) : ?>
                         <button class="btn btn-outline-success btn-sm mb-4 me-2" data-bs-toggle="modal" data-bs-target="#activePeriode"><i class='bx bx-calendar-check bx-icon me-1'></i> Activate Periode</button>
+                        <button class="btn btn-outline-danger btn-sm mb-4 me-2" data-bs-toggle="modal" data-bs-target="#closeOprec"><i class='bx bx-window-close bx-icon me-1'></i> Close Oprec</button>
                     <?php endif; ?>
-                    <button class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#inputPeriode"><i class='bx bx-bookmark-alt-plus bx-icon me-1'></i> Tambah Periode</button>
+                    <button class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#inputPeriode"><i class='bx bx-calendar-plus bx-icon me-1'></i> Tambah Periode</button>
                 </div>
                 <div class="text-center <?= ($periodes) ? 'd-none' : 'd-block' ?>">Tidak ada data</div>
                 <div class="table-responsive <?= ($periodes) ? 'd-block' : 'd-none' ?>">

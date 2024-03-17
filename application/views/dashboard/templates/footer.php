@@ -87,7 +87,7 @@
 </div>
 
 <!-- Modal Activate Periode -->
-<?php if ($periodes) : ?>
+<?php if (isset($periodes)) : ?>
     <div class="modal fade" id="activePeriode" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
