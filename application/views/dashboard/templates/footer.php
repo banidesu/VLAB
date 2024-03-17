@@ -63,6 +63,18 @@
                             <input type="text" id="description" name="description" class="form-control" placeholder="e.g. Tes tulis (Asisten)">
                             <small class="text-danger error-message mt-2" id="description-error"></small>
                         </div>
+                        <div class="col-12 mb-3">
+                            <small class="fw-medium d-block">Kategori</small>
+                            <div class="form-check form-check-inline mt-3">
+                                <input class="form-check-input" type="radio" name="period_id" id="regist" value="1">
+                                <label class="form-check-label" for="regist">Registration</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="period_id" id="seleksi" value="2">
+                                <label class="form-check-label" for="seleksi">Seleksi</label>
+                            </div>
+                            <small class="text-danger error-message mt-2 d-block" id="period_id-error"></small>
+                        </div>
                     </div>
                     <div class="row g-2">
                         <div class="col mb-0">

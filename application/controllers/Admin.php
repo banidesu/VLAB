@@ -75,19 +75,23 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('description', 'Deskripsi', 'required', [
                 'required' => '{field} harus diisi.'
             ]);
+            $this->form_validation->set_rules('period_id', 'Kategori', 'required', [
+                'required' => '{field} harus diisi.'
+            ]);
             $this->form_validation->set_rules('date1', 'Periode Mulai', 'required', [
                 'required' => '{field} harus diisi.'
             ]);
             $this->form_validation->set_rules('date2', 'Periode Berakhir', 'required', [
                 'required' => '{field} harus diisi.'
             ]);
-            
+
             // Run validation
             if ($this->form_validation->run() == FALSE) {
                 // Validation failed
                 $errors = [
                     'title' => form_error('title'),
                     'description' => form_error('description'),
+                    'period_id' => form_error('period_id'),
                     'date1' => form_error('date1'),
                     'date2' => form_error('date2')
                 ];
@@ -96,12 +100,14 @@ class Admin extends CI_Controller
             } else {
                 $title = htmlspecialchars($this->input->post('title', true));
                 $description = htmlspecialchars($this->input->post('description', true));
+                $period_id = $this->input->post('period_id', true);
                 $date1 = date_create($this->input->post('date1', true));
                 $date2 = date_create($this->input->post('date2', true));
 
                 $data = [
                     'title' => $title,
                     'description' => $description,
+                    'description' => $period_id,
                     'date_start' => date_format($date1, 'd M Y'),
                     'date_end' => date_format($date2, 'd M Y'),
                     'is_active' => 0
