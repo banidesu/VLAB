@@ -98,6 +98,33 @@
     </div>
 </div>
 
+<!-- Modal Close Oprec -->
+<div class="modal fade" id="closeOprec" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="closeOprecLabel">Close Oprec</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?= base_url() ?>admin/closeoprec" method="post" id="formCloseOprec">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="title" class="form-label">ketik Konfirmasi</label>
+                            <input type="text" id="title" name="title" class="form-control" placeholder="e.g. Periode 1">
+                            <small class="text-danger error-message mt-2" id="title-error"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary text-center" id="btnPeriodeSimpan">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Activate Periode -->
 <?php if (isset($periodes)) : ?>
     <div class="modal fade" id="activePeriode" tabindex="-1" aria-hidden="true">
