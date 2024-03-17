@@ -81,7 +81,7 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('date2', 'Periode Berakhir', 'required', [
                 'required' => '{field} harus diisi.'
             ]);
-            sleep(3);
+            
             // Run validation
             if ($this->form_validation->run() == FALSE) {
                 // Validation failed
@@ -111,7 +111,7 @@ class Admin extends CI_Controller
 
                 if ($result) {
                     // Data saved successfully
-                    echo json_encode(['status' => 'success', 'message' => 'Data saved successfully']);
+                    echo json_encode(['status' => 'success', 'message' => 'Data periode berhasil ditambahkan']);
                 } else {
                     // Failed to save data
                     echo json_encode(['status' => 'error', 'message' => 'Failed to save data']);
@@ -130,5 +130,20 @@ class Admin extends CI_Controller
         $this->load->view('dashboard/templates/topbar', $data);
         $this->load->view('dashboard/period', $data);
         $this->load->view('dashboard/templates/footer');
+    }
+
+    public function changeactiveperiod()
+    {
+        $id = $this->input->post('id');
+        $result = $this->OprecModel->changeactiveperiod($id);
+
+        if ($result) {
+            // Data updated successfully
+            echo json_encode(['status' => 'success', 'message' => 'Data periode berhasil diaktifkan']);
+        } else {
+            // Failed to update data
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update data']);
+        }
+        return;
     }
 }

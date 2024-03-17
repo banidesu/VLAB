@@ -83,4 +83,12 @@ class OprecModel extends CI_Model
     {
         return $this->db->get_where('tb_period', ['is_active' => 1])->row_array();
     }
+    public function changeactiveperiod($id)
+    {
+        $this->db->update('tb_period', ['is_active' => 0]);
+
+        $result = $this->db->update('tb_period', ['is_active' => 1], ['id' => $id]);
+
+        return $result ? true : false;
+    }
 }

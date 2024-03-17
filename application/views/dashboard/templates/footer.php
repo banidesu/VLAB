@@ -86,13 +86,36 @@
     </div>
 </div>
 
+<!-- Modal Activate Periode -->
+<?php if ($periodes) : ?>
+    <div class="modal fade" id="activePeriode" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="<?= base_url() ?>admin/period" method="post" id="formPeriode">
+                        <small class="text-light fw-medium">Pilih Periode yang sedang berjalan</small>
+                        <?php foreach ($periodes as $period) : ?>
+                            <div class="form-check mt-3">
+                                <input name="is_active" class="form-check-input" type="radio" <?= ($period['is_active'] == 1) ? 'checked disabled' : '' ?> data-period-id="<?= $period['id'] ?>" id="<?= $period['title'] ?>">
+                                <label class="form-check-label" for="<?= $period['title'] ?>">
+                                    <?= $period['title'] . ' : ' . $period['description'] ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <div class="bs-toast toast fade position-fixed bg-success" id="toastPeriode" style="top: 2em; right: 2em;" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
         <div class="me-auto fw-medium">Berhasil</div>
         <i class='bx bx-check-double me-2'></i>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body">Data periode berhasil ditambahkan</div>
+    <div class="toast-body"></div>
 </div>
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
@@ -148,18 +171,54 @@
                             $('#' + field + '-error').text(errorMessage);
                         });
                     } else {
-                        var toastPeriode = $($('#toastPeriode'));
+                        var toastPeriode = $('#toastPeriode');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        toastBody.eq(0).text(response.message);
                         var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
                             animation: true,
-                            delay: 4000
+                            delay: 2000
                         })
                         $('#inputPeriode').modal('hide');
                         toastPeriodeElement.show();
 
                         setTimeout(() => {
                             location.reload();
-                        }, 4500);
+                        }, 2500);
                     }
+                },
+                error: function(xhr, status, error) {
+                    // Log AJAX errors
+                    console.error('AJAX Error:', error);
+                    console.log('Response:', xhr.responseText);
+                    alert("error");
+                }
+            });
+        });
+
+        $('input[name=is_active]').on('click', function() {
+            const periodId = $(this).data('period-id');
+
+            $.ajax({
+                url: "<?= base_url('admin/changeactiveperiod') ?>",
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    id: periodId
+                },
+                success: function(response) {
+                    var toastPeriode = $('#toastPeriode');
+                    var toastBody = toastPeriode.find('.toast-body');
+                    toastBody.eq(0).text(response.message);
+                    var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                        animation: true,
+                        delay: 2000
+                    })
+                    $('#activePeriode').modal('hide');
+                    toastPeriodeElement.show();
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
                 },
                 error: function(xhr, status, error) {
                     // Log AJAX errors
