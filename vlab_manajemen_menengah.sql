@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 15, 2024 at 09:22 AM
+-- Generation Time: Mar 17, 2024 at 05:05 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -4523,6 +4523,31 @@ INSERT INTO `tb_jurusan` (`id`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_period`
+--
+
+CREATE TABLE `tb_period` (
+  `id` int NOT NULL,
+  `period_id` int NOT NULL,
+  `title` varchar(30) NOT NULL,
+  `description` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `date_start` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `date_end` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `is_active` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tb_period`
+--
+
+INSERT INTO `tb_period` (`id`, `period_id`, `title`, `description`, `date_start`, `date_end`, `is_active`) VALUES
+(10, 1, 'Periode 1', 'Open Registration', '01 Apr 2024', '31 May 2024', 1),
+(11, 2, 'Periode 2', 'Seleksi Berkas', '31 May 2024', '05 Jun 2024', 0),
+(13, 2, 'Periode 3', 'Tes Tulis (Asisten) &amp; Live Coding | Design (Programmer)', '09 Jun 2024', '09 Jun 2024', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_peserta`
 --
 
@@ -4542,6 +4567,13 @@ CREATE TABLE `tb_peserta` (
   `sosmed` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
   `archive` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_peserta`
+--
+
+INSERT INTO `tb_peserta` (`id`, `nama`, `kelas`, `jurusan`, `region`, `penempatan`, `no_telp`, `email`, `ttl`, `npm`, `alamat`, `agama`, `sosmed`, `archive`) VALUES
+(1, 'Mohammad Robbani', '3IA23', 4, 'Kalimalang', 'Programmer', '082312394001', 'muhammadrobbani77@gmail.com', 'Jakarta 29-06-2003', 50421847, 'Jl. Palem II', 'Islam', 'https://instagram.com/mohammadrobbani', 'Mohammad_Robbani_50421847_Programmer_Kalimalang_65f413d6807be.rar');
 
 -- --------------------------------------------------------
 
@@ -4696,6 +4728,12 @@ ALTER TABLE `tb_jurusan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_period`
+--
+ALTER TABLE `tb_period`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
@@ -4832,10 +4870,16 @@ ALTER TABLE `tb_jurusan`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `tb_period`
+--
+ALTER TABLE `tb_period`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
