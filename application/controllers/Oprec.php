@@ -301,6 +301,6 @@ class Oprec extends CI_Controller
             redirect('');
         }
 
-        $this->load->view('result/index');
+        $this->load->view('oprec/result');
     }
 }
