@@ -116,20 +116,25 @@
 					<div class="col-md-10 col-md-offset-1">
 						<div class="brand">
 							<h2>Selamat Datang di <?= $Judul; ?> </h2>
-							<div class="dropdown" style="margin: 0 auto; max-width: max-content;">
-								<div class="btn btn-primary h4 title dropdown-toggle" data-toggle="dropdown">
-									Open Recruitment
-									<b class="caret"></b>
+							<?php if (isset($activePeriode)) : ?>
+								<div class="dropdown" style="margin: 0 auto; max-width: max-content;">
+									<div class="btn btn-primary h4 title dropdown-toggle" data-toggle="dropdown">
+										Open Recruitment
+										<b class="caret"></b>
+									</div>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<?php if ($activePeriode['period_id'] == 1) : ?>
+											<li>
+												<a href="<?= base_url() ?>oprec">Pendaftaran</a>
+											</li>
+										<?php else : ?>
+											<li>
+												<a href="<?= base_url() ?>oprec/result">Hasil</a>
+											</li>
+										<?php endif; ?>
+									</ul>
 								</div>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<a href="<?= base_url() ?>oprec">Pendaftaran</a>
-									</li>
-									<li>
-										<a href="<?= base_url() ?>oprec/result">Hasil</a>
-									</li>
-								</ul>
-							</div>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>

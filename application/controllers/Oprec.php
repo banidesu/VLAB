@@ -12,10 +12,20 @@ class Oprec extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->library('session');
+        $this->load->model('OprecModel');
     }
 
     public function index()
     {
+        $periodActive = $this->OprecModel->getPeriodActive();
+        if (isset($periodActive)) {
+            if ($periodActive['period_id'] != 1) {
+                redirect('');
+            }
+        } else {
+            redirect('');
+        }
+
         $jurusans = $this->db->get("tb_jurusan");
         $data['jurusans'] = $jurusans->result_array();
         $data['judul'] = "Registrasi Lab Manajemen Menengah";
@@ -282,6 +292,15 @@ class Oprec extends CI_Controller
 
     public function result()
     {
+        $periodActive = $this->OprecModel->getPeriodActive();
+        if (isset($periodActive)) {
+            if ($periodActive['period_id'] != 2) {
+                redirect('');
+            }
+        } else {
+            redirect('');
+        }
+
         $this->load->view('result/index');
     }
 }

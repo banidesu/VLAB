@@ -1,12 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
-
-public function index()
+class Dashboard extends CI_Controller
+{
+	public function __construct()
 	{
+		parent::__construct();
+		$this->load->model('OprecModel');
+	}
+
+	public function index()
+	{
+		$var_Data['activePeriode'] = $this->OprecModel->getPeriodActive();
 		$var_Data['Judul'] = "Laboratorium Manajemen Menengah";
-		$this->load->view('home/index',$var_Data);
+		$this->load->view('home/index', $var_Data);
 		// $this->load->view('pages/header');
 		// $this->load->view('pages/navbar');
 		// $this->load->view('pages/slider');
@@ -154,7 +161,7 @@ public function index()
 	// 	$this->load->view('pages/keterlambatan');
 	// 	$this->load->view('pages/footer');
 	// }
-	
+
 	// public function jadprak()
 	// {
 	// 	$data['judul']	= 'Jadwal Praktikum';
@@ -164,7 +171,7 @@ public function index()
 	// 	$this->load->view('pages/jadwal');
 	// 	$this->load->view('pages/footer');
 	// }
-	
+
 	// public function donprak()
 	// {
 	// 	$data['judul']	= 'Download ';
@@ -183,7 +190,7 @@ public function index()
 	// 	$this->load->view('pages/header1',$data);
 	// 	$this->load->view('pages/contact');
 	// 	$this->load->view('pages/footer');
-	
+
 
 	// }
 
@@ -195,7 +202,7 @@ public function index()
 	// 	$this->load->view('pages/header1',$data);
 	// 	$this->load->view('pages/materi');
 	// 	$this->load->view('pages/footer');
-	
+
 
 	// }
 
