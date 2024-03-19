@@ -107,7 +107,7 @@ class Admin extends CI_Controller
                 $data = [
                     'title' => $title,
                     'description' => $description,
-                    'description' => $period_id,
+                    'period_id' => $period_id,
                     'date_start' => date_format($date1, 'd M Y'),
                     'date_end' => date_format($date2, 'd M Y'),
                     'is_active' => 0
@@ -151,5 +151,43 @@ class Admin extends CI_Controller
             echo json_encode(['status' => 'error', 'message' => 'Failed to update data']);
         }
         return;
+    }
+
+    public function closeoprec()
+    {
+        if ($this->input->is_ajax_request()) {
+            // Set validation rules
+            $this->form_validation->set_rules('confirm', 'Konfirmasi', 'required', [
+                'required' => 'Mohon Ketikkan "KONFIRMASI".'
+            ]);
+
+            if ($this->form_validation->run() == FALSE) {
+                // Validation failed
+                $errors = [
+                    'confirm' => form_error('confirm'),
+                ];
+                echo json_encode(['status' => 'error', 'message' => $errors]);
+                return;
+            } else {
+                if ($this->input->post('confirm') === "KONFIRMASI") {
+                    $result = $this->OprecModel->closeOprec();
+
+                    if ($result) {
+                        // Data saved successfully
+                        echo json_encode(['status' => 'success', 'message' => 'OPEN RECRUITMENT TELAH DITUTUP!']);
+                    } else {
+                        // Failed to save data
+                        echo json_encode(['status' => 'error', 'message' => 'Failed to update data']);
+                    }
+                    return;
+                } else {
+                    $errors = [
+                        'confirm' => "Konfirmasi tidak valid",
+                    ];
+                    echo json_encode(['status' => 'error', 'message' => $errors]);
+                    return;
+                }
+            }
+        }
     }
 }

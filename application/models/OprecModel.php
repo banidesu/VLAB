@@ -91,4 +91,10 @@ class OprecModel extends CI_Model
 
         return $result ? true : false;
     }
+    public function closeOprec()
+    {
+        $result = $this->db->update('tb_period', ['is_active' => 0]);
+
+        return $result ? true : false;
+    }
 }

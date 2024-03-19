@@ -103,22 +103,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="closeOprecLabel">Close Oprec</h5>
+                <h5 class="modal-title text-danger" id="closeOprecLabel">Close Oprec</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url() ?>admin/closeoprec" method="post" id="formCloseOprec">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 mb-3">
-                            <label for="title" class="form-label">ketik Konfirmasi</label>
-                            <input type="text" id="title" name="title" class="form-control" placeholder="e.g. Periode 1">
-                            <small class="text-danger error-message mt-2" id="title-error"></small>
+                            <label for="confirm" class="form-label text-danger">ketik "Konfirmasi"</label>
+                            <input type="text" id="confirm" name="confirm" class="form-control border-danger text-danger">
+                            <small class="text-danger error-message mt-2" id="confirm-error"></small>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary text-center" id="btnPeriodeSimpan">Simpan</button>
+                    <button type="submit" class="btn btn-danger text-center btn-sm rounded-pill" id="btnCloseOprec">Tutup Oprec</button>
                 </div>
             </form>
         </div>
@@ -258,6 +257,58 @@
                     setTimeout(() => {
                         location.reload();
                     }, 2500);
+                },
+                error: function(xhr, status, error) {
+                    // Log AJAX errors
+                    console.error('AJAX Error:', error);
+                    console.log('Response:', xhr.responseText);
+                    alert("error");
+                }
+            });
+        });
+
+        $('#formCloseOprec').submit(function(e) {
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: formData,
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#btnCloseOprec').attr('disabled', true).html(
+                        `<small class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></small>`
+                    );
+                },
+                success: function(r) {
+                    $('#btnCloseOprec').removeAttr('disabled').html('Tutup Oprec');
+
+                    if (r.status === 'error') {
+                        // Clear previous error messages
+                        $('.error-message').text('');
+
+                        // Display each error message below the respective input field
+                        $.each(r.message, function(field, errorMessage) {
+                            errorMessage = errorMessage.replace(/<\/?[^>]+(>|$)/g, "");
+                            $('#' + field + '-error').text(errorMessage);
+                        });
+                    } else {
+                        var toastPeriode = $('#toastPeriode');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        toastBody.eq(0).text(r.message);
+                        var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                            animation: true,
+                            delay: 3000
+                        })
+                        $('#closeOprec').modal('hide');
+                        toastPeriodeElement.show();
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 3500);
+                    }
                 },
                 error: function(xhr, status, error) {
                     // Log AJAX errors
