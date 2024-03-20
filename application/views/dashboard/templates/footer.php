@@ -179,7 +179,19 @@
 
 <script>
     $(document).ready(function() {
-        $('#dashboard-table').DataTable();
+        $('#dashboard-table').DataTable({
+            initComplete: function() {
+                if ($('#dashboard-table').DataTable().rows().data().length === 0) {
+                    $('.download-files').hide(); // Sembunyikan tombol kalo nggak ada data
+                } else {
+                    $('<div class="row mt-2 justify-content-end download-files"><div class="col-md-auto ms-auto"></div></div>').insertAfter('#dashboard-table_wrapper>div:first-child()');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-info me-3">Download Asisten Depok</button>');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-info me-3 mt-2 mt-md-0">Download Asisten Kalimalang</button>');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-primary me-3 mt-2 mt-md-0">Download Programmer Depok</button>');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-primary mt-2 mt-md-0">Download Programmer Kalimalang</button>');
+                }
+            }
+        });
 
         $('#formPeriode').submit(function(e) {
             e.preventDefault();
