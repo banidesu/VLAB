@@ -190,4 +190,41 @@ class Admin extends CI_Controller
             }
         }
     }
+
+    public function getCalasPerDivisiPerRegion()
+    {
+        $code = $this->input->post('id');
+
+        if ($code == 'ASD') {
+            $region = "Depok";
+            $division = "Asisten";
+        } else if ($code == 'ASJ') {
+            $region = "Kalimalang";
+            $division = "Asisten";
+        } else if ($code == 'APD') {
+            $region = "Depok";
+            $division = "Programmer";
+        } else {
+            $region = "Kalimalang";
+            $division = "Programmer";
+        }
+
+        // Get data from the model
+        $data_calas_per_divisi_per_region = $this->OprecModel->getCalasPerDivisiPerRegion($region, $division);
+
+        // If data exists, create zip file and initiate download
+        if ($data_calas_per_divisi_per_region) {
+            foreach ($data_calas_per_divisi_per_region as $calas_per_divisi_per_region) {
+                $file_path = FCPATH . 'assets/uploads/oprec/' . $calas_per_divisi_per_region['archive'];
+                $this->zip->read_file($file_path);
+            }
+            // Generate zip file
+            $this->zip->download('Data Calas (' . $code . ').zip');
+            $this->zip->clear_data();
+        } else {
+            // No data found
+            $response = ['status' => 'error', 'message' => 'Tidak ada calas pada region ini.'];
+            echo json_encode($response);
+        }
+    }
 }

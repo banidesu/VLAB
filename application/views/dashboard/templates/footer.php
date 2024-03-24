@@ -181,15 +181,13 @@
     $(document).ready(function() {
         $('#dashboard-table').DataTable({
             initComplete: function() {
-                if ($('#dashboard-table').DataTable().rows().data().length === 0) {
-                    $('.download-files').hide(); // Sembunyikan tombol kalo nggak ada data
-                } else {
+                <?php if (isset($calas)) : ?>
                     $('<div class="row mt-2 justify-content-end download-files"><div class="col-md-auto ms-auto"></div></div>').insertAfter('#dashboard-table_wrapper>div:first-child()');
-                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-info me-3">Download Asisten Depok</button>');
-                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-info me-3 mt-2 mt-md-0">Download Asisten Kalimalang</button>');
-                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-primary me-3 mt-2 mt-md-0">Download Programmer Depok</button>');
-                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-primary mt-2 mt-md-0">Download Programmer Kalimalang</button>');
-                }
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-info me-3" data-id="ASD">Download Asisten Depok</button>');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-info me-3 mt-2 mt-md-0" data-id="ASJ">Download Asisten Kalimalang</button>');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-primary me-3 mt-2 mt-md-0" data-id="APD">Download Programmer Depok</button>');
+                    $('.download-files>div').append('<button class="btn btn-sm btn-outline-primary mt-2 mt-md-0" data-id="APJ">Download Programmer Kalimalang</button>');
+                <?php endif; ?>
             }
         });
 
@@ -328,6 +326,79 @@
                     console.log('Response:', xhr.responseText);
                     alert("error");
                 }
+            });
+        });
+
+        $('.download-files>div>button').each(function() {
+            $(this).on('click', function() {
+                var dataId = {
+                    id: $(this).data('id')
+                };
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>Admin/getCalasPerDivisiPerRegion',
+                    type: 'post',
+                    data: dataId,
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    success: function(response, status, xhr) {
+                        // Check if the request was successful (status code 200)
+                        if (xhr.status === 200) {
+                            var byteLength = response.size;
+
+                            // Check if the byte length is greater than 0
+                            if (byteLength > 0) {
+                                var url = window.URL.createObjectURL(response);
+
+                                var filename = "";
+                                var disposition = xhr.getResponseHeader('Content-Disposition');
+                                if (disposition && disposition.indexOf('attachment') !== -1) {
+                                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                                    var matches = filenameRegex.exec(disposition);
+                                    if (matches != null && matches[1]) {
+                                        filename = matches[1].replace(/['"]/g, '');
+                                    }
+                                }
+
+                                // Create an anchor element to initiate the download
+                                var downloadLink = document.createElement('a');
+                                downloadLink.href = url;
+                                downloadLink.download = filename + '.zip';
+                                document.body.appendChild(downloadLink);
+                                // Initiate the download
+                                downloadLink.click();
+
+                                // Cleanup
+                                window.URL.revokeObjectURL(url);
+                                document.body.removeChild(downloadLink);
+                            } else {
+                                // If the zip file is empty, show an alert to the user
+                                var toastPeriode = $('#toastPeriode');
+                                toastPeriode.removeClass('bg-success').addClass('bg-danger');
+                                var toastBody = toastPeriode.find('.toast-body');
+                                var toastHeader = toastPeriode.find('.toast-header');
+                                toastHeader.find('div').text('Gagal');
+                                toastHeader.find('i').removeClass('bx bx-check-double').addClass('bx bx-user-x');
+                                toastBody.text("Tidak ada calas pada region ini.");
+                                var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                                    animation: true,
+                                    delay: 4000
+                                })
+                                toastPeriodeElement.show();
+                            }
+                        } else {
+                            // If the request was not successful, show an alert to the user
+                            alert("Failed to fetch data. Status: " + xhr.status);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Log AJAX errors
+                        console.error('AJAX Error:', error);
+                        console.log('Response:', xhr.responseText);
+                        alert("Error occurred while fetching data");
+                    }
+                });
             });
         });
     });

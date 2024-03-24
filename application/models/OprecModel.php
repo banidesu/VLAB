@@ -12,6 +12,19 @@ class OprecModel extends CI_Model
         return $query->result_array();
     }
 
+    public function getCalasPerDivisiPerRegion($region, $divisi)
+    {
+        $this->db->select('tb_peserta.*, tb_jurusan.jurusan AS nama_jurusan');
+        $this->db->from('tb_peserta');
+
+        ($region == "Depok") ? $this->db->where_not_in('region', 'Kalimalang') : $this->db->where('region', $region);
+
+        $this->db->where('penempatan', $divisi);
+        $this->db->join('tb_jurusan', 'tb_peserta.jurusan = tb_jurusan.id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getDataCalas($id)
     {
         $this->db->select('tb_peserta.*, tb_jurusan.jurusan AS nama_jurusan');
