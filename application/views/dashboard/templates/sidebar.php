@@ -28,6 +28,12 @@
                 <div data-i18n="Analytics">Menu 2</div>
             </a>
         </li>
+        <li class="menu-item <?= (current_url() == base_url('admin/upload')) ? 'active' : ''; ?>">
+            <a href="<?= base_url() ?>admin/upload" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-file'></i>
+                <div data-i18n="Analytics">Upload Hasil Seleksi</div>
+            </a>
+        </li>
     </ul>
 </aside>
 <!-- / Menu -->
