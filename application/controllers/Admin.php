@@ -227,4 +227,20 @@ class Admin extends CI_Controller
             echo json_encode($response);
         }
     }
+
+    public function upload()
+    {
+        if (!$this->session->userdata('username')) {
+            redirect('login');
+        }
+
+        $data['judul'] = 'Upload';
+        $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->load->view('dashboard/templates/header', $data);
+        $this->load->view('dashboard/templates/sidebar', $data);
+        $this->load->view('dashboard/templates/topbar', $data);
+        $this->load->view('dashboard/upload', $data);
+        $this->load->view('dashboard/templates/footer');
+    }
 }
