@@ -316,4 +316,19 @@ class Admin extends CI_Controller
             $this->load->view('forbidden/index');
         }
     }
+
+    public function fixLastPeriod()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($this->OprecModel->fixLastPeriod()) {
+                echo json_encode(['status' => 'success', 'message' => 'Periode sudah dimutakhirkan!']);
+                return;
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Terjadi Kesalahan']);
+                return;
+            }
+        } else {
+            $this->load->view('forbidden/index');
+        }
+    }
 }

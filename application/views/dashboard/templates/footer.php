@@ -123,7 +123,7 @@
                                         // Panggil Time saat ini
                                         $current_timestamp = time();
                                         // Bandingkan Time saat ini dengan yang dari database
-                                        if (($period['is_active'] == 0) && ($date_end_timestamp < $current_timestamp) && ($period['period_id'] != 1)) :
+                                        if (($period['is_active'] == 0) && ($date_end_timestamp < $current_timestamp) && ($period['period_id'] != 1) && ($period['title'] !== 'end')) :
                                             $data_exist = false;
                                             // Lakukan pengecekan apakah data sudah ada di tabel tb_hasil
                                             foreach ($hasil_seleksi as $hasil) :
@@ -196,12 +196,14 @@
                     <form action="<?= base_url() ?>admin/period" method="post" id="formPeriode">
                         <small class="text-light fw-medium">Pilih Periode yang sedang berjalan</small>
                         <?php foreach ($periodes as $period) : ?>
-                            <div class="form-check mt-3">
-                                <input name="is_active" class="form-check-input" type="radio" <?= ($period['is_active'] == 1) ? 'checked disabled' : '' ?> data-period-id="<?= $period['id'] ?>" id="<?= $period['title'] ?>">
-                                <label class="form-check-label" for="<?= $period['title'] ?>">
-                                    <?= $period['title'] . ' : ' . $period['description'] ?>
-                                </label>
-                            </div>
+                            <?php if ($period['title'] !== 'end') : ?>
+                                <div class="form-check mt-3">
+                                    <input name="is_active" class="form-check-input" type="radio" <?= ($period['is_active'] == 1) ? 'checked disabled' : '' ?> data-period-id="<?= $period['id'] ?>" id="<?= $period['title'] ?>">
+                                    <label class="form-check-label" for="<?= $period['title'] ?>">
+                                        <?= $period['title'] . ' : ' . $period['description'] ?>
+                                    </label>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </form>
                 </div>
@@ -536,6 +538,49 @@
                             delay: 2000
                         })
                         $('#inputHasilSeleksi').modal('hide');
+                        toastPeriodeElement.show();
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2500);
+                    } else {
+                        var toastPeriode = $('#toastPeriode');
+                        toastPeriode.removeClass('bg-success').addClass('bg-danger');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        var toastHeader = toastPeriode.find('.toast-header');
+                        toastHeader.find('div').text('Gagal');
+                        toastHeader.find('i').removeClass('bx bx-check-double').addClass('bx bxs-info-circle');
+                        toastBody.text(response.message);
+                        var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                            animation: true,
+                            delay: 4000
+                        })
+                        toastPeriodeElement.show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Log AJAX errors
+                    console.error('AJAX Error:', error);
+                    console.log('Response:', xhr.responseText);
+                    alert("error");
+                }
+            });
+        });
+
+        $('#btnLastPeriod').on('click', function() {
+            $.ajax({
+                url: '<?= base_url() ?>admin/fixLastPeriod',
+                type: 'post',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        var toastPeriode = $('#toastPeriode');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        toastBody.text(response.message);
+                        var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                            animation: true,
+                            delay: 2000
+                        })
                         toastPeriodeElement.show();
 
                         setTimeout(() => {

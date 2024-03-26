@@ -8,34 +8,6 @@
                         <p class="card-text"><?= ($periode_active['date_start'] == $periode_active['date_end']) ? $periode_active['date_start'] : $periode_active['date_start'] . ' s/d ' . $periode_active['date_end'] ?></p>
                     </div>
                 </div>
-                <!-- <div class="flex-column">
-                    <div class="card-header"><i class='bx bx-chevron-right bx-sm'></i></div>
-                </div>
-                <div class="flex-column text-muted">
-                    <div class="card-header"><span class="fw-bold lead">Periode 2</span> : Seleksi Berkas</div>
-                    <div class="card-body">
-                        <p class="card-text">01 Mei 2024 s/d 01 Juni 2024</p>
-                    </div>
-                </div>
-                <div class="flex-column">
-                    <div class="card-header"><i class='bx bx-chevron-right bx-sm'></i></div>
-                </div>
-                <div class="text-muted">
-                    <div class="row flex-column justify-content-center">
-                        <div class="col">
-                            <div class="card-header"><span class="fw-bold lead">Periode 3</span> : Tes Tulis (Asisten)</div>
-                            <div class="card-body">
-                                <p class="card-text">01 Juni 2024 s/d 01 Juli 2024</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card-header"><span class="fw-bold lead">Periode 3</span> : Live Coding (Programmer)</div>
-                            <div class="card-body">
-                                <p class="card-text">01 Juni 2024 s/d 01 Juli 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

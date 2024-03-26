@@ -143,4 +143,31 @@ class OprecModel extends CI_Model
 
         return $result ? true : false;
     }
+    public function fixLastPeriod()
+    {
+        $existingEndPeriod = $this->db->get_where('tb_period', ['title' => 'end'])->row();
+
+        if ($existingEndPeriod) {
+            $result = $this->db->delete('tb_period', ['id' => $existingEndPeriod->id]);
+
+            $lastPeriod = $this->db->order_by('id', 'DESC')->get('tb_period', 1)->row();
+
+            if ($lastPeriod) {
+                $this->db->update('tb_period', ['is_active' => 1], ['id' => $lastPeriod->id]);
+            }
+        } else {
+            $this->db->update('tb_period', ['is_active' => 0]);
+
+            $data = [
+                'period_id' => 2,
+                'title' => 'end',
+                'description' => 'end',
+                'date_start' => '-',
+                'date_end' => '-',
+                'is_active' => 1
+            ];
+            $result = $this->db->insert('tb_period', $data);
+        }
+        return $result ? true : false;
+    }
 }
