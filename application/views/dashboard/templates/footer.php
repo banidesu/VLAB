@@ -123,7 +123,7 @@
                                         // Panggil Time saat ini
                                         $current_timestamp = time();
                                         // Bandingkan Time saat ini dengan yang dari database
-                                        if ($period['is_active'] == 0 && $date_end_timestamp < $current_timestamp) :
+                                        if (($period['is_active'] == 0) && ($date_end_timestamp < $current_timestamp) && ($period['period_id'] != 1)) :
                                             $data_exist = false;
                                             // Lakukan pengecekan apakah data sudah ada di tabel tb_hasil
                                             foreach ($hasil_seleksi as $hasil) :

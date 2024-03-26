@@ -301,6 +301,8 @@ class Oprec extends CI_Controller
             redirect('');
         }
 
-        $this->load->view('oprec/result');
+        $data['hasil_seleksi'] = $this->OprecModel->getHasilSeleksi();
+
+        $this->load->view('oprec/result', $data);
     }
 }
