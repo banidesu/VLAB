@@ -98,6 +98,69 @@
     </div>
 </div>
 
+<!-- Modal Input Hasil Seleksi -->
+<div class="modal fade" id="inputHasilSeleksi" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inputHasilSeleksiLabel">Umumkan Hasil Seleksi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?= base_url() ?>admin/upload" method="post" id="formUpload" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="periode" class="form-label">Periode</label>
+                            <select name="periode" id="periode" class="form-control">
+                                <option selected value="">-</option>
+                                <?php // Cek apakah $periodes udah di set 
+                                if (isset($periodes)) : ?>
+                                    <?php // Kalo ada looping datanya
+                                    foreach ($periodes as $period) : ?>
+                                        <?php
+                                        // Konversi date_end dari database menjadi format time()
+                                        $date_end_timestamp = strtotime($period['date_end']);
+                                        // Panggil Time saat ini
+                                        $current_timestamp = time();
+                                        // Bandingkan Time saat ini dengan yang dari database
+                                        if ($period['is_active'] == 0 && $date_end_timestamp < $current_timestamp) :
+                                            $data_exist = false;
+                                            // Lakukan pengecekan apakah data sudah ada di tabel tb_hasil
+                                            foreach ($hasil_seleksi as $hasil) :
+                                                if ($hasil['hasil_period_id'] == $period['id']) {
+                                                    // Jika data sudah ada, tandai bahwa data sudah ada dan hentikan perulangan
+                                                    $data_exist = true;
+                                                    break;
+                                                }
+                                            endforeach;
+                                            // Jika data belum ada, tambahkan pilihan di dropdown
+                                            if (!$data_exist) : ?>
+                                                <option value="<?= $period['id'] ?>"><?= $period['title'] ?> : <?= $period['description'] ?></option>
+                                        <?php
+                                            endif;
+                                        endif;
+                                        ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                            <small class="text-danger error-message mt-2" id="periode-error"></small>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="excel_file" class="form-label">Upload File Excel</label>
+                            <input type="file" id="excel_file" name="excel_file" class="form-control" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            <small class="text-danger error-message mt-2" id="excel-file-error"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary text-center" id="btnHasilSeleksiSimpan">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Close Oprec -->
 <div class="modal fade" id="closeOprec" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -399,6 +462,57 @@
                         alert("Error occurred while fetching data");
                     }
                 });
+            });
+        });
+
+        $('#formUpload').submit(function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnHasilSeleksiSimpan').attr('disabled', true).html(
+                        `<small class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></small>`
+                    );
+                },
+                success: function(r) {
+                    $('#btnHasilSeleksiSimpan').removeAttr('disabled').html('Simpan');
+
+                    if (r.status === 'error') {
+                        $('.error-message').text('');
+                        $.each(r.message, function(field, errorMessage) {
+                            errorMessage = errorMessage.replace(/<\/?[^>]+(>|$)/g, "");
+                            $('#' + field + '-error').text(errorMessage);
+                        });
+                    } else {
+                        var toastPeriode = $('#toastPeriode');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        toastBody.text(r.message);
+                        var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                            animation: true,
+                            delay: 2000
+                        })
+                        $('#inputHasilSeleksi').modal('hide');
+                        toastPeriodeElement.show();
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2500);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Log AJAX errors
+                    console.error('AJAX Error:', error);
+                    console.log('Response:', xhr.responseText);
+                    alert("error");
+                }
             });
         });
     });

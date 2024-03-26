@@ -234,8 +234,65 @@ class Admin extends CI_Controller
             redirect('login');
         }
 
+        $data['periode_active'] = $this->OprecModel->getPeriodActive();
+        $data['periodes'] = $this->OprecModel->getAllPeriod();
+
+        $data['hasil_seleksi'] = $this->OprecModel->getHasilSeleksi();
+
         $data['judul'] = 'Upload';
         $data['user'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
+
+        if ($this->input->is_ajax_request()) {
+
+            $this->form_validation->set_rules('periode', 'Periode', 'required', [
+                'required' => '{field} harap diisi.'
+            ]);
+
+            if ($this->form_validation->run() == false) {
+
+                $errors = [
+                    'periode' => form_error('periode'),
+                ];
+                echo json_encode(['status' => 'error', 'message' => $errors]);
+                return;
+            } else {
+                $hasil_oprec['period_id'] = $this->input->post('periode');
+
+                $this->load->library('upload');
+                $upload_errors = [];
+                if (!isset($_FILES['excel_file']['name'])) {
+                    $upload_errors['excel_file'] = "File excel harus diisi.";
+                } else {
+                    $config['allowed_types'] = 'xlsx|xls|csv';
+                    $config['upload_path'] = './assets/uploads/oprec/result';
+                    $this->upload->initialize($config);
+
+                    if (!$this->upload->do_upload('excel_file')) {
+                        $upload_errors['excel_file'] = $this->upload->display_errors();
+                    }
+                }
+
+                if ($upload_errors) {
+                    foreach ($upload_errors as $error) {
+                        echo json_encode(['status' => 'error', 'message' => [
+                            'excel-file' => $error
+                        ]]);
+                    }
+                    return;
+                } else {
+                    $upload_data = $this->upload->data();
+                    $hasil_oprec['file_name'] = $upload_data['file_name'];
+
+                    if ($this->OprecModel->save_hasil_seleksi($hasil_oprec)) {
+                        echo json_encode(['status' => 'success', 'message' => "Hasil seleksi berhasil diupload!"]);
+                        return;
+                    } else {
+                        echo json_encode(['status' => 'error', 'message' => "Hasil seleksi gagal diupload!"]);
+                        return;
+                    }
+                }
+            }
+        }
 
         $this->load->view('dashboard/templates/header', $data);
         $this->load->view('dashboard/templates/sidebar', $data);

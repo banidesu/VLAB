@@ -110,4 +110,18 @@ class OprecModel extends CI_Model
 
         return $result ? true : false;
     }
+    public function getHasilSeleksi()
+    {
+        $this->db->select('tb_hasil.*, tb_hasil.is_active AS hasil_active, tb_hasil.period_id AS hasil_period_id, tb_period.*');
+        $this->db->from('tb_hasil');
+        $this->db->join('tb_period', 'tb_hasil.period_id = tb_period.id');
+        return $result = $this->db->get()->result_array();
+    }
+    public function save_hasil_seleksi($data)
+    {
+        $data['is_active'] = 1;
+        $result = $this->db->insert('tb_hasil', $data);
+
+        return $result ? true : false;
+    }
 }
