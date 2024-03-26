@@ -178,6 +178,13 @@
                             <small class="text-danger error-message mt-2" id="confirm-error"></small>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <small class="text-danger">
+                                * Tindakan ini akan menghapus semua data hasil seleksi & periode
+                            </small>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger text-center btn-sm rounded-pill" id="btnCloseOprec">Tutup Oprec</button>

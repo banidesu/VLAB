@@ -106,9 +106,27 @@ class OprecModel extends CI_Model
     }
     public function closeOprec()
     {
-        $result = $this->db->update('tb_period', ['is_active' => 0]);
+        // Menghapus semua isi dari tabel tb_period
+        $result_period = $this->db->empty_table('tb_period');
 
-        return $result ? true : false;
+        // Menghapus semua isi dari tabel tb_hasil
+        $result_hasil = $this->db->empty_table('tb_hasil');
+
+        // Menghapus semua file yang terkait dengan setiap nama file dalam folder assets/uploads/oprec/result
+        $path = FCPATH . 'assets/uploads/oprec/result/';
+        $files = glob($path . '*'); // Mengambil semua file dalam folder
+        $result_files = true; // Defaultnya true, karena belum ada file yang gagal dihapus
+
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                if (!unlink($file)) { // Menghapus file
+                    $result_files = false; // Mengubah nilai result jika ada file yang gagal dihapus
+                }
+            }
+        }
+
+        // Mengembalikan nilai berdasarkan keberhasilan semua proses
+        return ($result_period && $result_hasil && $result_files) ? true : false;
     }
     public function getHasilSeleksi()
     {
