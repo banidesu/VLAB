@@ -24,8 +24,8 @@
         </li>
         <li class="menu-item <?= (current_url() == base_url('admin/period')) ? 'active' : ''; ?>">
             <a href="<?= base_url() ?>admin/period" class="menu-link">
-                <i class='menu-icon tf-icons bx bxs-user-detail'></i>
-                <div data-i18n="Analytics">Menu 2</div>
+                <i class='menu-icon tf-icons bx bx-calendar'></i>
+                <div data-i18n="Analytics">Periode</div>
             </a>
         </li>
         <li class="menu-item <?= (current_url() == base_url('admin/upload')) ? 'active' : ''; ?>">
