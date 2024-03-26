@@ -46,7 +46,7 @@
 
 <body>
 
-    <div class="container w-50">
+    <div class="container-md w-75">
         <div class="card">
             <div class="card-header">
                 <p class="m-0 lead fw-bold"><i class='bx fs-4 bxs-megaphone'></i> Pengumuman Hasil Seleksi</p>
@@ -54,14 +54,14 @@
             <div class="card-body">
                 <?php if ($hasil_seleksi) : ?>
                     <div class="accordion" id="accordionExample">
-                        <?php foreach ($hasil_seleksi as $hasil) : ?>
+                        <?php foreach ($hasil_seleksi as $key => $hasil) : ?>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $key; ?>" aria-expanded="false" aria-controls="collapse<?= $key ?>">
                                         Nama mahasiswa yang Lulus &nbsp; <span class="fw-bold"><?= $hasil['description'] ?></span>
                                     </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div id="collapse<?= $key ?>" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         Silahkan melihat hasil seleksi untuk <?= $hasil['description'] ?> <a href="<?= base_url() ?>assets/uploads/oprec/result/<?= $hasil['file_name'] ?>">disini</a>
                                     </div>
