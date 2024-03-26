@@ -37,7 +37,8 @@
             <hr class="m-0">
             <div class="card-body">
                 <div class="d-flex justify-content-end align-items-center">
-                    <?php if ($periodes) : $lastPeriod = false; ?>
+                    <?php $lastPeriod = false;
+                    if ($periodes) : ?>
                         <?php foreach ($periodes as $periode) : ?>
                             <?php if ($periode['title'] === 'end') : ?>
                                 <?php $lastPeriod = true; ?>
