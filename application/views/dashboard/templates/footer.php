@@ -515,6 +515,55 @@
                 }
             });
         });
+
+        $('.checkboxTampilkanHasilSeleksi').on('change', function() {
+            var hasilId = $(this).data('id');
+
+            $.ajax({
+                url: '<?= base_url('Admin/changeIsActiveHasil') ?>',
+                type: 'post',
+                data: {
+                    id: hasilId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        var toastPeriode = $('#toastPeriode');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        toastBody.text(response.message);
+                        var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                            animation: true,
+                            delay: 2000
+                        })
+                        $('#inputHasilSeleksi').modal('hide');
+                        toastPeriodeElement.show();
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2500);
+                    } else {
+                        var toastPeriode = $('#toastPeriode');
+                        toastPeriode.removeClass('bg-success').addClass('bg-danger');
+                        var toastBody = toastPeriode.find('.toast-body');
+                        var toastHeader = toastPeriode.find('.toast-header');
+                        toastHeader.find('div').text('Gagal');
+                        toastHeader.find('i').removeClass('bx bx-check-double').addClass('bx bxs-info-circle');
+                        toastBody.text(response.message);
+                        var toastPeriodeElement = new bootstrap.Toast(toastPeriode, {
+                            animation: true,
+                            delay: 4000
+                        })
+                        toastPeriodeElement.show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Log AJAX errors
+                    console.error('AJAX Error:', error);
+                    console.log('Response:', xhr.responseText);
+                    alert("error");
+                }
+            });
+        });
     });
 </script>
 

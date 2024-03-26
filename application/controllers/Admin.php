@@ -300,4 +300,20 @@ class Admin extends CI_Controller
         $this->load->view('dashboard/upload', $data);
         $this->load->view('dashboard/templates/footer');
     }
+
+    public function changeIsActiveHasil()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $this->input->post('id');
+            if ($this->OprecModel->changeIsActiveHasil($id)) {
+                echo json_encode(['status' => 'success', 'message' => 'Hasil Seleksi berhasil di diubah']);
+                return;
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Terjadi Kesalahan']);
+                return;
+            }
+        } else {
+            $this->load->view('forbidden/index');
+        }
+    }
 }

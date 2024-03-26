@@ -112,8 +112,16 @@ class OprecModel extends CI_Model
     }
     public function getHasilSeleksi()
     {
-        $this->db->select('tb_hasil.*, tb_hasil.is_active AS hasil_active, tb_hasil.period_id AS hasil_period_id, tb_period.*');
+        $this->db->select('tb_hasil.*, tb_hasil.id AS hasil_id, tb_hasil.is_active AS hasil_active, tb_hasil.period_id AS hasil_period_id, tb_period.*');
         $this->db->from('tb_hasil');
+        $this->db->join('tb_period', 'tb_hasil.period_id = tb_period.id');
+        return $this->db->get()->result_array();
+    }
+    public function getHasilSeleksiActive()
+    {
+        $this->db->select('tb_hasil.*, tb_hasil.id AS hasil_id, tb_hasil.is_active AS hasil_active, tb_hasil.period_id AS hasil_period_id, tb_period.*');
+        $this->db->from('tb_hasil');
+        $this->db->where('tb_hasil.is_active', 1);
         $this->db->join('tb_period', 'tb_hasil.period_id = tb_period.id');
         return $this->db->get()->result_array();
     }
@@ -121,6 +129,17 @@ class OprecModel extends CI_Model
     {
         $data['is_active'] = 1;
         $result = $this->db->insert('tb_hasil', $data);
+
+        return $result ? true : false;
+    }
+    public function changeIsActiveHasil($id)
+    {
+        $hasil_sebelumnya = $this->db->get_where('tb_hasil', ['id' => $id])->row();
+        $is_active_sebelumnya = $hasil_sebelumnya->is_active;
+
+        $new_is_active = ($is_active_sebelumnya == 1) ? 0 : 1;
+
+        $result = $this->db->update('tb_hasil', ['is_active' => $new_is_active], ['id' => $id]);
 
         return $result ? true : false;
     }

@@ -34,11 +34,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($hasil_seleksi as $hasil) : ?>
+                            <?php foreach ($hasil_seleksi as $key => $hasil) : ?>
                                 <tr>
                                     <td>
-                                        <label for="checkboxTampilkanHasilSeleksi" class="form-label w-100">
-                                            <input type="checkbox" class="form-check-input" id="checkboxTampilkanHasilSeleksi" title="Tampilkan" <?= ($hasil['hasil_active'] == 1) ? 'checked' : '' ?>>
+                                        <label for="checkboxTampilkanHasilSeleksi<?= $key ?>" class="form-label w-100">
+                                            <input type="checkbox" class="form-check-input checkboxTampilkanHasilSeleksi" data-id="<?= $hasil['hasil_id'] ?>" id="checkboxTampilkanHasilSeleksi<?= $key ?>" title="Tampilkan" <?= ($hasil['hasil_active'] == 1) ? 'checked' : '' ?>>
                                         </label>
                                     </td>
                                     <td><?= $hasil['title'] ?></td>
